@@ -54,7 +54,7 @@ const items = [
 
 const JackporDetails = ({ route, navigation }) => {
 
-    console.log(route)
+    const { data } = route.params
 
     return (
         <Container>
