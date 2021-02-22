@@ -1,4 +1,5 @@
 import React from 'react';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import {
 	Container, Header, Image, InfoBox, GroupItem, InfoItem, Title, Line, BoxLine, ScoreBox, Label
@@ -6,7 +7,7 @@ import {
 
 const Profile = ({ route }) => {
 
-	const { data } = route.params
+	//const { data } = route.params
 
 	return (
 		<Container>
@@ -24,6 +25,7 @@ const Profile = ({ route }) => {
 
 			<ScoreBox>
 				<Title style={{ fontSize: 70, fontWeight: 'bold' }}>15</Title>
+				<Icon name='home' color='#FFF' size={50} />
 				<Label>LEVEL</Label>
 			</ScoreBox>
 

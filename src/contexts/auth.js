@@ -4,9 +4,9 @@ import AsyncStorage from '@react-native-community/async-storage'
 export const AuthContext = createContext({})
 
 import axios from 'axios';
+import api from '../services/api'
 
-//Url padrão da API 
-let baseUrl = 'http://192.168.1.127:8080/api/users'
+//Tokens da API do https://www.api-futebol.com.br/
 //const token = 'Bearer test_104b8191a601fc61faa8cf0b2c3e1a'
 const token = 'Bearer live_7df37af973031bf7169d41f48163d9'
 
@@ -48,65 +48,16 @@ export default function AuthProvider({ children }) {
 
     //Cadastrar de usuário
     const signUp = async (name, email, phone, password, cpf) => {
-        const headers = new Headers();
-        headers.append("Content-Type", "application/json")
-        headers.append("Accept", 'application/json')
-
-        const data = {
-            name: name,
-            email: email,
-            phone: phone,
-            password: password,
-            cpf: cpf
-        }
-
-        console.log(name, cpf)
-
-        await fetch(baseUrl,
-            {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify(data)
-            })
+        let response = await api.onSignUp(name, email, phone, password, cpf)
+        setUser(response)
+        storageUser(response)
     }
 
     //Funcao para logar o usuário
     const signIn = async (email, password) => {
-        if (email.trim().length == 0 || password.trim().length == 0) {
-            return
-        } else {
-
-            const dado = {
-                method: 'POST',
-                body: JSON.stringify({
-                    email: email,
-                    password: password,
-                }),
-                credentials: 'same-origin',
-                mode: 'same-origin',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': 'csrftoken'
-                }
-            }
-
-            const response = await fetch(`${baseUrl}/login`, dado)
-
-            try {
-                if (response.status == 200) {
-                    const data = await response.json()
-                    setUser(data)
-                    storageUser(data)
-                    return
-                } else {
-                    return
-                }
-            }
-            catch (erro) {
-                alert('Erro ao tentar fazer login: ' + erro)
-            }
-        }
+        let response = await api.onSignIn(email, password)
+        setUser(response)
+        storageUser(response)
     }
 
     //Função para deslogar o usuário
