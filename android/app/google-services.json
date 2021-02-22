@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "964146389003",
+    "firebase_url": "https://palpiteiros-eb58d.firebaseio.com",
+    "project_id": "palpiteiros-eb58d",
+    "storage_bucket": "palpiteiros-eb58d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:964146389003:android:466f2ef206a4d28406a70e",
+        "android_client_info": {
+          "package_name": "com.palpiteiros"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "964146389003-qfugg152g7ttqutoql75fqtk7e1gmgnc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDF2D-qMF5kSN9Bpog72M5dwR7cCY3-T5I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "964146389003-qfugg152g7ttqutoql75fqtk7e1gmgnc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
