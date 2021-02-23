@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import {
@@ -6,6 +6,7 @@ import {
 } from './styles'
 
 import ChampionshipsList from '../../../../../components/ChampionshipsList'
+import RequestController from '../../../../../controllers/RequestController'
 
 const items = [
 	{
@@ -49,6 +50,19 @@ const items = [
 const SelectChampionship = ({ navigation }) => {
 
 	const [search, setSearch] = useState('')
+	const [championship, setChampionship] = useState([])
+
+	const loadChampionship = async () => {
+		const response = await RequestController.onGet('/api/championships')
+		console.log(response)
+		setChampionship(response)
+	}
+
+	console.log(championship)
+
+	useEffect(() => {
+		loadChampionship()
+	}, [])
 
 	return (
 		<Container>

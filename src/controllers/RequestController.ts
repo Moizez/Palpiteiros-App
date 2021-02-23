@@ -85,6 +85,7 @@ class RequestController {
 
     private onGetFetch = async (url: string) => {
         let res = fetch(Host.get + url)
+        console.log(res)
         return await res;
     }
 }
