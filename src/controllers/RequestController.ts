@@ -80,13 +80,14 @@ class RequestController {
 
     private onGetFetchData = async (url: string, data: object) => {
         let res = fetch(Host.get + url, data)
-        return await res;
+        const api = await res
+        return api;
     }
 
     private onGetFetch = async (url: string) => {
         let res = fetch(Host.get + url)
-        console.log(res)
-        return await res;
+        const api = await res
+        return api;
     }
 }
 
