@@ -1,10 +1,10 @@
 import React, { useState, useEffect, createContext } from 'react';
-import AsyncStorage from '@react-native-community/async-storage'
 
 export const AuthContext = createContext({})
 
 import axios from 'axios';
 import api from '../services/api'
+import SessionController from '../controllers/SessionController';
 
 //Tokens da API do https://www.api-futebol.com.br/
 //const token = 'Bearer test_104b8191a601fc61faa8cf0b2c3e1a'
@@ -36,9 +36,9 @@ export default function AuthProvider({ children }) {
     //Carregar usuário do AsyncStorage
     useEffect(() => {
         const loadStorage = async () => {
-            const storageUser = await AsyncStorage.getItem('Auth_user')
+            const storageUser = await SessionController.get('Auth_user')
             if (storageUser) {
-                setUser(JSON.parse(storageUser))
+                setUser(storageUser)
                 setLoading(false)
             }
             setLoading(false)
@@ -62,7 +62,7 @@ export default function AuthProvider({ children }) {
 
     //Função para deslogar o usuário
     const logOut = async () => {
-        await AsyncStorage.removeItem('Auth_user')
+       await SessionController.remove('Auth_user')
             .then(() => {
                 setUser(null)
             })
@@ -70,7 +70,7 @@ export default function AuthProvider({ children }) {
 
     //Função para adicionar o usuário no Async Storage
     const storageUser = async (data) => {
-        await AsyncStorage.setItem('Auth_user', JSON.stringify(data))
+        await SessionController.create('Auth_user', data)
     }
 
     return (

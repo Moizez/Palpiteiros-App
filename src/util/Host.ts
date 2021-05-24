@@ -7,7 +7,7 @@ class Host {
 
     /*getters and setters*/
 
-    get get(): string {
+    get get(): string { 
         return this._get;
     }
 
