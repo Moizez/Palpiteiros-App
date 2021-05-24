@@ -1,15 +1,14 @@
-
 /*Class RequestController util para reutilizar as requisições http*/
 
 import Host from "../util/Host";
+import ResponseController from "./ResponseController";
 
 class RequestController {
-
-    public onGet = async (uri: string) => {
-        return await this.onGetFetch(uri);
+    public onGet = async (uri: string, success: Function, error: Function) => {
+        return await this.get(await this.onGetFetch(uri), success, error);
     }
 
-    public onGetToken = async (uri: string, token: string) => {
+    public onGetToken = async (uri: string, token: string, success: Function, error: Function) => {
         const headers = new Headers();
         headers.append("Content-Type", "application/json");
         headers.append("Authorization", "Bearer " + token);
@@ -19,10 +18,10 @@ class RequestController {
             headers: headers,
         };
 
-        return await this.onGetFetchData(uri, data);
+        await this.get(await this.onGetFetchData(uri, data), success, error)
     }
 
-    public onPost = async (uri: string, objectReq: object) => {
+    public onPost = async (uri: string, objectReq: object, success: Function, error: Function) => {
         const data = {
             method: 'POST',
             body: JSON.stringify(objectReq),
@@ -32,10 +31,10 @@ class RequestController {
             }
         };
 
-        return await this.onGetFetchData(uri, data);
+        await this.get(await this.onGetFetchData(uri, data), success, error)
     }
 
-    public onPostToken = async (uri: string, objectReq: object, token: string) => {
+    public onPostToken = async (uri: string, objectReq: object, token: string, success: Function, error: Function) => {
         const headers = new Headers();
         headers.append("Content-Type", "application/json");
         headers.append("Authorization", "Bearer " + token);
@@ -47,10 +46,10 @@ class RequestController {
             headers: headers,
         };
 
-        return await this.onGetFetchData(uri, data);
+        await this.get(await this.onGetFetchData(uri, data), success, error)
     }
 
-    public onPut = async (uri: string, objectReq: object) => {
+    public onPut = async (uri: string, objectReq: object, success: Function, error: Function) => {
         const headers = new Headers();
         headers.append("Content-Type", "application/json");
         headers.append("Accept", 'application/json');
@@ -61,10 +60,10 @@ class RequestController {
             headers: headers,
         };
 
-        return await this.onGetFetchData(uri, data);
+        await this.get(await this.onGetFetchData(uri, data), success, error)
     }
 
-    public onPutJSONToken = async (uri: string, objectReq: object, token: string) => {
+    public onPutJSONToken = async (uri: string, objectReq: object, token: string, success: Function, error: Function) => {
         const headers = new Headers();
         headers.append("Content-Type", "application/json");
         headers.append("Authorization", "Bearer " + token);
@@ -76,20 +75,21 @@ class RequestController {
             headers: headers,
         };
 
-        return await this.onGetFetchData(uri, data);
+        await this.get(await this.onGetFetchData(uri, data), success, error)
     };
 
     private onGetFetchData = async (url: string, data: object) => {
-        const response = fetch(Host.get + url, data)
-        const api = await response
-        console.log(api)
-        return api;
+        let res = fetch(Host.get + url, data)
+        return await res;
     }
 
     private onGetFetch = async (url: string) => {
-        const response = fetch(Host.get + url)
-        const api = await response
-        return api;
+        let res = fetch(Host.get + url)
+        return await res;
+    }
+
+    private get = async (resp: Response, success: Function, error: Function) =>{
+        await ResponseController.get(resp, success, error)
     }
 }
 

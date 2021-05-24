@@ -1,4 +1,4 @@
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 class SessionController {
   public async create(key: string, object: object): Promise<object | []> {
     const isCheck = await this.checkSession(key);
@@ -12,16 +12,16 @@ class SessionController {
     return this.get(key);
   }
 
-  public async get(key): Promise<object | []> {
-    return (await JSON.parse(await AsyncStorage.getItem(key))) || [];
+  public async get(key): Promise<object | null> {
+    try {
+      return (await JSON.parse(await AsyncStorage.getItem(key))) || null;
+    } catch {}
+    return null;
   }
 
   private async checkSession(key): Promise<boolean> {
     const session = await this.get(key);
-    if (Object.keys(session).length > 0) {
-      return true;
-    }
-    return false;
+    return !!session;
   }
 
   public async remove(key): Promise<void> {
