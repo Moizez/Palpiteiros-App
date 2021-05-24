@@ -22,12 +22,8 @@ const SignIn = () => {
 	const [opacity] = useState(new Animated.Value(0))
 	const [logo] = useState(new Animated.ValueXY({ x: 220, y: 220 }))
 
-	const handleLogin = async () => {
-		if (email.trim().length === 0 || password.trim().length === 0) {
-			return
-		} else {
-			await signIn(email, password);
-		}
+	const handleLogin = async () => {  
+		await signIn(email, password);
 	}
 
 	//Ciclo da animação da tela de login

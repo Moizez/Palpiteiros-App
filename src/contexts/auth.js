@@ -3,8 +3,8 @@ import React, { useState, useEffect, createContext } from 'react';
 export const AuthContext = createContext({})
 
 import axios from 'axios';
-import api from '../services/api'
 import SessionController from '../controllers/SessionController';
+import UserController from '../controllers/UserController';
 
 //Tokens da API do https://www.api-futebol.com.br/
 //const token = 'Bearer test_104b8191a601fc61faa8cf0b2c3e1a'
@@ -29,12 +29,12 @@ export default function AuthProvider({ children }) {
         })
     }
 
-    useEffect(() => {
-        loadChampionships()
+    useEffect(async () => {
+        await loadChampionships()
     }, [])
 
     //Carregar usuário do AsyncStorage
-    useEffect(() => {
+    useEffect(async () => {
         const loadStorage = async () => {
             const storageUser = await SessionController.get('Auth_user')
             if (storageUser) {
@@ -43,21 +43,22 @@ export default function AuthProvider({ children }) {
             }
             setLoading(false)
         }
-        loadStorage()
+        await loadStorage()
     }, [])
 
     //Cadastrar de usuário
     const signUp = async (name, email, phone, password, cpf) => {
-        let response = await api.onSignUp(name, email, phone, password, cpf)
-        setUser(response)
-        storageUser(response)
+        await UserController.onSignUp(name, email, phone, password, cpf, getUser, () => getUser(null))
+    }
+
+    const getUser = async (data) =>{
+        setUser(data)
+        await storageUser(data)
     }
 
     //Funcao para logar o usuário
     const signIn = async (email, password) => {
-        let response = await api.onSignIn(email, password)
-        setUser(response)
-        storageUser(response)
+        await UserController.onSignIn(email, password, getUser, () => getUser(null))
     }
 
     //Função para deslogar o usuário
