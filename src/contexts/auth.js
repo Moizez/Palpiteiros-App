@@ -37,7 +37,7 @@ export default function AuthProvider({ children }) {
     useEffect(() => {
         const loadStorage = async () => {
             const storageUser = await SessionController.get('Auth_user')
-            if (storageUser) {
+            if (storageUser && storageUser.length > 0) {
                 setUser(storageUser)
                 setLoading(false)
             }
@@ -48,21 +48,21 @@ export default function AuthProvider({ children }) {
 
     //Cadastrar de usuário
     const signUp = async (name, email, phone, password, cpf) => {
-        let response = await api.onSignUp(name, email, phone, password, cpf)
+        const response = await api.onSignUp(name, email, phone, password, cpf)
         setUser(response)
         storageUser(response)
     }
 
     //Funcao para logar o usuário
     const signIn = async (email, password) => {
-        let response = await api.onSignIn(email, password)
+        const response = await api.onSignIn(email, password)
         setUser(response)
         storageUser(response)
     }
 
     //Função para deslogar o usuário
     const logOut = async () => {
-       await SessionController.remove('Auth_user')
+        await SessionController.remove('Auth_user')
             .then(() => {
                 setUser(null)
             })
@@ -74,7 +74,10 @@ export default function AuthProvider({ children }) {
     }
 
     return (
-        <AuthContext.Provider value={{ signed: !!user, user, loading, championships, signIn, signUp, logOut }}>
+        <AuthContext.Provider value={{
+            signed: !!user, user, loading, championships,
+            signIn, signUp, logOut
+        }}>
             {children}
         </AuthContext.Provider>
     )

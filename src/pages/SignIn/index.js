@@ -41,10 +41,12 @@ const SignIn = () => {
 				toValue: 0,
 				speed: 4,
 				bounciness: 12,
+				useNativeDriver: false
 			}),
 			Animated.timing(opacity, {
 				toValue: 1,
 				duration: 300,
+				useNativeDriver: false
 			})
 
 		]).start()
@@ -59,10 +61,12 @@ const SignIn = () => {
 			Animated.timing(logo.x, {
 				toValue: 100,
 				duration: 100,
+				useNativeDriver: false
 			}),
 			Animated.timing(logo.y, {
 				toValue: 100,
 				duration: 100,
+				useNativeDriver: false
 			}),
 
 		]).start()
@@ -77,10 +81,12 @@ const SignIn = () => {
 			Animated.timing(logo.x, {
 				toValue: 225,
 				duration: 100,
+				useNativeDriver: false
 			}),
 			Animated.timing(logo.y, {
 				toValue: 225,
 				duration: 100,
+				useNativeDriver: false
 			}),
 
 		]).start()

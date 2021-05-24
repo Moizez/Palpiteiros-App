@@ -4,13 +4,12 @@ const baseURL = '/api/users'
 //const baseURL = 'http://192.168.1.127:8080/api/users'
 
 export default {
-    onSignIn: async (email, password) => {
-        const req = await RequestController.onPost(`${baseURL}/login`, {
-            email, password
-        })
 
-        if (req.status === 200) {
-            const json = await req.json()
+    onSignIn: async (email, password) => {
+        const data = { email, password }
+        const request = await RequestController.onPost(`${baseURL}/login`, data)
+        if (request.status >= 200 && request.status <= 299) {
+            const json = await request.json()
             return json
         } else {
             return
@@ -19,11 +18,14 @@ export default {
     },
 
     onSignUp: async (name, email, phone, password, cpf) => {
-        const req = await RequestController.onPost(baseURL, {
-            name, email, phone, password, cpf
-        })
 
-        const json = await req.json()
-        return json
+        const data = { name, email, phone, password, cpf }
+        const request = await RequestController.onPost(baseURL, data)
+        if (request.status >= 200 && request.status <= 299) {
+            const json = await request.json()
+            return json
+        } else {
+            return
+        }
     }
 }

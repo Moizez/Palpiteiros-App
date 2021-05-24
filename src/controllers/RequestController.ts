@@ -4,6 +4,7 @@
 import Host from "../util/Host";
 
 class RequestController {
+
     public onGet = async (uri: string) => {
         return await this.onGetFetch(uri);
     }
@@ -79,14 +80,15 @@ class RequestController {
     };
 
     private onGetFetchData = async (url: string, data: object) => {
-        let res = fetch(Host.get + url, data)
-        const api = await res
+        const response = fetch(Host.get + url, data)
+        const api = await response
+        console.log(api)
         return api;
     }
 
     private onGetFetch = async (url: string) => {
-        let res = fetch(Host.get + url)
-        const api = await res
+        const response = fetch(Host.get + url)
+        const api = await response
         return api;
     }
 }
