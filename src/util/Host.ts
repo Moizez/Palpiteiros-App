@@ -2,8 +2,8 @@
 
 class Host {
 
-    private _get = "http://192.168.1.10:8080" //IP Antônio
-    //private _get = "http://192.168.1.127:8080" //IP Moisés
+    //private _get = "http://192.168.1.10:8080" //IP Antônio
+    private _get = "http://192.168.1.128:8080" //IP Moisés
 
     /*getters and setters*/
 

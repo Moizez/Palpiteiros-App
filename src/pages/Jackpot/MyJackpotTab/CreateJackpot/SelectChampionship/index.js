@@ -54,11 +54,9 @@ const SelectChampionship = ({ navigation }) => {
 
 	const loadChampionship = async () => {
 		const response = await RequestController.onGet('/api/championships')
-		console.log(response)
-		setChampionship(response)
+		const data = await response.json()
+		setChampionship(data)
 	}
-
-	console.log(championship)
 
 	useEffect(() => {
 		loadChampionship()
