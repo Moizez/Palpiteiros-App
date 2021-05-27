@@ -26,7 +26,7 @@ const AuthRoutes = () => {
                     },
                     headerTintColor: '#FFF',
                     headerBackTitleVisible: false,
-                    headerTitle: 'Voltar'
+                    headerTitle: ''
                 }}
             />
         </AuthStack.Navigator>

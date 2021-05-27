@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext } from 'react'
 
-import { AuthContext } from '../../../contexts/auth';
+import { AuthContext } from '../../../contexts/auth'
 import GameList from '../../../components/GameList'
 
 import { Container, Header, FlatList, Title, Label } from './styles'
 
 const Home = () => {
 
-	const { championships } = useContext(AuthContext);
+	const { championships } = useContext(AuthContext)
 
 	return (
 		<Container>
@@ -24,7 +24,7 @@ const Home = () => {
 			/>
 
 		</Container>
-	);
+	)
 }
 
 export default Home

@@ -58,7 +58,7 @@ const CreateJackpot = ({navigation}) => {
                 </StatusButton>
             </Status>
 
-            <Select onPress={() => navigation.navigate('SelectChampionship')}>
+            <Select onPress={() => navigation.navigate('ChampionshipSelection')}>
                 <Title style={{ color: '#022c6f' }}>Selecionar Competição</Title>
             </Select>
 

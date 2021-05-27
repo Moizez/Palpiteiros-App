@@ -1,75 +1,74 @@
-import React from 'react';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import React, { useContext } from 'react'
+
+import { AuthContext } from '../../../contexts/auth'
+import avatar from '../../../assets/images/avatar.jpg'
 
 import {
-	Container, Header, Image, InfoBox, GroupItem, InfoItem, Title, Line, BoxLine, ScoreBox, Label
+	Container, Header, Image, InfoBox, GroupItem, InfoItem,
+	Title, Line, ScoreBox, Label, Box, UserName
 } from './styles'
 
-const Profile = ({ route }) => {
+const Profile = () => {
 
-	//const { data } = route.params
+	const { user } = useContext(AuthContext)
 
 	return (
 		<Container>
 			<Header>
 				<Image
-					source={{ uri: 'https://scontent.fmvf5-1.fna.fbcdn.net/v/t1.0-9/50762682_10211802434329959_3523544453279121408_n.jpg?_nc_cat=105&ccb=3&_nc_sid=09cbfe&_nc_ohc=AmsvQV7M6lkAX-b5AMd&_nc_ht=scontent.fmvf5-1.fna&oh=793f426a010f9e875d0be0f6410c9b19&oe=6057ED9D' }}
+					source={avatar}
 					resizeMode='cover'
 				/>
-				<Title>Moisés Henrique</Title>
+				<UserName>{user?.name}</UserName>
 			</Header>
 
-			<BoxLine>
+			<Box>
+				<ScoreBox>
+					<Title style={{ fontSize: 70, fontWeight: 'bold' }}>15</Title>
+					<Label>LEVEL</Label>
+				</ScoreBox>
+
 				<Line />
-			</BoxLine>
 
-			<ScoreBox>
-				<Title style={{ fontSize: 70, fontWeight: 'bold' }}>15</Title>
-				<Icon name='home' color='#FFF' size={50} />
-				<Label>LEVEL</Label>
-			</ScoreBox>
+				<InfoBox>
+					<GroupItem>
+						<InfoItem>
+							<Title style={{ fontSize: 25, fontWeight: 'bold' }}>60</Title>
+							<Label>PALPITES</Label>
+						</InfoItem>
 
-			<BoxLine>
-				<Line />
-			</BoxLine>
+						<InfoItem>
+							<Title style={{ fontSize: 25, fontWeight: 'bold' }}>230</Title>
+							<Label>PONTOS</Label>
+						</InfoItem>
 
-			<InfoBox>
-				<GroupItem>
-					<InfoItem>
-						<Title style={{ fontSize: 25, fontWeight: 'bold' }}>60</Title>
-						<Label>PALPITES</Label>
-					</InfoItem>
+						<InfoItem>
+							<Title style={{ fontSize: 25, fontWeight: 'bold' }}>5</Title>
+							<Label>AMIGOS</Label>
+						</InfoItem>
+					</GroupItem>
 
-					<InfoItem>
-						<Title style={{ fontSize: 25, fontWeight: 'bold' }}>230</Title>
-						<Label>PONTOS</Label>
-					</InfoItem>
+					<GroupItem>
+						<InfoItem>
+							<Title style={{ fontSize: 25, fontWeight: 'bold' }}>2</Title>
+							<Label>BOLÕES</Label>
+						</InfoItem>
 
-					<InfoItem>
-						<Title style={{ fontSize: 25, fontWeight: 'bold' }}>5</Title>
-						<Label>AMIGOS</Label>
-					</InfoItem>
-				</GroupItem>
+						<InfoItem>
+							<Title style={{ fontSize: 25, fontWeight: 'bold' }}>56%</Title>
+							<Label>PRECISÃO</Label>
+						</InfoItem>
 
-				<GroupItem>
-					<InfoItem>
-						<Title style={{ fontSize: 25, fontWeight: 'bold' }}>2</Title>
-						<Label>BOLÕES</Label>
-					</InfoItem>
+						<InfoItem>
+							<Title style={{ fontSize: 25, fontWeight: 'bold' }}>13</Title>
+							<Label>ACERTOS</Label>
+						</InfoItem>
+					</GroupItem>
+				</InfoBox>
 
-					<InfoItem>
-						<Title style={{ fontSize: 25, fontWeight: 'bold' }}>56%</Title>
-						<Label>PRECISÃO</Label>
-					</InfoItem>
-
-					<InfoItem>
-						<Title style={{ fontSize: 25, fontWeight: 'bold' }}>13</Title>
-						<Label>ACERTOS</Label>
-					</InfoItem>
-				</GroupItem>
-			</InfoBox>
+			</Box>
 		</Container>
-	);
+	)
 }
 
 export default Profile

@@ -2,9 +2,10 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
 flex:1;
-background-color: #022c6f;
 align-items: center;
 justify-content: center;
+background-color: #fff;
+padding: 5px 20px;
 `;
 
 export const Title = styled.Text`
@@ -12,39 +13,42 @@ font-size: 25px;
 `;
 
 export const Label = styled.Text`
+text-align: center;
 font-size: 15px;
+color: #FFF;
+margin: 5px 0;
 `;
 
 export const FlatList = styled.FlatList`
 flex: 1;
 width: 100%;
-background-color: #022c6f;
+background-color: #FFF;
 `;
 
-export const CreatJackpot = styled.TouchableOpacity`
+export const CreateJackpot = styled.TouchableOpacity`
 flex: 0.4;
-width: 90%;
 background-color: #FFF;
 border-radius: 5px;
 margin-top: 10px;
-margin-bottom: 25px;
+width: 100%;
 `;
 
 export const BoxLabel = styled.View`
-padding-left: 20px;
-padding-right: 20px;
+padding: 5px;
 align-items: center;
+background-color: #022c6f;
+border-radius: 10px;
+margin-top: 15px;
 `;
 
 export const CircleButton = styled.View`
-width: 60px;
-height: 60px;
-background-color: #FFF;
+width: 40px;
+height: 40px;
+background-color: #022c6f;
 border-width: 2px;
-border-radius: 30px;
-border-color: #022c6f;
-margin-top: 10px;
-margin-bottom: 10px;
+border-radius: 20px;
+border-color: #FFF;
+margin: 5px 0;
 align-items: center;
 justify-content: center;
 `;

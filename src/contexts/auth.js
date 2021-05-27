@@ -27,30 +27,40 @@ const AuthProvider = ({ children }) => {
         loadStorage()
     }, [])
 
-    const openWarningModal = () => setWarningModal(true)
-    const closeWarningModal = () => setWarningModal(false)
+    const handleOpenWarningModal = () => setWarningModal(true)
+    const handleCloseWarningModal = () => setWarningModal(false)
 
-    const signIn = async (email, password) => {
-
+    const handleSignIn = async (email, password) => {
         setLoadingAuth(true)
-        if (email.length === 0 || password.length === 0) {
+        const response = await api.onSignIn(email, password)
+
+        if (response.data) {
+            setUser(response.data)
+            storageUser(response.data)
             setLoadingAuth(false)
             return
         } else {
-            const response = await api.onSignIn(email, password)
+            setLoadingAuth(false)
+            setMessage('E-mail ou senha inválidos!')
+            handleOpenWarningModal()
+            return
+        }
+    }
 
-            if (response.data) {
-                setUser(response.data)
-                storageUser(response.data)
-                window.location.href = '/home'
-                setLoadingAuth(false)
-                return
-            } else {
-                setLoadingAuth(false)
-                setMessage('E-mail ou senha inválidos!')
-                handleOpenWarningModal()
-                return
-            }
+    const handleSignUp = async (values) => {
+        setLoadingAuth(true)
+        const response = await api.onSignUp(values)
+
+        if (response.data) {
+            setUser(response.data)
+            storageUser(response.data)
+            setLoadingAuth(false)
+            return
+        } else {
+            setLoadingAuth(false)
+            setMessage('E-mail ou senha inválidos!')
+            handleOpenWarningModal()
+            return
         }
     }
 
@@ -74,15 +84,16 @@ const AuthProvider = ({ children }) => {
                 visible={warningModal}
             >
                 <WarningModal
-                    closeModal={closeWarningModal}
+                    closeModal={handleCloseWarningModal}
                     message={message}
+                    bgColor
                 />
             </Modal>
 
             <AuthContext.Provider value={{
                 signed: !!user, user,
                 loading, loadingAuth,
-                signIn, logOut
+                handleSignIn, handleSignUp, logOut
             }}>
                 {children}
             </AuthContext.Provider>

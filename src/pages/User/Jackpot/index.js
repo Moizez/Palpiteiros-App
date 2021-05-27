@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Dimensions, Text, StyleSheet } from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 
-import MyJackpotTab from '../Jackpot/MyJackpotTab'
-import OfficialJackpotTab from '../Jackpot/OfficialJackpotTab'
-import ListJackpotTab from '../Jackpot/ListJackpotTab'
+import MyJackpot from '../Jackpot/MyJackpot'
+import OfficialJackpot from '../Jackpot/OfficialJackpot'
+import OthersJackpot from '../Jackpot/OthersJackpot'
 
 import { Header, Title, Label } from './styles'
 
@@ -32,9 +32,9 @@ const Jackpot = () => {
 	);
 
 	const renderScene = SceneMap({
-		first: MyJackpotTab,
-		second: OfficialJackpotTab,
-		third: ListJackpotTab
+		first: MyJackpot,
+		second: OfficialJackpot,
+		third: OthersJackpot
 	});
 
 	return (

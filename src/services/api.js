@@ -1,11 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-const CEP_API = 'https://viacep.com.br/ws'
 //const API = 'http://192.168.1.128:8080/api'
-const API = 'https://palpiteirosapi.herokuapp.com/api'
+const API = 'https://palpiteiros-api.herokuapp.com/api'
 
 
-const apiFetchPost = async (endpoint, body, token) => {
+const apiFetchPost = async (endpoint, body) => {
 
     const headers = new Headers();
     headers.append("Content-Type", "application/json")
@@ -113,10 +112,24 @@ export default {
 
     onSignIn: async (email, password) => {
         const data = { email: email, password: password }
-        const request = await apiFetchPost('/login', data)
+        const request = await apiFetchPost('/users/signin', data)
         return request
     },
 
+    onSignUp: async (values) => {
+        const data = {
+            name: values.name,
+            cpf: values.cpf,
+            phone: values.phone,
+            email: values.email,
+            password: values.password
+        }
+        const request = await apiFetchPost('/users', data)
+        return request
+    },
 
-
+    getAllOfficialChampionships: async () => {
+        const response = await apiFetchGet('/championships')
+        return response
+    },
 }

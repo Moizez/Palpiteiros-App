@@ -1,20 +1,21 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { Platform, Animated, StyleSheet, Keyboard } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState, useContext, useEffect } from 'react'
+import { Animated, StyleSheet, Keyboard, ActivityIndicator } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { useFormik } from 'formik'
+import * as yup from 'yup'
 
-import { AuthContext } from '../../contexts/auth';
+import { AuthContext } from '../../contexts/auth'
 
 import {
-	Container, Image, Input, BoxInput, Button, Label, Link, LinkText, Title, BoxIcon, BoxLink
-} from './styles';
+	Container, Image, Input, Button, Label, Link, LinkText, Title,
+	BoxIcon, BoxLink, InputContainer, InputBox, ErrorBox, ErrorText, Text
+} from './styles'
 
 const SignIn = () => {
-	const navigation = useNavigation();
 
-	const [email, setEmail] = useState('')
-	const [password, setPassword] = useState('')
-	const { signIn } = useContext(AuthContext)
+	const navigation = useNavigation()
+	const { handleSignIn, loadingAuth } = useContext(AuthContext)
 	const [eye, setEye] = useState(false)
 
 	//Animação da tela de login
@@ -22,9 +23,6 @@ const SignIn = () => {
 	const [opacity] = useState(new Animated.Value(0))
 	const [logo] = useState(new Animated.ValueXY({ x: 220, y: 220 }))
 
-	const handleLogin = async () => {  
-		await signIn(email, password);
-	}
 
 	//Ciclo da animação da tela de login
 	useEffect(() => {
@@ -89,6 +87,19 @@ const SignIn = () => {
 
 	}
 
+	const validationSchema = yup.object().shape({
+		email: yup.string().email('Digite um e-mail válido!').required('O e-mail é obrigatório!'),
+		password: yup.string().required('A senha é obrigatória!'),
+	})
+
+	const formik = useFormik({
+		initialValues: { email: '', password: '' },
+		validationSchema: validationSchema,
+		onSubmit: async (values) => {
+			await handleSignIn(values.email.trim(), values.password.trim())
+		}
+	})
+
 	return (
 		<>
 			<Container behavior='padding'>
@@ -110,41 +121,66 @@ const SignIn = () => {
 						}
 					]}>
 					<Title>Realize sua autenticação</Title>
-					<BoxInput>
-						<Input
-							placeholder='E-mail'
-							autoCorrect={false}
-							autoCapitalize='none'
-							value={email}
-							onChangeText={(text) => setEmail(text)}
-						/>
-						<BoxIcon activeOpacity={1}>
-							<Icon name='email' size={30} color='#022c6f' />
-						</BoxIcon>
-					</BoxInput>
-
-					<BoxInput>
-						<Input
-							placeholder='Senha'
-							autoCorrect={false}
-							autoCapitalize='none'
-							value={password}
-							secureTextEntry={eye ? true : false}
-							onChangeText={(text) => setPassword(text)}
-						/>
-						{password ?
-							<BoxIcon onPress={() => setEye(!eye)} activeOpacity={0.8}>
-								<Icon name={eye ? 'eye' : 'eye-off'} size={28} color='#022c6f' />
-							</BoxIcon>
-							:
+					<InputContainer>
+						{formik.values.email != '' && <Text>E-mail:</Text>}
+						<InputBox>
+							<Input
+								placeholder='E-mail*'
+								autoCorrect={false}
+								autoCapitalize='none'
+								keyboardType='email-address'
+								value={formik.values.email}
+								onChangeText={formik.handleChange('email')}
+								onBlur={formik.handleBlur('email')}
+							/>
 							<BoxIcon activeOpacity={1}>
-								<Icon name='lock' size={28} color='#022c6f' />
+								<Icon name='email' size={30} color='#022c6f' />
 							</BoxIcon>
-						}
-					</BoxInput>
+						</InputBox>
+						<ErrorBox>
+							{formik.touched.email && formik.errors.email &&
+								<ErrorText>{formik.errors.email}</ErrorText>
+							}
+						</ErrorBox>
+					</InputContainer>
 
-					<Button onPress={handleLogin}>
-						<Label>Acessar</Label>
+					<InputContainer>
+						{formik.values.password != '' && <Text>Senha*</Text>}
+						<InputBox>
+							<Input
+								placeholder='Senha*'
+								autoCorrect={false}
+								autoCapitalize='none'
+								value={formik.values.password}
+								onChangeText={formik.handleChange('password')}
+								onBlur={formik.handleBlur('password')}
+								secureTextEntry={eye ? true : false}
+							/>
+							{formik.values.password ?
+								<BoxIcon onPress={() => setEye(!eye)} activeOpacity={0.8}>
+									<Icon name={eye ? 'eye' : 'eye-off'} size={28} color='#022c6f' />
+								</BoxIcon>
+								:
+								<BoxIcon activeOpacity={1}>
+									<Icon name='lock' size={28} color='#022c6f' />
+								</BoxIcon>
+							}
+						</InputBox>
+						<ErrorBox>
+							{formik.touched.password && formik.errors.password &&
+								<ErrorText>{formik.errors.password}</ErrorText>
+							}
+						</ErrorBox>
+					</InputContainer>
+
+					<Button onPress={formik.handleSubmit}>
+						{
+							loadingAuth ? (
+								<ActivityIndicator size={20} color="#FFF" />
+							) : (
+								<Label>Acessar</Label>
+							)
+						}
 					</Button>
 
 					<BoxLink>
@@ -160,7 +196,7 @@ const SignIn = () => {
 				</Animated.View>
 			</Container>
 		</>
-	);
+	)
 }
 
 const styles = StyleSheet.create({
@@ -168,7 +204,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
-		width: '80%',
+		paddingHorizontal: 35,
 		paddingBottom: 30
 	}
 })
