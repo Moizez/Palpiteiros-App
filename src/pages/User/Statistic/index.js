@@ -1,16 +1,15 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
-import api from '../../../services/api'
+import api from '../../../services/api_championships'
 import EmptyList from '../../../components/EmptyList'
 import ChampionshipsList from '../../../components/ChampionshipsList'
+import Header from '../../../components/Header'
 
-import { Container, Header, FlatList, Title, Label } from './styles'
+import { Container, FlatList } from './styles'
 
 const Statistic = () => {
 
 	const [championships, setChampionships] = useState([])
-
-	console.log(championships)
 
 	useEffect(() => {
 		const loadChampionships = async () => {
@@ -22,10 +21,11 @@ const Statistic = () => {
 
 	return (
 		<>
-			<Header>
-				<Title>Tabela dos Campeonatos</Title>
-				<Label>Disponíveis</Label>
-			</Header>
+			<Header
+				title='Tabela dos Campeonatos'
+				label='Disponíveis'
+			/>
+
 			<Container>
 				<FlatList
 					data={championships}

@@ -3,53 +3,52 @@ import { View, Text } from 'react-native'
 import { DataTable } from 'react-native-paper'
 import styled from 'styled-components/native'
 
-import api from '../../services/api'
+import api from '../../services/api_championships'
+import api_groups from '../../services/api_groups'
+import Header from '../../components/Header'
 
-import { Container, Header, TableContainer, Title } from './styles'
+import { Container, TableContainer, Title } from './styles'
 
 const Leaderboard = ({ route }) => {
 
-    const { id } = route.params
+    const { id, name, year } = route.params
     const [championship, setChampionship] = useState([])
-
-    const res = championship?.groups?.map((i) => i.punctuations)
-    const data = res.map((i)=>i.draw)
-    console.log(data)
+    const [groups, setGroups] = useState([])
 
     useEffect(() => {
-        const loadChampionship = async () => {
-            const response = await api.getOfficialChampionshipsById(id)
-            setChampionship(response.data)
+        const loadGroups = async () => {
+            const response = await api_groups.getAllGroups()
+            setGroups(response.data)
         }
-        loadChampionship()
+        loadGroups()
     }, [])
 
     return (
         <Container>
-            <Header>
-
-            </Header>
+            <Header
+                title={name}
+                label={year}
+            />
 
             <DataTable>
                 <DataTable.Header>
-                    <DataTable.Title>POS</DataTable.Title>
+                    <DataTable.Title>SELEÇÃO</DataTable.Title>
                     <DataTable.Title numeric>P</DataTable.Title>
                     <DataTable.Title numeric>J</DataTable.Title>
                     <DataTable.Title numeric>V</DataTable.Title>
                     <DataTable.Title numeric>E</DataTable.Title>
                     <DataTable.Title numeric>D</DataTable.Title>
-                    <DataTable.Title numeric>GP</DataTable.Title>
-                    <DataTable.Title numeric>GS</DataTable.Title>
-                    <DataTable.Title numeric>SG</DataTable.Title>
-                    <DataTable.Title numeric>%</DataTable.Title>
                 </DataTable.Header>
-                {res?.map((i) => {
+                {groups[0]?.punctuations?.map(i => (
                     <DataTable.Row key={i.id}>
-                        <DataTable.Cell>{i.id}</DataTable.Cell>
-                        <DataTable.Cell numeric>159</DataTable.Cell>
-                        <DataTable.Cell numeric>6.0</DataTable.Cell>
+                        <DataTable.Cell>{i.team.name}</DataTable.Cell>
+                        <DataTable.Cell numeric>{i.points}</DataTable.Cell>
+                        <DataTable.Cell numeric>{i.points}</DataTable.Cell>
+                        <DataTable.Cell numeric>{i.points}</DataTable.Cell>
+                        <DataTable.Cell numeric>{i.points}</DataTable.Cell>
+                        <DataTable.Cell numeric>{i.points}</DataTable.Cell>
                     </DataTable.Row>
-                })}
+                ))}
             </DataTable>
         </Container>
     )
