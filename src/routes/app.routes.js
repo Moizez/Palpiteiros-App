@@ -9,6 +9,8 @@ import CreateJackpot from '../pages/User/Jackpot/MyJackpot/CreateJackpot'
 import ChampionshipSelection from '../pages/User/Jackpot/MyJackpot/CreateJackpot/ChampionshipSelection'
 import JackpotDetails from '../pages/User/Jackpot/JackpotDetails'
 
+import Leaderboard from '../pages/Leaderboard'
+
 
 const Stack = createStackNavigator()
 
@@ -20,6 +22,7 @@ const AppRoutes = () => {
             <Stack.Screen name='CreateJackpot' component={CreateJackpot} />
             <Stack.Screen name='ChampionshipSelection' component={ChampionshipSelection} />
             <Stack.Screen name='JackpotDetails' component={JackpotDetails} />
+            <Stack.Screen name='Leaderboard' component={Leaderboard} />
         </Stack.Navigator>
     )
 

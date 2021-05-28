@@ -132,4 +132,15 @@ export default {
         const response = await apiFetchGet('/championships')
         return response
     },
+
+    getOfficialChampionshipsById: async (id) => {
+        const response = await apiFetchGet(`/championships/${id}`)
+        return response
+    },
+
+    getOfficialChampionshipsByGroup: async () => {
+        const response = await apiFetchGet(`/groups`)
+        return response
+    },
+    
 }

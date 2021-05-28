@@ -1,24 +1,25 @@
 import React, { useContext } from 'react'
-import { ActivityIndicator } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 
 import { AuthContext } from '../../contexts/auth'
+import validate from '../../helpers/validations'
+import Input from '../../components/Paper/Input'
+import Button from '../../components/Paper/Button'
 
 import {
-	Container, Input, Button, Label, Title, InputContainer, InputBox,
-	ErrorBox, ErrorText, Text
+	Container, Title, InputContainer, ErrorBox, ErrorText
 } from './styles'
 
 const SignUp = () => {
 
 	const { handleSignUp, loadingAuth } = useContext(AuthContext)
-	const navigation = useNavigation()
 
 	const validationSchema = yup.object().shape({
 		name: yup.string().required('O nome é obrigatório!'),
-		cpf: yup.string().required('O CPF é obrigatório!'),
+		cpf: yup.string()
+			.required('O CPF é obrigatório!')
+			.test('cpf', 'CPF inválido!', async value => await validate.cpf(value)),
 		phone: yup.string().required('O telefone é obrigatório!'),
 		email: yup.string().email('Digite um e-mail válido!').required('O e-mail é obrigatório!'),
 		password: yup.string().required('A senha é obrigatória!'),
@@ -45,18 +46,15 @@ const SignUp = () => {
 
 			<Title>Realize o seu cadastro</Title>
 			<InputContainer>
-				{formik.values.name != '' && <Text>Nome:</Text>}
-				<InputBox>
-					<Input
-						placeholder='Nome*'
-						autoCorrect={false}
-						autoCapitalize='sentences'
-						keyboardType='name-phone-pad'
-						value={formik.values.name}
-						onChangeText={formik.handleChange('name')}
-						onBlur={formik.handleBlur('name')}
-					/>
-				</InputBox>
+				<Input
+					label='Nome*'
+					autoCapitalize='sentences'
+					keyboardType='name-phone-pad'
+					value={formik.values.name}
+					onChangeText={formik.handleChange('name')}
+					onBlur={formik.handleBlur('name')}
+					error={formik.touched.name && formik.errors.name}
+				/>
 				<ErrorBox>
 					{formik.touched.name && formik.errors.name &&
 						<ErrorText>{formik.errors.name}</ErrorText>
@@ -65,17 +63,14 @@ const SignUp = () => {
 			</InputContainer>
 
 			<InputContainer>
-				{formik.values.cpf != '' && <Text>CPF:</Text>}
-				<InputBox>
-					<Input
-						placeholder='CPF*'
-						autoCorrect={false}
-						keyboardType='phone-pad'
-						value={formik.values.cpf}
-						onChangeText={formik.handleChange('cpf')}
-						onBlur={formik.handleBlur('cpf')}
-					/>
-				</InputBox>
+				<Input
+					label='CPF*'
+					keyboardType='phone-pad'
+					value={formik.values.cpf}
+					onChangeText={async (text) => formik.setFieldValue('cpf', await validate.cpfMask(text))}
+					onBlur={formik.handleBlur('cpf')}
+					error={formik.touched.cpf && formik.errors.cpf}
+				/>
 				<ErrorBox>
 					{formik.touched.cpf && formik.errors.cpf &&
 						<ErrorText>{formik.errors.cpf}</ErrorText>
@@ -84,17 +79,14 @@ const SignUp = () => {
 			</InputContainer>
 
 			<InputContainer>
-				{formik.values.phone != '' && <Text>Telefone:</Text>}
-				<InputBox>
-					<Input
-						placeholder='Telefone*'
-						autoCorrect={false}
-						keyboardType='phone-pad'
-						value={formik.values.phone}
-						onChangeText={formik.handleChange('phone')}
-						onBlur={formik.handleBlur('phone')}
-					/>
-				</InputBox>
+				<Input
+					label='Telefone*'
+					keyboardType='phone-pad'
+					value={formik.values.phone}
+					onChangeText={async (text) => formik.setFieldValue('phone', await validate.phoneMask(text))}
+					onBlur={formik.handleBlur('phone')}
+					error={formik.touched.phone && formik.errors.phone}
+				/>
 				<ErrorBox>
 					{formik.touched.phone && formik.errors.phone &&
 						<ErrorText>{formik.errors.phone}</ErrorText>
@@ -103,18 +95,16 @@ const SignUp = () => {
 			</InputContainer>
 
 			<InputContainer>
-				{formik.values.email != '' && <Text>E-mail:</Text>}
-				<InputBox>
-					<Input
-						placeholder='E-mail*'
-						autoCorrect={false}
-						autoCapitalize='none'
-						keyboardType='email-address'
-						value={formik.values.email}
-						onChangeText={formik.handleChange('email')}
-						onBlur={formik.handleBlur('email')}
-					/>
-				</InputBox>
+				<Input
+					label='E-mail*'
+					autoCorrect={false}
+					autoCapitalize='none'
+					keyboardType='email-address'
+					value={formik.values.email}
+					onChangeText={formik.handleChange('email')}
+					onBlur={formik.handleBlur('email')}
+					error={formik.touched.email && formik.errors.email}
+				/>
 				<ErrorBox>
 					{formik.touched.email && formik.errors.email &&
 						<ErrorText>{formik.errors.email}</ErrorText>
@@ -123,17 +113,15 @@ const SignUp = () => {
 			</InputContainer>
 
 			<InputContainer>
-				{formik.values.password != '' && <Text>Senha:</Text>}
-				<InputBox>
-					<Input
-						placeholder='Senha*'
-						autoCorrect={false}
-						autoCapitalize='none'
-						value={formik.values.password}
-						onChangeText={formik.handleChange('password')}
-						onBlur={formik.handleBlur('password')}
-					/>
-				</InputBox>
+				<Input
+					label='Senha*'
+					autoCorrect={false}
+					autoCapitalize='none'
+					value={formik.values.password}
+					onChangeText={formik.handleChange('password')}
+					onBlur={formik.handleBlur('password')}
+					error={formik.touched.password && formik.errors.password}
+				/>
 				<ErrorBox>
 					{formik.touched.password && formik.errors.password &&
 						<ErrorText>{formik.errors.password}</ErrorText>
@@ -141,15 +129,12 @@ const SignUp = () => {
 				</ErrorBox>
 			</InputContainer>
 
-			<Button onPress={formik.handleSubmit}>
-				{
-					loadingAuth ? (
-						<ActivityIndicator size={20} color="#FFF" />
-					) : (
-						<Label>Cadastrar</Label>
-					)
-				}
-			</Button>
+			<Button
+				onPress={formik.handleSubmit}
+				loading={loadingAuth}
+			>
+				Cadastrar
+					</Button>
 
 		</Container>
 	)

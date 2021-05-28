@@ -1,15 +1,16 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { Animated, StyleSheet, Keyboard, ActivityIndicator } from 'react-native'
+import { Animated, StyleSheet, Keyboard } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 
 import { AuthContext } from '../../contexts/auth'
+import Input from '../../components/Paper/Input'
+import Button from '../../components/Paper/Button'
 
 import {
-	Container, Image, Input, Button, Label, Link, LinkText, Title,
-	BoxIcon, BoxLink, InputContainer, InputBox, ErrorBox, ErrorText, Text
+	Container, Image, Link, LinkText, Title,
+	BoxLink, InputContainer, ErrorBox, ErrorText
 } from './styles'
 
 const SignIn = () => {
@@ -100,6 +101,8 @@ const SignIn = () => {
 		}
 	})
 
+	const changeVisibility = () => setEye(!eye)
+
 	return (
 		<>
 			<Container behavior='padding'>
@@ -122,21 +125,18 @@ const SignIn = () => {
 					]}>
 					<Title>Realize sua autenticação</Title>
 					<InputContainer>
-						{formik.values.email != '' && <Text>E-mail:</Text>}
-						<InputBox>
-							<Input
-								placeholder='E-mail*'
-								autoCorrect={false}
-								autoCapitalize='none'
-								keyboardType='email-address'
-								value={formik.values.email}
-								onChangeText={formik.handleChange('email')}
-								onBlur={formik.handleBlur('email')}
-							/>
-							<BoxIcon activeOpacity={1}>
-								<Icon name='email' size={30} color='#022c6f' />
-							</BoxIcon>
-						</InputBox>
+						<Input
+							label='E-mail*'
+							autoCorrect={false}
+							autoCapitalize='none'
+							keyboardType='email-address'
+							value={formik.values.email}
+							onChangeText={formik.handleChange('email')}
+							onBlur={formik.handleBlur('email')}
+							icon='email'
+							error={formik.touched.email && formik.errors.email}
+							hasIcon
+						/>
 						<ErrorBox>
 							{formik.touched.email && formik.errors.email &&
 								<ErrorText>{formik.errors.email}</ErrorText>
@@ -145,27 +145,20 @@ const SignIn = () => {
 					</InputContainer>
 
 					<InputContainer>
-						{formik.values.password != '' && <Text>Senha*</Text>}
-						<InputBox>
-							<Input
-								placeholder='Senha*'
-								autoCorrect={false}
-								autoCapitalize='none'
-								value={formik.values.password}
-								onChangeText={formik.handleChange('password')}
-								onBlur={formik.handleBlur('password')}
-								secureTextEntry={eye ? true : false}
-							/>
-							{formik.values.password ?
-								<BoxIcon onPress={() => setEye(!eye)} activeOpacity={0.8}>
-									<Icon name={eye ? 'eye' : 'eye-off'} size={28} color='#022c6f' />
-								</BoxIcon>
-								:
-								<BoxIcon activeOpacity={1}>
-									<Icon name='lock' size={28} color='#022c6f' />
-								</BoxIcon>
-							}
-						</InputBox>
+						<Input
+							placeholder='Senha*'
+							label='Senha*'
+							autoCorrect={false}
+							autoCapitalize='none'
+							value={formik.values.password}
+							onChangeText={formik.handleChange('password')}
+							onBlur={formik.handleBlur('password')}
+							secureTextEntry={eye ? true : false}
+							onPress={changeVisibility}
+							icon={eye ? 'eye' : 'eye-off'}
+							error={formik.touched.password && formik.errors.password}
+							hasIcon
+						/>
 						<ErrorBox>
 							{formik.touched.password && formik.errors.password &&
 								<ErrorText>{formik.errors.password}</ErrorText>
@@ -173,14 +166,11 @@ const SignIn = () => {
 						</ErrorBox>
 					</InputContainer>
 
-					<Button onPress={formik.handleSubmit}>
-						{
-							loadingAuth ? (
-								<ActivityIndicator size={20} color="#FFF" />
-							) : (
-								<Label>Acessar</Label>
-							)
-						}
+					<Button
+						onPress={formik.handleSubmit}
+						loading={loadingAuth}
+					>
+						Entrar
 					</Button>
 
 					<BoxLink>

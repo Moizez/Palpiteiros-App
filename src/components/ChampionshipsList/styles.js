@@ -12,7 +12,7 @@ height: 60px;
 width: 90%;
 align-items: center;
 border-radius: 3px;
-background-color: #FFF;
+background-color: #ddd;
 padding: 10px;
 margin: 10px 0;
 `;

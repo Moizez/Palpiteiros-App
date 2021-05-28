@@ -1,22 +1,43 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react'
 
-import { AuthContext } from '../../../contexts/auth';
+import api from '../../../services/api'
+import EmptyList from '../../../components/EmptyList'
+import ChampionshipsList from '../../../components/ChampionshipsList'
 
-import { Container, Title, Label, Button } from './styles'
+import { Container, Header, FlatList, Title, Label } from './styles'
 
 const Statistic = () => {
 
-	const { user, logOut } = useContext(AuthContext);
+	const [championships, setChampionships] = useState([])
+
+	console.log(championships)
+
+	useEffect(() => {
+		const loadChampionships = async () => {
+			const response = await api.getAllOfficialChampionships()
+			setChampionships(response.data)
+		}
+		loadChampionships()
+	}, [])
 
 	return (
-		<Container>
-			<Title>ESTATÍSTICA</Title>
-			<Label>Palpiteiro: {user && user.name}</Label>
-			<Label>E-mail: {user && user.email}</Label>
-			<Button onPress={logOut}>
-				<Label style={{ color: '#FFF' }}>Sair</Label>
-			</Button>
-		</Container>
+		<>
+			<Header>
+				<Title>Tabela dos Campeonatos</Title>
+				<Label>Disponíveis</Label>
+			</Header>
+			<Container>
+				<FlatList
+					data={championships}
+					keyExtractor={(item) => item.key}
+					renderItem={({ item }) => <ChampionshipsList data={item} />}
+					showsVerticalScrollIndicator={false}
+					ListEmptyComponent={
+						<EmptyList message='Nenhum bolão disponível!' />
+					}
+				/>
+			</Container>
+		</>
 	);
 }
 

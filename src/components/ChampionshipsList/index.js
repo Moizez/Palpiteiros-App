@@ -1,13 +1,16 @@
-import React from 'react';
+import React from 'react'
+import { useNavigation } from '@react-navigation/native'
 import { Image } from 'react-native'
 
 import { Container, Title, Label, Card, CardHeader } from './styles'
 
 const ChampionshipsList = ({ data }) => {
+    const { id } = data
+    const navigation = useNavigation()
 
     return (
         <Container>
-            <Card onPress={() => { }} activeOpacity={0.8}>
+            <Card onPress={() => navigation.navigate('Leaderboard', { id: id })} activeOpacity={0.8}>
                 <Image
                     style={{ width: 55, height: 55, marginRight: 10 }}
                     source={{ uri: data.image }}
