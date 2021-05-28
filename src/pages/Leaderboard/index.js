@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text } from 'react-native'
 import { DataTable } from 'react-native-paper'
 import styled from 'styled-components/native'
 
@@ -44,10 +43,10 @@ const Leaderboard = ({ route }) => {
                     <DataTable.Row key={i.id}>
                         <DataTable.Cell>{i.team.name}</DataTable.Cell>
                         <DataTable.Cell numeric>{i.points}</DataTable.Cell>
-                        <DataTable.Cell numeric>{i.points}</DataTable.Cell>
-                        <DataTable.Cell numeric>{i.points}</DataTable.Cell>
-                        <DataTable.Cell numeric>{i.points}</DataTable.Cell>
-                        <DataTable.Cell numeric>{i.points}</DataTable.Cell>
+                        <DataTable.Cell numeric>{i.matchs}</DataTable.Cell>
+                        <DataTable.Cell numeric>{i.victory}</DataTable.Cell>
+                        <DataTable.Cell numeric>{i.draw}</DataTable.Cell>
+                        <DataTable.Cell numeric>{i.defeat}</DataTable.Cell>
                     </DataTable.Row>
                 ))}
             </DataTable>
