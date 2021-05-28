@@ -34,7 +34,7 @@ width: 100%;
 `;
 
 export const BoxLabel = styled.View`
-padding: 5px;
+padding: 5px 10px;
 align-items: center;
 background-color: #022c6f;
 border-radius: 10px;

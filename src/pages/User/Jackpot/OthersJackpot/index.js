@@ -1,11 +1,24 @@
-import React from 'react';
+import React from 'react'
 
-import { Container, Title } from './styles'
+import api from '../../../../services/api_championships'
+import OfficialJackpotList from '../../../../components/OfficialJackpotList'
+import EmptyList from '../../../../components/EmptyList'
+
+import { Container, FlatList } from './styles'
 
 const OthersJackpot = () => {
+
     return (
         <Container>
-            <Title>LISTA DE BOLÕES</Title>
+            <FlatList
+                data={null}
+                keyExtractor={(item) => item.key}
+                renderItem={({ item }) => <OfficialJackpotList data={item} />}
+                showsVerticalScrollIndicator={false}
+                ListEmptyComponent={
+                    <EmptyList message='Nenhum bolão disponível!' />
+                }
+            />
         </Container>
     );
 }

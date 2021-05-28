@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Dimensions, Text, StyleSheet } from 'react-native';
-import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
+import React, { useState } from 'react'
+import { Dimensions, Text } from 'react-native'
+import { TabView, SceneMap, TabBar } from 'react-native-tab-view'
 
 import MyJackpot from '../Jackpot/MyJackpot'
 import OfficialJackpot from '../Jackpot/OfficialJackpot'
@@ -8,7 +8,7 @@ import OthersJackpot from '../Jackpot/OthersJackpot'
 
 import { Header, Title, Label } from './styles'
 
-const initialLayout = { width: Dimensions.get('window').width };
+const initialLayout = { width: Dimensions.get('window').width }
 
 const Jackpot = () => {
 
@@ -29,13 +29,13 @@ const Jackpot = () => {
 			indicatorStyle={{ backgroundColor: '#FFF' }}
 			style={{ backgroundColor: '#022c6f' }}
 		/>
-	);
+	)
 
 	const renderScene = SceneMap({
 		first: MyJackpot,
 		second: OfficialJackpot,
 		third: OthersJackpot
-	});
+	})
 
 	return (
 		<>
@@ -52,13 +52,7 @@ const Jackpot = () => {
 				renderTabBar={renderTabBar}
 			/>
 		</>
-	);
+	)
 }
-
-const styles = StyleSheet.create({
-	scene: {
-		flex: 1,
-	},
-});
 
 export default Jackpot

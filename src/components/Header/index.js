@@ -1,19 +1,27 @@
 import React from 'react'
+import { useNavigation } from '@react-navigation/native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import styled from 'styled-components/native'
 
 import logo from '../../assets/images/logo_euro.png'
 
 const Header = (props) => {
+
+    const navigation = useNavigation()
+
     return (
         <Container>
-            <Close>
-                <Icon name='chevron-down' color='#FFF' size={25} />
-            </Close>
+            {props.hasIcon &&
+                <Close onPress={() => navigation.goBack()}>
+                    <Icon name='chevron-down' color='#FFF' size={35} />
+                </Close>
+            }
 
             <Info>
                 <Title>{props.title}</Title>
-                <Label>{props.label}</Label>
+                {props.label &&
+                    <Label>{props.label}</Label>
+                }
             </Info>
 
             {props.hasImage &&
@@ -30,11 +38,11 @@ const Header = (props) => {
 }
 
 const Container = styled.View`
-width: 100%;
-min-height: 100px;
-flex-direction: row;
-background-color: #022c6f;
-padding: 20px;
+    width: 100%;
+    min-height: 80px;
+    flex-direction: row;
+    background-color: #022c6f;
+    padding: 20px;
 `;
 
 const Close = styled.TouchableOpacity`
@@ -59,13 +67,13 @@ const Image = styled.Image`
 `;
 
 const Title = styled.Text`
-font-size: 22px;
-color: #FFF;
+    font-size: 22px;
+    color: #FFF;
 `;
 
 const Label = styled.Text`
-color: #FFF;
-font-size: 15px;
+    color: #FFF;
+    font-size: 15px;
 `;
 
 export default Header

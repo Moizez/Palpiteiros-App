@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import api from '../../../../services/api'
+import api from '../../../../services/api_championships'
 import OfficialJackpotList from '../../../../components/OfficialJackpotList'
 import EmptyList from '../../../../components/EmptyList'
 

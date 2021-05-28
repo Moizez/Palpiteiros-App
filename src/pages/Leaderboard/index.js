@@ -1,56 +1,73 @@
 import React, { useState, useEffect } from 'react'
-import { DataTable } from 'react-native-paper'
-import styled from 'styled-components/native'
+import { Dimensions, Text } from 'react-native'
+import { TabView, SceneMap, TabBar } from 'react-native-tab-view'
 
-import api from '../../services/api_championships'
-import api_groups from '../../services/api_groups'
+import api from '../../services/api_groups'
+
 import Header from '../../components/Header'
+import GroupStage from './GroupStage'
+import Qualifiers from './Qualifiers'
+import Finals from './Finals'
 
-import { Container, TableContainer, Title } from './styles'
+const initialLayout = { width: Dimensions.get('window').width }
 
 const Leaderboard = ({ route }) => {
 
     const { id, name, year } = route.params
-    const [championship, setChampionship] = useState([])
+    const [index, setIndex] = useState(0)
+    const [routes] = useState([
+        { key: 'first', title: 'Grupos' },
+        { key: 'second', title: 'Eliminatórias' },
+        { key: 'third', title: 'Finais' }
+    ])
+
     const [groups, setGroups] = useState([])
+    const [loading, setLoading] = useState(true)
+
+    const loadGroups = async () => {
+        const response = await api.getGroupsByChampionshipId(id)
+        setGroups(response.data)
+        setLoading(false)
+    }
 
     useEffect(() => {
-        const loadGroups = async () => {
-            const response = await api_groups.getAllGroups()
-            setGroups(response.data)
-        }
         loadGroups()
     }, [])
 
+    const renderTabBar = props => (
+        <TabBar {...props}
+            renderLabel={({ route, color }) => (
+                <Text style={{ color, fontSize: 15 }}>
+                    {route.title}
+                </Text>
+            )}
+            indicatorStyle={{ backgroundColor: '#FFF' }}
+            style={{ backgroundColor: '#022c6f' }}
+        />
+    )
+
+    const renderScene = SceneMap({
+        first: () => <GroupStage data={groups} loading={loading} />,
+        second: () => <Qualifiers />,
+        third: () => <Finals />
+    })
+
     return (
-        <Container>
+        <>
             <Header
                 title={name}
                 label={year}
                 hasImage
+                hasIcon
             />
-
-            <DataTable>
-                <DataTable.Header>
-                    <DataTable.Title>SELEÇÃO</DataTable.Title>
-                    <DataTable.Title numeric>P</DataTable.Title>
-                    <DataTable.Title numeric>J</DataTable.Title>
-                    <DataTable.Title numeric>V</DataTable.Title>
-                    <DataTable.Title numeric>E</DataTable.Title>
-                    <DataTable.Title numeric>D</DataTable.Title>
-                </DataTable.Header>
-                {groups[0]?.punctuations?.map(i => (
-                    <DataTable.Row key={i.id}>
-                        <DataTable.Cell>{i.team.name}</DataTable.Cell>
-                        <DataTable.Cell numeric>{i.points}</DataTable.Cell>
-                        <DataTable.Cell numeric>{i.matchs}</DataTable.Cell>
-                        <DataTable.Cell numeric>{i.victory}</DataTable.Cell>
-                        <DataTable.Cell numeric>{i.draw}</DataTable.Cell>
-                        <DataTable.Cell numeric>{i.defeat}</DataTable.Cell>
-                    </DataTable.Row>
-                ))}
-            </DataTable>
-        </Container>
+            <TabView
+                navigationState={{ index, routes }}
+                renderScene={renderScene}
+                onIndexChange={setIndex}
+                initialLayout={initialLayout}
+                renderTabBar={renderTabBar}
+            />
+        </>
     )
 }
 

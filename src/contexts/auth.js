@@ -1,9 +1,9 @@
 import React, { useState, useEffect, createContext, Fragment } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { Modal } from 'react-native'
 
-import WarningModal from '../components/Modals/WarningModal'
 import api from '../services/api'
+
+import Snack from '../components/Paper/Snack'
 
 export const AuthContext = createContext({})
 
@@ -11,7 +11,7 @@ const AuthProvider = ({ children }) => {
 
     const [loading, setLoading] = useState(true)
     const [loadingAuth, setLoadingAuth] = useState(false)
-    const [warningModal, setWarningModal] = useState(false)
+    const [showSnack, setShowSnack] = useState(true)
     const [message, setMessage] = useState('')
     const [user, setUser] = useState(null)
 
@@ -27,8 +27,6 @@ const AuthProvider = ({ children }) => {
         loadStorage()
     }, [])
 
-    const handleOpenWarningModal = () => setWarningModal(true)
-    const handleCloseWarningModal = () => setWarningModal(false)
 
     const handleSignIn = async (email, password) => {
         setLoadingAuth(true)
@@ -42,7 +40,7 @@ const AuthProvider = ({ children }) => {
         } else {
             setLoadingAuth(false)
             setMessage('E-mail ou senha inválidos!')
-            handleOpenWarningModal()
+            handleShowSnack()
             return
         }
     }
@@ -59,7 +57,7 @@ const AuthProvider = ({ children }) => {
         } else {
             setLoadingAuth(false)
             setMessage('E-mail ou senha inválidos!')
-            handleOpenWarningModal()
+            handleShowSnack()
             return
         }
     }
@@ -75,20 +73,17 @@ const AuthProvider = ({ children }) => {
         await AsyncStorage.setItem('@palpiteiros:user', JSON.stringify(data))
     }
 
+    const handleShowSnack = () => setShowSnack(true)
+    const handleCloseSnack = () => setShowSnack(false)
+
     return (
 
         <Fragment>
-            <Modal
-                animationType='fade'
-                transparent={true}
-                visible={warningModal}
-            >
-                <WarningModal
-                    closeModal={handleCloseWarningModal}
-                    message={message}
-                    bgColor
-                />
-            </Modal>
+            <Snack
+                visible={showSnack}
+                onDismiss={handleCloseSnack}
+                message={'Teste'}
+            />
 
             <AuthContext.Provider value={{
                 signed: !!user, user,

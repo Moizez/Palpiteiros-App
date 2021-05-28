@@ -30,8 +30,7 @@ const MyJackpot = () => {
                         <Title style={{ fontSize: 22, color: '#FFF' }}>+</Title>
                     </CircleButton>
                     <Label>
-                        Crie seu bolão e junte seus amigos para ver quem é o maior
-                        palpiteiro de futebol!
+                        Crie seu bolão, junte seus amigos e veja quem tem mais sorte!
                         </Label>
                 </BoxLabel>
             </CreateJackpot>

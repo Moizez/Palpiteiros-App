@@ -1,23 +1,129 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { View, Text, TouchableOpacity, StyleSheet, Modal } from 'react-native'
 
-import { AuthContext } from '../../../contexts/auth';
+import { AuthContext } from '../../../contexts/auth'
+import ActionModal from '../../../components/Modals/ActionModal'
 
-import { Container, Title, Label, Button } from './styles'
+import { Container, Header, PageBox } from './styles'
 
 const Setting = () => {
 
-	const { user, logOut } = useContext(AuthContext);
+    const { logOut } = useContext(AuthContext)
+    const [actionModal, setActionModal] = useState(false)
 
-	return (
-		<Container>
-			<Title>CONFIGURAÇÕES</Title>
-			<Label>Palpiteiro: {user && user.name}</Label>
-			<Label>E-mail: {user && user.email}</Label>
-			<Button onPress={logOut}>
-				<Label style={{color: '#FFF'}}>Sair</Label>
-			</Button>
-		</Container>
-	);
+    const handleLogout = () => openActioModal()
+
+    const handleConfirm = () => {
+        openActioModal()
+        logOut()
+    }
+
+    const openActioModal = () => setActionModal(true)
+    const closeActionModal = () => setActionModal(false)
+
+    return (
+        <Container>
+
+            <Modal
+                animationType='fade'
+                transparent={true}
+                visible={actionModal}
+            >
+                <ActionModal
+                    closeModal={closeActionModal}
+                    confirmModal={handleConfirm}
+                    title='Deseja realmente sair?'
+                />
+            </Modal>
+
+            <Header>
+                <Text style={styles.title}>Configurações</Text>
+            </Header>
+
+            <PageBox>
+                <TouchableOpacity style={styles.item}>
+                    <Icon name='bell' color={'#292b2c'} size={35} />
+                    <Text style={styles.text}>Notificações</Text>
+                </TouchableOpacity>
+
+                <View style={{ width: '100%', height: 0.5, backgroundColor: '#adb5bd' }}></View>
+
+                <TouchableOpacity style={styles.item}>
+                    <Icon name='help-circle' color={'#292b2c'} size={35} />
+                    <Text style={styles.text}>Perguntas frequentes</Text>
+                </TouchableOpacity>
+
+                <View style={{ width: '100%', height: 0.5, backgroundColor: '#adb5bd' }}></View>
+
+                <TouchableOpacity style={styles.item}>
+                    <Icon name='cellphone' color={'#292b2c'} size={35} />
+                    <Text style={styles.text}>Contatos</Text>
+                </TouchableOpacity>
+
+                <View style={{ width: '100%', height: 0.5, backgroundColor: '#adb5bd' }}></View>
+
+                <TouchableOpacity style={styles.item}>
+                    <Icon name='shield-lock' color={'#292b2c'} size={35} />
+                    <Text style={styles.text}>Política de privacidade</Text>
+                </TouchableOpacity>
+
+                <View style={{ width: '100%', height: 0.5, backgroundColor: '#adb5bd' }}></View>
+
+                <TouchableOpacity style={styles.item}>
+                    <Icon name='star' color={'#292b2c'} size={35} />
+                    <Text style={styles.text}>Avaliar aplicativo</Text>
+                </TouchableOpacity>
+
+                <View style={{ width: '100%', height: 0.5, backgroundColor: '#adb5bd' }}></View>
+
+                <TouchableOpacity style={styles.item} onPress={() => handleLogout()}>
+                    <Icon name='exit-to-app' color={'#da1e37'} size={35} />
+                    <Text style={styles.text}>Sair</Text>
+                </TouchableOpacity>
+            </PageBox>
+
+            <View style={styles.versionContainer}>
+                <Text>Palpiteiros</Text>
+                <Text style={{ color: '#adb5bd', marginBottom: 12 }}>Beta v2021.05.28</Text>
+            </View>
+        </Container >
+    )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    header: {
+        flex: 0.2,
+        backgroundColor: '#292b2c',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    title: {
+        fontSize: 20,
+        color: '#FFF',
+
+    },
+    itemContainer: {
+        flex: 1,
+        margin: 20,
+    },
+    item: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginVertical: 10,
+    },
+    text: {
+        fontSize: 17,
+        marginLeft: 15,
+    },
+    versionContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#e3e3e3'
+    },
+})
 
 export default Setting

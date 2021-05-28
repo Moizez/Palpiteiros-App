@@ -4,26 +4,29 @@ import api from '../../../services/api_championships'
 import EmptyList from '../../../components/EmptyList'
 import ChampionshipsList from '../../../components/ChampionshipsList'
 import Header from '../../../components/Header'
+import Loading from '../../../components/Loading'
 
 import { Container, FlatList } from './styles'
 
 const Statistic = () => {
 
 	const [championships, setChampionships] = useState([])
+	const [loading, setLoading] = useState(true)
+
+	const loadChampionships = async () => {
+		const response = await api.getAllOfficialChampionships()
+		setChampionships(response.data)
+		setLoading(false)
+	}
 
 	useEffect(() => {
-		const loadChampionships = async () => {
-			const response = await api.getAllOfficialChampionships()
-			setChampionships(response.data)
-		}
 		loadChampionships()
 	}, [])
 
 	return (
 		<>
 			<Header
-				title='Tabela dos Campeonatos'
-				label='Disponíveis'
+				title='Tabelas dos Campeonatos'
 			/>
 
 			<Container>
@@ -36,6 +39,7 @@ const Statistic = () => {
 						<EmptyList message='Nenhum bolão disponível!' />
 					}
 				/>
+				{loading && <Loading />}
 			</Container>
 		</>
 	);

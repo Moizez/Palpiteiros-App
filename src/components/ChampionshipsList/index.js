@@ -1,8 +1,9 @@
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
-import { Image } from 'react-native'
 
-import { Container, Title, Label, Card, CardHeader } from './styles'
+import logo from '../../assets/images/logo_euro.png'
+
+import { Container, Title, Label, Card, CardHeader, Image } from './styles'
 
 const ChampionshipsList = ({ data }) => {
     const { id, name, year } = data
@@ -10,15 +11,18 @@ const ChampionshipsList = ({ data }) => {
 
     return (
         <Container>
-            <Card onPress={() => navigation.navigate('Leaderboard', { id, name, year })} activeOpacity={0.8}>
+            <Card
+                onPress={() => navigation.navigate('Leaderboard', { id, name, year })}
+                activeOpacity={0.8}
+            >
                 <Image
-                    style={{ width: 55, height: 55, marginRight: 10 }}
-                    source={{ uri: data.image }}
-                    resizeMode='center'
+                    source={logo}
+                    resizeMode='contain'
                 />
                 <CardHeader>
                     <Title>{data.name}</Title>
-                    <Label>Ano: {data.year}</Label>
+                    <Label>Edição: {data.year}</Label>
+                    <Label>Início: Sex. 11/06 às 16h</Label>
                 </CardHeader>
             </Card>
         </Container>
