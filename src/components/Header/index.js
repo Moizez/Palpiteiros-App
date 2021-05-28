@@ -16,12 +16,14 @@ const Header = (props) => {
                 <Label>{props.label}</Label>
             </Info>
 
-            <ImageBox>
-                <Image
-                    source={logo}
-                    resizeMode='contain'
-                />
-            </ImageBox>
+            {props.hasImage &&
+                <ImageBox>
+                    <Image
+                        source={logo}
+                        resizeMode='contain'
+                    />
+                </ImageBox>
+            }
 
         </Container>
     )
@@ -32,7 +34,7 @@ width: 100%;
 min-height: 100px;
 flex-direction: row;
 background-color: #022c6f;
-padding: 10px;
+padding: 20px;
 `;
 
 const Close = styled.TouchableOpacity`
@@ -52,8 +54,8 @@ const ImageBox = styled.View`
 
 
 const Image = styled.Image`
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
 `;
 
 const Title = styled.Text`

@@ -28,6 +28,7 @@ const Leaderboard = ({ route }) => {
             <Header
                 title={name}
                 label={year}
+                hasImage
             />
 
             <DataTable>
