@@ -3,7 +3,7 @@ import api_fetch from './api_fetch'
 export default {
 
     onSignIn: async (email, password) => {
-        const data = { email: email, password: password }
+        const data = { email, password }
         const request = await api_fetch.post('/users/signin', data)
         return request
     },
@@ -16,7 +16,7 @@ export default {
             email: values.email,
             password: values.password
         }
-        const request = await apiFetchPost('/users', data)
+        const request = await api_fetch.post('/users', data)
         return request
     },
 
