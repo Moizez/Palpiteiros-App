@@ -16,5 +16,4 @@ export default {
         const response = await api_fetch.get(`/groups/findManyByChampionshipContainsId/${id}`)
         return response
     },
-
 }
