@@ -1,9 +1,9 @@
-import React, { useState, useEffect, createContext, Fragment } from 'react'
+import React, { useState, useEffect, createContext } from 'react'
+import { Modal } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import api from '../services/api'
-
-import Snack from '../components/Paper/Snack'
+import Snackbar from '../components/Snackbar'
 
 export const AuthContext = createContext({})
 
@@ -11,7 +11,7 @@ const AuthProvider = ({ children }) => {
 
     const [loading, setLoading] = useState(true)
     const [loadingAuth, setLoadingAuth] = useState(false)
-    const [showSnack, setShowSnack] = useState(true)
+    const [showSnack, setShowSnack] = useState(false)
     const [message, setMessage] = useState('')
     const [user, setUser] = useState(null)
 
@@ -37,9 +37,14 @@ const AuthProvider = ({ children }) => {
             storageUser(response.data)
             setLoadingAuth(false)
             return
-        } else {
+        } else if (response.status === 404) {
             setLoadingAuth(false)
             setMessage('E-mail ou senha inválidos!')
+            handleShowSnack()
+            return
+        } else {
+            setLoadingAuth(false)
+            setMessage(`Falha inesperada! Erro: ${response.status}`)
             handleShowSnack()
             return
         }
@@ -54,9 +59,14 @@ const AuthProvider = ({ children }) => {
             storageUser(response.data)
             setLoadingAuth(false)
             return
-        } else {
+        } else if (response.status === 404) {
             setLoadingAuth(false)
             setMessage('E-mail ou senha inválidos!')
+            handleShowSnack()
+            return
+        } else {
+            setLoadingAuth(false)
+            setMessage(`Falha inesperada! Erro: ${response.status}`)
             handleShowSnack()
             return
         }
@@ -78,12 +88,19 @@ const AuthProvider = ({ children }) => {
 
     return (
 
-        <Fragment>
-            <Snack
+        <>
+            <Modal
                 visible={showSnack}
-                onDismiss={handleCloseSnack}
-                message={'Teste'}
-            />
+                animationType='fade'
+                transparent={true}
+            >
+                <Snackbar
+                    message={message}
+                    onDismiss={handleCloseSnack}
+                    hasColor
+                />
+            </Modal>
+
 
             <AuthContext.Provider value={{
                 signed: !!user, user,
@@ -92,7 +109,7 @@ const AuthProvider = ({ children }) => {
             }}>
                 {children}
             </AuthContext.Provider>
-        </Fragment>
+        </>
     )
 }
 
