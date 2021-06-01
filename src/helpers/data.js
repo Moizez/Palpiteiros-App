@@ -1,10 +1,25 @@
+import React from 'react'
+import uuid from 'react-native-uuid'
+
+// Flags
+import Ita from '../assets/images/flags/italia.svg'
+import Ale from '../assets/images/flags/alemanha.svg'
+import Bel from '../assets/images/flags/belgica.svg'
+import Hol from '../assets/images/flags/holanda.svg'
+import Din from '../assets/images/flags/dinamarca.svg'
+import Esp from '../assets/images/flags/espanha.svg'
+import Por from '../assets/images/flags/portugal.svg'
+import Fra from '../assets/images/flags/franca.svg'
+import Ing from '../assets/images/flags/inglaterra.svg'
+import Rus from '../assets/images/flags/russia.svg'
+
 export const jackpots = [
     {
         key: String(Math.random()),
         name: 'Bolão da Galera',
         image: 'https://upload.wikimedia.org/wikipedia/pt/e/ea/Copa_Continental_do_Brasil.png',
         create: 'Moisés',
-     },
+    },
     {
         key: String(Math.random()),
         name: 'Bolão do Vina',
@@ -44,7 +59,7 @@ export const users = [
         pos: 1,
         image: 'https://scontent.fmvf5-1.fna.fbcdn.net/v/t1.0-9/79993349_2552760481512202_3690026628441702400_o.jpg?_nc_cat=105&ccb=3&_nc_sid=09cbfe&_nc_ohc=-24SuJCFPW4AX-NdVIG&_nc_ht=scontent.fmvf5-1.fna&oh=2bf69f7d27923a016ae4c5640a235076&oe=60570918',
         pts: 100,
-     },
+    },
     {
         key: String(Math.random()),
         name: 'Charles',
@@ -83,40 +98,128 @@ export const users = [
 ]
 
 export const championships = [
-	{
-		key: String(Math.random()),
-		name: 'Copa do Mundo',
-		year: 2022,
-		image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Qatar_2022_Logo.png/404px-Qatar_2022_Logo.png'
-	},
-	{
-		key: String(Math.random()),
-		name: 'Champions League',
-		year: 2022,
-		image: 'https://upload.wikimedia.org/wikipedia/pt/9/9b/116px-UEFA_Champions_League_logo_2_svg.png',
-	},
-	{
-		key: String(Math.random()),
-		name: 'Europa League',
-		year: 2022,
-		image: 'https://i.pinimg.com/originals/10/b1/d8/10b1d8001463bb24c5372c13b67f8475.png',
-	},
-	{
-		key: String(Math.random()),
-		name: 'Copa América',
-		year: 2022,
-		image: 'https://upload.wikimedia.org/wikipedia/pt/thumb/e/e7/2019_Copa_Am%C3%A9rica_logo.svg/250px-2019_Copa_Am%C3%A9rica_logo.svg.png',
-	},
-	{
-		key: String(Math.random()),
-		name: 'Copa Libertadores',
-		year: 2022,
-		image: 'https://upload.wikimedia.org/wikipedia/pt/4/4b/Conmebol_Libertadores_Bridgestone_logo.png',
-	},
-	{
-		key: String(Math.random()),
-		name: 'Copa do Brasil',
-		year: 2022,
-		image: 'https://upload.wikimedia.org/wikipedia/pt/e/ea/Copa_Continental_do_Brasil.png',
-	}
+    {
+        key: String(Math.random()),
+        name: 'Copa do Mundo',
+        year: 2022,
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Qatar_2022_Logo.png/404px-Qatar_2022_Logo.png'
+    },
+    {
+        key: String(Math.random()),
+        name: 'Champions League',
+        year: 2022,
+        image: 'https://upload.wikimedia.org/wikipedia/pt/9/9b/116px-UEFA_Champions_League_logo_2_svg.png',
+    },
+    {
+        key: String(Math.random()),
+        name: 'Europa League',
+        year: 2022,
+        image: 'https://i.pinimg.com/originals/10/b1/d8/10b1d8001463bb24c5372c13b67f8475.png',
+    },
+    {
+        key: String(Math.random()),
+        name: 'Copa América',
+        year: 2022,
+        image: 'https://upload.wikimedia.org/wikipedia/pt/thumb/e/e7/2019_Copa_Am%C3%A9rica_logo.svg/250px-2019_Copa_Am%C3%A9rica_logo.svg.png',
+    },
+    {
+        key: String(Math.random()),
+        name: 'Copa Libertadores',
+        year: 2022,
+        image: 'https://upload.wikimedia.org/wikipedia/pt/4/4b/Conmebol_Libertadores_Bridgestone_logo.png',
+    },
+    {
+        key: String(Math.random()),
+        name: 'Copa do Brasil',
+        year: 2022,
+        image: 'https://upload.wikimedia.org/wikipedia/pt/e/ea/Copa_Continental_do_Brasil.png',
+    }
+]
+
+const date = new Date()
+const today = date.getDate()
+const week_day = date.getDay()
+const month = date.getMonth() + 1
+const monthFormat = month < 10 ? '0' + month : month
+const year = date.getFullYear()
+const hour = date.getHours()
+const minute = date.getMinutes()
+const minuteFormat = minute < 10 ? '0' + minute : minute
+const days = new Array('dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb')
+
+export const games = [
+    {
+        id: uuid.v4(),
+        championship: 'Eurocopa',
+        stadium: 'OLÍMPICO DE ROMA',
+        flag_home: <Ita width={50} height={50} />,
+        flag_away: <Ale width={50} height={50} />,
+        team_home: 'Itália',
+        team_away: 'Alemanha',
+        date: `${days[week_day]}, ${today}/${monthFormat} às ${hour}:${minuteFormat}`,
+        year: year,
+        status: 'Em andamento',
+        home_score: 0,
+        away_score: 0,
+        pn_home_score: 0,
+        pn_away_score: 0
+    },
+    {
+        id: uuid.v4(),
+        championship: 'Eurocopa',
+        stadium: 'OLÍMPICO DE BAKU',
+        flag_home: <Bel width={50} height={50} />,
+        flag_away: <Hol width={50} height={50} />,
+        team_home: 'Bélgica',
+        team_away: 'Holanda',
+        date: `${days[week_day]}, ${today}/${monthFormat} às ${hour}:${minuteFormat}`,
+        year: year,
+        status: 'Em andamento',
+        home_score: 0,
+        away_score: 0
+    },
+    {
+        id: uuid.v4(),
+        championship: 'Eurocopa',
+        stadium: 'OLÍMPICO DE ROMA',
+        flag_home: <Din width={50} height={50} />,
+        flag_away: <Esp width={50} height={50} />,
+        team_home: 'Dinamarca',
+        team_away: 'Espanha',
+        date: `${days[week_day]}, ${today}/${monthFormat} às ${hour}:${minuteFormat}`,
+        year: year,
+        status: 'Encerrado',
+        home_score: 2,
+        away_score: 2,
+        pn_home_score: 3,
+        pn_away_score: 5
+    },
+    {
+        id: uuid.v4(),
+        championship: 'Eurocopa',
+        stadium: 'PARKEN',
+        flag_home: <Por width={50} height={50} />,
+        flag_away: <Fra width={50} height={50} />,
+        team_home: 'Portugal',
+        team_away: 'França',
+        date: `${days[week_day]}, ${today}/${monthFormat} às ${hour}:${minuteFormat}`,
+        year: year,
+        status: 'Em andamento',
+        home_score: 0,
+        away_score: 0
+    },
+    {
+        id: uuid.v4(),
+        championship: 'Eurocopa',
+        stadium: 'ARENA NAC. BUCARESTE',
+        flag_home: <Ing width={50} height={50} />,
+        flag_away: <Rus width={50} height={50} />,
+        team_home: 'Inglaterra',
+        team_away: 'Rússia',
+        date: `${days[week_day]}, ${today}/${monthFormat} às ${hour}:${minuteFormat}`,
+        year: year,
+        status: 'Encerrado',
+        home_score: 3,
+        away_score: 1
+    },
 ]

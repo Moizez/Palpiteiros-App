@@ -15,7 +15,6 @@ const GroupStage = ({ data, loading }) => {
                             <Title>Grupo {group.name}</Title>
                         </TitleBox>
                         <DataTable.Header>
-                            <DataTable.Title style={{ flex: 0.5 }}></DataTable.Title>
                             <DataTable.Title style={{ flex: 2 }} >SELEÇÃO</DataTable.Title>
                             <DataTable.Title style={{ flex: 0.5 }} numeric>P</DataTable.Title>
                             <DataTable.Title style={{ flex: 0.5 }} numeric>J</DataTable.Title>
@@ -25,14 +24,7 @@ const GroupStage = ({ data, loading }) => {
                         </DataTable.Header>
                         {group?.punctuations?.map(i => (
                             <DataTable.Row key={i.id}>
-                                <DataTable.Cell style={{ flex: 0.5 }} numeric>
-                                    <Image
-                                        source={{
-                                            uri: `https://palpiteiros-api.herokuapp.com/api/teams/findByShield/${i.team.id}`,
-                                        }}
-                                    />
-                                </DataTable.Cell>
-                                <DataTable.Cell style={{ flex: 2, marginLeft: 5 }}>{i.team.initials}</DataTable.Cell>
+                                <DataTable.Cell style={{ flex: 2, marginLeft: 5 }}>{i.team.name}</DataTable.Cell>
                                 <DataTable.Cell style={{ flex: 0.5 }} numeric>{i.points}</DataTable.Cell>
                                 <DataTable.Cell style={{ flex: 0.5 }} numeric>{i.matchs}</DataTable.Cell>
                                 <DataTable.Cell style={{ flex: 0.5 }} numeric>{i.victory}</DataTable.Cell>
@@ -55,11 +47,6 @@ const TitleBox = styled.View`
     justify-content: center;
     background-color: rgba(0,0,0,0.1);
     padding: 8px;
-`;
-
-const Image = styled.Image`
-    width: 30px;
-    height: 30px;
 `;
 
 const Title = styled.Text`
