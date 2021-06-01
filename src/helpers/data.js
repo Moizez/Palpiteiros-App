@@ -138,6 +138,7 @@ export const championships = [
 
 const date = new Date()
 const today = date.getDate()
+const todayFormat = today < 10 ? '0' + today : today
 const week_day = date.getDay()
 const month = date.getMonth() + 1
 const monthFormat = month < 10 ? '0' + month : month
@@ -156,7 +157,7 @@ export const games = [
         flag_away: <Ale width={50} height={50} />,
         team_home: 'Itália',
         team_away: 'Alemanha',
-        date: `${days[week_day]}, ${today}/${monthFormat} às ${hour}:${minuteFormat}`,
+        date: `${days[week_day]}, ${todayFormat}/${monthFormat} às ${hour}:${minuteFormat}`,
         year: year,
         status: 'Em andamento',
         home_score: 0,
@@ -172,11 +173,13 @@ export const games = [
         flag_away: <Hol width={50} height={50} />,
         team_home: 'Bélgica',
         team_away: 'Holanda',
-        date: `${days[week_day]}, ${today}/${monthFormat} às ${hour}:${minuteFormat}`,
+        date: `${days[week_day]}, ${todayFormat}/${monthFormat} às ${hour}:${minuteFormat}`,
         year: year,
         status: 'Em andamento',
         home_score: 0,
-        away_score: 0
+        away_score: 0,
+        pn_home_score: 0,
+        pn_away_score: 0
     },
     {
         id: uuid.v4(),
@@ -186,7 +189,7 @@ export const games = [
         flag_away: <Esp width={50} height={50} />,
         team_home: 'Dinamarca',
         team_away: 'Espanha',
-        date: `${days[week_day]}, ${today}/${monthFormat} às ${hour}:${minuteFormat}`,
+        date: `${days[week_day]}, ${todayFormat}/${monthFormat} às ${hour}:${minuteFormat}`,
         year: year,
         status: 'Encerrado',
         home_score: 2,
@@ -202,11 +205,13 @@ export const games = [
         flag_away: <Fra width={50} height={50} />,
         team_home: 'Portugal',
         team_away: 'França',
-        date: `${days[week_day]}, ${today}/${monthFormat} às ${hour}:${minuteFormat}`,
+        date: `${days[week_day]}, ${todayFormat}/${monthFormat} às ${hour}:${minuteFormat}`,
         year: year,
         status: 'Em andamento',
         home_score: 0,
-        away_score: 0
+        away_score: 0,
+        pn_home_score: 0,
+        pn_away_score: 0
     },
     {
         id: uuid.v4(),
@@ -216,10 +221,12 @@ export const games = [
         flag_away: <Rus width={50} height={50} />,
         team_home: 'Inglaterra',
         team_away: 'Rússia',
-        date: `${days[week_day]}, ${today}/${monthFormat} às ${hour}:${minuteFormat}`,
+        date: `${days[week_day]}, ${todayFormat}/${monthFormat} às ${hour}:${minuteFormat}`,
         year: year,
         status: 'Encerrado',
         home_score: 3,
-        away_score: 1
+        away_score: 1,
+        pn_home_score: 0,
+        pn_away_score: 0
     },
 ]

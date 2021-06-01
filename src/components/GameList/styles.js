@@ -106,5 +106,7 @@ export const Divider = styled.View`
     opacity: 0.2;
 `;
 
+export const Modal = styled.Modal``;
+
 
 
