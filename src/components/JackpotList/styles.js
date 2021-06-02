@@ -33,5 +33,8 @@ export const Label = styled.Text`
     font-size: 15px;
 `;
 
+export const Modal = styled.Modal`
+`;
+
 
 
