@@ -1,8 +1,10 @@
 import React from 'react'
+import { Image, View } from 'react-native'
 import { DataTable } from 'react-native-paper'
 import styled from 'styled-components/native'
 
 import Loading from '../../../components/Loading'
+import { changeFlags } from '../../../helpers/data'
 
 const GroupStage = ({ data, loading }) => {
 
@@ -15,6 +17,7 @@ const GroupStage = ({ data, loading }) => {
                             <Title>Grupo {group.name}</Title>
                         </TitleBox>
                         <DataTable.Header>
+                            <DataTable.Title style={{ flex: 0.5 }}></DataTable.Title>
                             <DataTable.Title style={{ flex: 2 }} >SELEÇÃO</DataTable.Title>
                             <DataTable.Title style={{ flex: 0.5 }} numeric>P</DataTable.Title>
                             <DataTable.Title style={{ flex: 0.5 }} numeric>J</DataTable.Title>
@@ -24,6 +27,13 @@ const GroupStage = ({ data, loading }) => {
                         </DataTable.Header>
                         {group?.punctuations?.map(i => (
                             <DataTable.Row key={i.id}>
+                                <View style={{ alignItems: 'center', justifyContent: 'center'}}>
+                                    <Image
+                                        style={{ height: 40, width: 30 }}
+                                        source={changeFlags(i.team.initials)}
+                                        resizeMode='contain'
+                                    />
+                                </View>
                                 <DataTable.Cell style={{ flex: 2, marginLeft: 5 }}>{i.team.name}</DataTable.Cell>
                                 <DataTable.Cell style={{ flex: 0.5 }} numeric>{i.points}</DataTable.Cell>
                                 <DataTable.Cell style={{ flex: 0.5 }} numeric>{i.matchs}</DataTable.Cell>

@@ -23,7 +23,6 @@ export default {
 
     onJackpotRegister: async (jackpotId) => {
         const user = await JSON.parse(await AsyncStorage.getItem('@palpiteiros:user')) || []
-        console.log(user)
         const data = {
             user: {
                 id: user.id
@@ -34,6 +33,12 @@ export default {
         }
         const request = await api_fetch.post('/registers', data)
         return request
-    }
+    },
+
+    hasRegister: async (jackpotId) => {
+        const user = await JSON.parse(await AsyncStorage.getItem('@palpiteiros:user')) || []
+        const response = await api_fetch.get(`/jackpots/isByUserContainsIdAndJackpotContainsId/${user.id}/${jackpotId}`)
+        return response
+    },
 
 }

@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 //Main pages
 import Jackpot from '../pages/User/Jackpot'
 import Profile from '../pages/User/Profile'
-import Home from '../pages/User/Home'
+import Hunch from '../pages/User/Hunch'
 import Statistic from '../pages/User/Statistic'
 import Setting from '../pages/User/Setting'
 
@@ -36,13 +36,13 @@ const User = () => {
 
     return (
         <AppTab.Navigator
-            initialRouteName='Home'
+            initialRouteName='Jackpot'
             screenOptions={({ route, navigation }) => ({
                 tabBarIcon: ({ color, size, focused }) => {
-                    if (route.name === 'Home') {
+                    if (route.name === 'Hunch') {
                         return (
                             <GameButton
-                                onPress={() => navigation.navigate('Home')}
+                                onPress={() => navigation.navigate('Hunch')}
                                 focused={focused}
                             />
                         )
@@ -66,13 +66,6 @@ const User = () => {
         >
 
             <AppTab.Screen
-                name='Profile'
-                component={Profile}
-                options={{
-                    title: 'Perfil',
-                }} />
-
-            <AppTab.Screen
                 name='Jackpot'
                 component={Jackpot}
                 options={{
@@ -80,17 +73,24 @@ const User = () => {
                 }} />
 
             <AppTab.Screen
-                name='Home'
-                component={Home}
+                name='Statistic'
+                component={Statistic}
+                options={{
+                    title: 'Estatística'
+                }} />
+
+            <AppTab.Screen
+                name='Hunch'
+                component={Hunch}
                 options={{
                     title: ''
                 }} />
 
             <AppTab.Screen
-                name='Statistic'
-                component={Statistic}
+                name='Profile'
+                component={Profile}
                 options={{
-                    title: 'Estatística'
+                    title: 'Perfil',
                 }} />
 
             <AppTab.Screen

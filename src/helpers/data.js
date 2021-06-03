@@ -1,18 +1,6 @@
 import React from 'react'
 import uuid from 'react-native-uuid'
 
-// Flags
-import Ita from '../assets/images/flags/italia.svg'
-import Ale from '../assets/images/flags/alemanha.svg'
-import Bel from '../assets/images/flags/belgica.svg'
-import Hol from '../assets/images/flags/holanda.svg'
-import Din from '../assets/images/flags/dinamarca.svg'
-import Esp from '../assets/images/flags/espanha.svg'
-import Por from '../assets/images/flags/portugal.svg'
-import Fra from '../assets/images/flags/franca.svg'
-import Ing from '../assets/images/flags/inglaterra.svg'
-import Rus from '../assets/images/flags/russia.svg'
-
 export const jackpots = [
     {
         key: String(Math.random()),
@@ -136,97 +124,31 @@ export const championships = [
     }
 ]
 
-const date = new Date()
-const today = date.getDate()
-const todayFormat = today < 10 ? '0' + today : today
-const week_day = date.getDay()
-const month = date.getMonth() + 1
-const monthFormat = month < 10 ? '0' + month : month
-const year = date.getFullYear()
-const hour = date.getHours()
-const minute = date.getMinutes()
-const minuteFormat = minute < 10 ? '0' + minute : minute
-const days = new Array('dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb')
+export const changeFlags = (flag) => {
+    const url = '../assets/images/flags'
+    if (flag === 'ALE') return require(`${url}/ALE.png`)
+    else if (flag === 'AUT') return require(`${url}/AUT.png`)
+    else if (flag === 'BEL') return require(`${url}/BEL.png`)
+    else if (flag === 'CRO') return require(`${url}/CRO.png`)
+    else if (flag === 'DIN') return require(`${url}/DIN.png`)
+    else if (flag === 'ESC') return require(`${url}/ESC.png`)
+    else if (flag === 'ESP') return require(`${url}/ESP.png`)
+    else if (flag === 'EVQ') return require(`${url}/EVQ.png`)
+    else if (flag === 'FIN') return require(`${url}/FIN.png`)
+    else if (flag === 'FRA') return require(`${url}/FRA.png`)
+    else if (flag === 'GAL') return require(`${url}/GAL.png`)
+    else if (flag === 'HOL') return require(`${url}/HOL.png`)
+    else if (flag === 'HUN') return require(`${url}/HUN.png`)
+    else if (flag === 'ING') return require(`${url}/ING.png`)
+    else if (flag === 'ITA') return require(`${url}/ITA.png`)
+    else if (flag === 'MAC') return require(`${url}/MAC.png`)
+    else if (flag === 'POL') return require(`${url}/POL.png`)
+    else if (flag === 'POR') return require(`${url}/POR.png`)
+    else if (flag === 'RUS') return require(`${url}/RUS.png`)
+    else if (flag === 'SUE') return require(`${url}/SUE.png`)
+    else if (flag === 'SUI') return require(`${url}/SUI.png`)
+    else if (flag === 'TCH') return require(`${url}/TCH.png`)
+    else if (flag === 'TUR') return require(`${url}/TUR.png`)
+    else return require(`${url}/UCR.png`)
+}
 
-export const games = [
-    {
-        id: uuid.v4(),
-        championship: 'Eurocopa',
-        stadium: 'OLÍMPICO DE ROMA',
-        flag_home: <Ita width={50} height={50} />,
-        flag_away: <Ale width={50} height={50} />,
-        team_home: 'Itália',
-        team_away: 'Alemanha',
-        date: `${days[week_day]}, ${todayFormat}/${monthFormat} às ${hour}:${minuteFormat}`,
-        year: year,
-        status: 'Em andamento',
-        home_score: 0,
-        away_score: 0,
-        pn_home_score: 0,
-        pn_away_score: 0
-    },
-    {
-        id: uuid.v4(),
-        championship: 'Eurocopa',
-        stadium: 'OLÍMPICO DE BAKU',
-        flag_home: <Bel width={50} height={50} />,
-        flag_away: <Hol width={50} height={50} />,
-        team_home: 'Bélgica',
-        team_away: 'Holanda',
-        date: `${days[week_day]}, ${todayFormat}/${monthFormat} às ${hour}:${minuteFormat}`,
-        year: year,
-        status: 'Em andamento',
-        home_score: 0,
-        away_score: 0,
-        pn_home_score: 0,
-        pn_away_score: 0
-    },
-    {
-        id: uuid.v4(),
-        championship: 'Eurocopa',
-        stadium: 'OLÍMPICO DE ROMA',
-        flag_home: <Din width={50} height={50} />,
-        flag_away: <Esp width={50} height={50} />,
-        team_home: 'Dinamarca',
-        team_away: 'Espanha',
-        date: `${days[week_day]}, ${todayFormat}/${monthFormat} às ${hour}:${minuteFormat}`,
-        year: year,
-        status: 'Encerrado',
-        home_score: 2,
-        away_score: 2,
-        pn_home_score: 3,
-        pn_away_score: 5
-    },
-    {
-        id: uuid.v4(),
-        championship: 'Eurocopa',
-        stadium: 'PARKEN',
-        flag_home: <Por width={50} height={50} />,
-        flag_away: <Fra width={50} height={50} />,
-        team_home: 'Portugal',
-        team_away: 'França',
-        date: `${days[week_day]}, ${todayFormat}/${monthFormat} às ${hour}:${minuteFormat}`,
-        year: year,
-        status: 'Em andamento',
-        home_score: 0,
-        away_score: 0,
-        pn_home_score: 0,
-        pn_away_score: 0
-    },
-    {
-        id: uuid.v4(),
-        championship: 'Eurocopa',
-        stadium: 'ARENA NAC. BUCARESTE',
-        flag_home: <Ing width={50} height={50} />,
-        flag_away: <Rus width={50} height={50} />,
-        team_home: 'Inglaterra',
-        team_away: 'Rússia',
-        date: `${days[week_day]}, ${todayFormat}/${monthFormat} às ${hour}:${minuteFormat}`,
-        year: year,
-        status: 'Encerrado',
-        home_score: 3,
-        away_score: 1,
-        pn_home_score: 0,
-        pn_away_score: 0
-    },
-]

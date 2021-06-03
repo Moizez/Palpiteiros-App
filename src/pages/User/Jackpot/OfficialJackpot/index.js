@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import api from '../../../../services/api_jackpots'
 import JackpotList from '../../../../components/JackpotList'
 import EmptyList from '../../../../components/EmptyList'
+import Loading from '../../../../components/Loading'
 
 import { Container, FlatList, RefreshControl } from './styles'
 
@@ -10,10 +11,13 @@ const OfficialJackpot = () => {
 
     const [jackpots, setJackpots] = useState([])
     const [refreshing, setRefreshing] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     const loadJackpots = async () => {
+        setLoading(true)
         const response = await api.getAllJackpots()
         setJackpots(response.data)
+        setLoading(false)
     }
 
     useEffect(() => {
@@ -30,7 +34,7 @@ const OfficialJackpot = () => {
         <Container>
             <FlatList
                 data={jackpots}
-                keyExtractor={(item) => item.key}
+                keyExtractor={(item) => item.id}
                 renderItem={({ item }) => <JackpotList data={item} />}
                 showsVerticalScrollIndicator={false}
                 refreshControl={
@@ -44,6 +48,7 @@ const OfficialJackpot = () => {
                     <EmptyList message='Nenhum bolão disponível!' />
                 }
             />
+            {loading && !refreshing && <Loading />}
         </Container>
     );
 }

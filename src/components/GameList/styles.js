@@ -8,10 +8,10 @@ export const Card = styled.TouchableOpacity`
 flex: 1;
 justify-content: space-between;
 width: 100%;
-border-radius: 3px;
-background-color: #FFF;
+border-radius: 8px;
+background-color: #ebebeb;
 padding: 10px;
-margin: 5px 0;
+margin: 8px 0;
 `;
 
 export const CardHeader = styled.View`
@@ -42,9 +42,9 @@ export const HunchInfo = styled.View`
 `;
 
 export const HunchScore = styled.View`
-    width: 50px;
-    height: 60px;
-    border-width: 1px;
+    width: 45px;
+    height: 55px;
+    border-width: 0.5px;
     border-color: #000;
     align-items: center;
     justify-content: center;
@@ -56,6 +56,12 @@ export const HunchScoreBox = styled.View`
 
 export const Team = styled.View`
     align-items: center;
+    justify-content: center;
+`;
+
+export const Flag = styled.Image`
+    width: 55px;
+    height: 35px;
 `;
 
 export const Status = styled.View`
@@ -94,7 +100,6 @@ export const Text = styled.Text`
 
 export const HunchText = styled.Text`
     font-size: 35px;
-    font-weight: bold;
     color: #000;
 `;
 

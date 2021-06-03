@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 
 import api from '../../../../services/api_jackpots'
 
-import MyJackpotList from '../../../../components/MyJackpotList'
+import JackpotList from '../../../../components/JackpotList'
 import EmptyList from '../../../../components/EmptyList'
+import Loading from '../../../../components/Loading'
 
 import {
     Container, Title, Label, FlatList, CreateJackpot,
@@ -16,10 +17,13 @@ const MyJackpot = () => {
     const navigation = useNavigation()
     const [jackpots, setJackpots] = useState([])
     const [refreshing, setRefreshing] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     const loadJackpots = async () => {
+        setLoading(true)
         const response = await api.getJackpotsByUserId()
         setJackpots(response.data)
+        setLoading(false)
     }
 
     useEffect(() => {
@@ -36,8 +40,8 @@ const MyJackpot = () => {
         <Container>
             <FlatList
                 data={jackpots}
-                keyExtractor={(item) => item.key}
-                renderItem={({ item }) => <MyJackpotList data={item} />}
+                keyExtractor={(item) => item.id}
+                renderItem={({ item }) => <JackpotList data={item} />}
                 showsVerticalScrollIndicator={false}
                 refreshControl={
                     <RefreshControl
@@ -60,6 +64,7 @@ const MyJackpot = () => {
                         </Label>
                 </BoxLabel>
             </CreateJackpot>
+            {loading && !refreshing && <Loading />}
         </Container>
     );
 }

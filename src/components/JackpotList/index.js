@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigation } from '@react-navigation/native'
 
 import api from '../../services/api'
 
@@ -11,12 +12,22 @@ import {
 
 const JackpotList = ({ data }) => {
 
+    const navigation = useNavigation()
     const [jackpotModal, setJackpotModal] = useState(false)
     const { id, name: jackpotName, championship: { year, name } } = data
 
     const handleJackpotRegister = async () => {
         const response = await api.onJackpotRegister(id)
         alert(response.status)
+    }
+
+    const hasRegister = async () => {
+        const response = await api.hasRegister(id)
+        if (response.data) {
+            return navigation.navigate('JackpotDetails')
+        } else {
+            return handleOpenJackpotModal()
+        }
     }
 
     const handleOpenJackpotModal = () => setJackpotModal(true)
@@ -26,7 +37,7 @@ const JackpotList = ({ data }) => {
         <>
             <Container>
                 <Card
-                    onPress={handleOpenJackpotModal}
+                    onPress={hasRegister}
                     activeOpacity={0.8}
                 >
                     <Image
@@ -44,6 +55,7 @@ const JackpotList = ({ data }) => {
                 visible={jackpotModal}
                 animationType='slide'
                 transparent={false}
+                onRequestClose={handleCloseJackpotModal}
             >
                 <JackpotModal
                     title={data.name}

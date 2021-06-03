@@ -32,7 +32,7 @@ const Statistic = () => {
 			<Container>
 				<FlatList
 					data={championships}
-					keyExtractor={(item) => item.key}
+					keyExtractor={(item) => item.id}
 					renderItem={({ item }) => <ChampionshipsList data={item} />}
 					showsVerticalScrollIndicator={false}
 					ListEmptyComponent={

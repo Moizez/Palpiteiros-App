@@ -1,16 +1,23 @@
 import React, { useState } from 'react'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { format, parseISO } from 'date-fns'
+import pt from 'date-fns/locale/pt'
 
 import HunchModal from '../Modals/HunchModal'
+import { changeFlags } from '../../helpers/data'
 
 import {
     Container, Card, CardHeader, InfoHeader,
     CardHunch, Score, HunchInfo, HunchScoreBox,
     Team, HunchScore, TeamName, Status, HunchText,
-    ScoreText, Text, Label, Divider, Modal
+    ScoreText, Text, Label, Divider, Modal, Flag
 } from './styles'
 
 const GameList = ({ data }) => {
+
+    const { local, date } = data.confrontationLocation
+    const { initials: homeInitial } = data.teamHome
+    const { initials: awayInitial } = data.teamVisiting
 
     const [homeScore, setHomeScore] = useState(null)
     const [awayScore, setAwayScore] = useState(null)
@@ -24,23 +31,31 @@ const GameList = ({ data }) => {
     const handleOpenHunchModal = () => setHunchModal(true)
     const handleCloseHunchModal = () => setHunchModal(false)
 
+    const dateMatch = format(parseISO(date), "EEE, d 'de' LLL 'às' hh:mm", { locale: pt })
+
+    let stadium = local
+    if(stadium.length > 18){
+        stadium = stadium.substring(0, 19) + '...'
+    }
+
     return (
         <>
-            <Container style={{ elevation: 5 }}>
+            <Container>
                 <Card
+                    style={{ elevation: 5 }}
                     onPress={handleOpenHunchModal}
                     activeOpacity={0.8}
-                    disabled={data.status === 'Encerrado' && true}
+                    disabled={data.scoreBoard ? true : false}
                 >
                     <CardHeader>
                         <InfoHeader>
                             <Icon name='soccer-field' size={22} color='#072' />
-                            <Label>{data.stadium}</Label>
+                            <Label>{stadium}</Label>
                         </InfoHeader>
 
                         <InfoHeader>
                             <Icon name='av-timer' size={22} color='#da1e37' />
-                            <Label>{data.date}</Label>
+                            <Label>{dateMatch}</Label>
                         </InfoHeader>
 
                     </CardHeader>
@@ -49,7 +64,7 @@ const GameList = ({ data }) => {
 
                     <CardHunch>
                         <Score>
-                            {data.status == 'Encerrado' &&
+                            {data.scoreBoard &&
                                 <>
                                     {(data.pn_home_score > 0 || data.pn_away_score > 0) &&
                                         <ScoreText>{'(' + data.pn_home_score + ')'}</ScoreText>
@@ -66,8 +81,8 @@ const GameList = ({ data }) => {
 
                         <HunchInfo>
                             <Team>
-                                {data.flag_home}
-                                <TeamName>{data.team_home}</TeamName>
+                                <Flag source={changeFlags(homeInitial)} />
+                                <TeamName>{homeInitial}</TeamName>
                             </Team>
 
                             <HunchScoreBox>
@@ -85,20 +100,22 @@ const GameList = ({ data }) => {
                             </HunchScoreBox>
 
                             <Team>
-                                {data.flag_away}
-                                <TeamName>{data.team_away}</TeamName>
+                                <Flag source={changeFlags(awayInitial)} />
+                                <TeamName>{awayInitial}</TeamName>
                             </Team>
 
                         </HunchInfo>
-
-                        <Divider />
-
-                        <Status style={{
-                            backgroundColor: data.status == 'Encerrado' ? '#da1e37' : '#072',
-                            borderRadius: 5,
-                        }}>
-                            <Text>{data.status}</Text>
-                        </Status>
+                        {data.scoreBoard &&
+                            <>
+                                <Divider />
+                                <Status style={{
+                                    backgroundColor: '#da1e37',
+                                    borderRadius: 5,
+                                }}>
+                                    <Text>Encerrado</Text>
+                                </Status>
+                            </>
+                        }
 
                     </CardHunch>
 

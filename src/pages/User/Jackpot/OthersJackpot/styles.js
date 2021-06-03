@@ -13,3 +13,5 @@ flex: 1;
 width: 100%;
 background-color: #FFF;
 `;
+
+export const RefreshControl = styled.RefreshControl``;

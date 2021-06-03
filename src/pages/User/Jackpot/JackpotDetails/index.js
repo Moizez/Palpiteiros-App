@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import { useNavigation } from '@react-navigation/native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import JackpotRankingList from '../../../../components/JackpotRankingList'
@@ -10,18 +11,18 @@ import {
     RankingItem, FlatList, Title, Label
 } from './styles'
 
-const JackpotDetails = ({ route, navigation }) => {
+const JackpotDetails = () => {
 
-    const { data } = route.params
+    const navigation = useNavigation()
 
     return (
         <Container>
 
             <Header>
                 <BackButton onPress={() => navigation.goBack()}>
-                    <Icon name='chevron-left' size={35} color='#FFF' />
+                    <Icon name='chevron-down' size={35} color='#FFF' />
                 </BackButton>
-                <Title>{data.name}</Title>
+                <Title>Teste</Title>
                 <BackButton>
                     <Icon name='dots-vertical' size={30} color='#FFF' />
                 </BackButton>
