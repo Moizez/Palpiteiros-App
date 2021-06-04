@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components/native'
 
-import api from '../../../../services/api_confrontation'
+import api from '../../../../services/api_jackpots'
 
 import GameList from '../../../../components/GameList'
 import EmptyList from '../../../../components/EmptyList'
@@ -9,28 +9,26 @@ import Loading from '../../../../components/Loading'
 
 const GamesToday = () => {
 
-	const [hunchs, setHunchs] = useState([])
-	const [confrontations, setConfrontations] = useState([])
 	const [refreshing, setRefreshing] = useState(false)
 	const [loading, setLoading] = useState(true)
 
-	const loadConfrontations = async () => {
+	const [jackpots, setJackpots] = useState([])
+
+	const loadJackpots = async () => {
 		setLoading(true)
-		const response = await api.getAllConfrontation()
-		const data = response.data.slice(0, 22)
-		setConfrontations(data)
+		const response = await api.getJackpotsByUserId()
+		setJackpots(response.data)
 		setLoading(false)
 	}
 
-	const loadHunchs = async () => { }
-
 	useEffect(() => {
-		loadConfrontations()
+		loadJackpots()
 	}, [])
+
 
 	const handleRefresh = async () => {
 		setRefreshing(true)
-		await loadConfrontations()
+		await loadJackpots()
 		setRefreshing(false)
 	}
 
@@ -38,11 +36,11 @@ const GamesToday = () => {
 		<Container>
 
 			<FlatList
-				data={confrontations}
+				data={jackpots}
 				keyExtractor={(item) => item.id}
 				renderItem={({ item }) => <GameList data={item} />}
 				showsVerticalScrollIndicator={false}
-				initialNumToRender={confrontations.length}
+				initialNumToRender={jackpots.length}
 				removeClippedSubviews
 				refreshControl={
 					<RefreshControl

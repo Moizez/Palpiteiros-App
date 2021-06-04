@@ -3,14 +3,18 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 
+import { changeFlags } from '../../../helpers/data'
+
 import {
     Container, CloseContainer, ModalBox, CloseButton,
     ModalHeader, Title, HunchInfo, HunchScoreBox, Text,
     Team, HunchScore, TeamName, HunchButton, ErrorBox,
-    ErrorText, Input
+    ErrorText, Input, Flag
 } from './styles'
 
-const HunchModal = ({ closeModal, data, handleScore }) => {
+const HunchModal = (props) => {
+
+    const [data] = props.data
 
     const validationSchema = yup.object().shape({
         home: yup.number()
@@ -29,18 +33,18 @@ const HunchModal = ({ closeModal, data, handleScore }) => {
         initialValues: { home: null, away: null },
         validationSchema: validationSchema,
         onSubmit: async (values, actions) => {
-            handleScore(values.home, values.away)
+            props.handleHunch(data.id, values.home, values.away)
             actions.resetForm()
-            closeModal()
+            props.closeModal()
         }
     })
 
     return (
         <Container>
-            <CloseContainer onPress={closeModal} activeOpacity={1} />
+            <CloseContainer onPress={props.closeModal} activeOpacity={1} />
             <ModalBox>
                 <ModalHeader>
-                    <CloseButton onPress={closeModal}>
+                    <CloseButton onPress={props.closeModal}>
                         <Icon name='chevron-down' color='#FFF' size={35} />
                     </CloseButton>
                     <Title>Qual o seu palpite?</Title>
@@ -48,8 +52,8 @@ const HunchModal = ({ closeModal, data, handleScore }) => {
 
                 <HunchInfo>
                     <Team>
-                        {data.flag_home}
-                        <TeamName>{data.team_home}</TeamName>
+                        <Flag source={changeFlags(data.teamHome.initials)} />
+                        <TeamName>{data.teamHome.initials}</TeamName>
                     </Team>
 
                     <HunchScoreBox>
@@ -83,19 +87,19 @@ const HunchModal = ({ closeModal, data, handleScore }) => {
                     </HunchScoreBox>
 
                     <Team>
-                        {data.flag_away}
-                        <TeamName>{data.team_away}</TeamName>
+                        <Flag source={changeFlags(data.teamVisiting.initials)} />
+                        <TeamName>{data.teamVisiting.initials}</TeamName>
                     </Team>
 
                 </HunchInfo>
 
                 <ErrorBox>
                     {formik.touched.home && formik.errors.home &&
-                        <ErrorText>{data.team_home}: {formik.errors.home}</ErrorText>
+                        <ErrorText>{data.teamHome}: {formik.errors.home}</ErrorText>
                     }
 
                     {formik.touched.away && formik.errors.away &&
-                        <ErrorText>{data.team_away}: {formik.errors.away}</ErrorText>
+                        <ErrorText>{data.teamVisiting}: {formik.errors.away}</ErrorText>
                     }
                 </ErrorBox>
 

@@ -17,9 +17,9 @@ const SignUp = () => {
 
 	const validationSchema = yup.object().shape({
 		name: yup.string().required('O nome é obrigatório!'),
-		cpf: yup.string()
+		/*cpf: yup.string()
 			.required('O CPF é obrigatório!')
-			.test('cpf', 'CPF inválido!', async value => await validate.cpf(value)),
+			.test('cpf', 'CPF inválido!', async value => await validate.cpf(value)),*/
 		phone: yup.string().required('O telefone é obrigatório!'),
 		email: yup.string().email('Digite um e-mail válido!').required('O e-mail é obrigatório!'),
 		password: yup.string().required('A senha é obrigatória!'),
@@ -64,7 +64,7 @@ const SignUp = () => {
 
 			<InputContainer>
 				<Input
-					label='CPF*'
+					label='CPF'
 					keyboardType='phone-pad'
 					value={formik.values.cpf}
 					onChangeText={async (text) => formik.setFieldValue('cpf', await validate.cpfMask(text))}

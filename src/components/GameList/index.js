@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { format, parseISO } from 'date-fns'
 import pt from 'date-fns/locale/pt'
 
+import api from '../../services/api_hunchs'
 import HunchModal from '../Modals/HunchModal'
 import { changeFlags } from '../../helpers/data'
 
@@ -15,125 +16,152 @@ import {
 
 const GameList = ({ data }) => {
 
-    const { local, date } = data.confrontationLocation
-    const { initials: homeInitial } = data.teamHome
-    const { initials: awayInitial } = data.teamVisiting
-
     const [homeScore, setHomeScore] = useState(null)
     const [awayScore, setAwayScore] = useState(null)
+    const [hunchs, setHunchs] = useState([])
     const [hunchModal, setHunchModal] = useState(false)
+    const [dataMatch, setDataMatch] = useState([])
 
-    const handleScore = (home, away) => {
-        setHomeScore(home)
-        setAwayScore(away)
+    const { id: idData } = data
+    const { id, confrontations } = data.championship
+
+    const getHunchs = async () => {
+        const response = await api.getHunchByChampionshipAndUser(id)
+        setHunchs(response.data)
     }
+
+    const handleHunch = async (confrontationId, homeGoals, awayGoals) => {
+        const response = api.onHunchs(confrontationId, homeGoals, awayGoals, idData)
+        if (response.data) {
+            alert('Deu certo!')
+        } else {
+            alert('Deu ruim!' + response.status)
+        }
+    }
+
+    useEffect(() => {
+        getHunchs()
+    }, [])
 
     const handleOpenHunchModal = () => setHunchModal(true)
     const handleCloseHunchModal = () => setHunchModal(false)
 
-    const dateMatch = format(parseISO(date), "EEE, d 'de' LLL 'às' hh:mm", { locale: pt })
+    const filterConfrontations = (id) => {
+        const result = confrontations.filter(i => i.id == id)
+        setDataMatch(result)
+    }
 
-    let stadium = local
-    if(stadium.length > 18){
-        stadium = stadium.substring(0, 19) + '...'
+    const dateFormat = (date) => {
+        return format(parseISO(date), "EEE, d 'de' LLL 'às' hh:mm", { locale: pt })
+    }
+
+    const locationFormat = (local) => {
+        if (local.length > 18)
+            return local = local.substring(0, 19) + '...'
     }
 
     return (
         <>
             <Container>
-                <Card
-                    style={{ elevation: 5 }}
-                    onPress={handleOpenHunchModal}
-                    activeOpacity={0.8}
-                    disabled={data.scoreBoard ? true : false}
-                >
-                    <CardHeader>
-                        <InfoHeader>
-                            <Icon name='soccer-field' size={22} color='#072' />
-                            <Label>{stadium}</Label>
-                        </InfoHeader>
+                {confrontations.map(match =>
+                    <Card
+                        key={match.id}
+                        style={{ elevation: 5 }}
+                        onPress={() => {
+                            handleOpenHunchModal()
+                            filterConfrontations(match.id)
+                        }}
+                        activeOpacity={0.8}
+                    >
+                        <CardHeader>
+                            <InfoHeader>
+                                <Icon name='soccer-field' size={22} color='#072' />
+                                <Label>{locationFormat(match.confrontationLocation?.local)}</Label>
+                            </InfoHeader>
 
-                        <InfoHeader>
-                            <Icon name='av-timer' size={22} color='#da1e37' />
-                            <Label>{dateMatch}</Label>
-                        </InfoHeader>
+                            <InfoHeader>
+                                <Icon name='av-timer' size={22} color='#da1e37' />
+                                <Label>{dateFormat(match.confrontationLocation?.date)}</Label>
+                            </InfoHeader>
 
-                    </CardHeader>
+                        </CardHeader>
 
-                    <Divider />
+                        <Divider />
 
-                    <CardHunch>
-                        <Score>
-                            {data.scoreBoard &&
+                        <CardHunch>
+                            <Score>
+                                {match.scoreBoard &&
+                                    <>
+                                        <ScoreText>{match.scoreBoard?.golsHome}</ScoreText>
+                                        <Icon name='alpha-x' size={25} color='#da1e37' />
+                                        <ScoreText>{match.scoreBoard?.golsVisiting}</ScoreText>
+                                    </>
+                                }
+                            </Score>
+
+                            <HunchInfo>
+                                <Team>
+                                    <Flag source={changeFlags(match?.teamHome?.initials)} />
+                                    <TeamName>{match?.teamHome?.initials}</TeamName>
+                                </Team>
+
+                                {hunchs?.map((hint) =>
+                                    <HunchScoreBox key={hint.id}>
+
+                                        <HunchScore>
+                                            <HunchText>
+                                                {hint.resultHunch?.golsHome}
+                                            </HunchText>
+                                        </HunchScore>
+
+                                        <Icon name='alpha-x' size={50} color='#000' />
+
+                                        <HunchScore>
+                                            <HunchText>
+                                                {hint.resultHunch?.golsVisiting}
+                                            </HunchText>
+                                        </HunchScore>
+
+                                    </HunchScoreBox>
+
+                                )}
+
+                                <Team>
+                                    <Flag source={changeFlags(match?.teamVisiting?.initials)} />
+                                    <TeamName>{match?.teamVisiting?.initials}</TeamName>
+                                </Team>
+
+                            </HunchInfo>
+                            {match.scoreBoard &&
                                 <>
-                                    {(data.pn_home_score > 0 || data.pn_away_score > 0) &&
-                                        <ScoreText>{'(' + data.pn_home_score + ')'}</ScoreText>
-                                    }
-                                    <ScoreText>{data.home_score}</ScoreText>
-                                    <Icon name='alpha-x' size={25} color='#da1e37' />
-                                    <ScoreText>{data.away_score}</ScoreText>
-                                    {(data.pn_home_score > 0 || data.pn_away_score > 0) &&
-                                        <ScoreText>{'(' + data.pn_away_score + ')'}</ScoreText>
-                                    }
+                                    <Divider />
+                                    <Status style={{
+                                        backgroundColor: '#da1e37',
+                                        borderRadius: 5,
+                                    }}>
+                                        <Text>Encerrado</Text>
+                                    </Status>
                                 </>
                             }
-                        </Score>
 
-                        <HunchInfo>
-                            <Team>
-                                <Flag source={changeFlags(homeInitial)} />
-                                <TeamName>{homeInitial}</TeamName>
-                            </Team>
+                        </CardHunch>
 
-                            <HunchScoreBox>
+                    </Card>
+                )}
 
-                                <HunchScore>
-                                    <HunchText>{homeScore ? homeScore : '__'}</HunchText>
-                                </HunchScore>
-
-                                <Icon name='alpha-x' size={50} color='#000' />
-
-                                <HunchScore>
-                                    <HunchText>{awayScore ? awayScore : '__'}</HunchText>
-                                </HunchScore>
-
-                            </HunchScoreBox>
-
-                            <Team>
-                                <Flag source={changeFlags(awayInitial)} />
-                                <TeamName>{awayInitial}</TeamName>
-                            </Team>
-
-                        </HunchInfo>
-                        {data.scoreBoard &&
-                            <>
-                                <Divider />
-                                <Status style={{
-                                    backgroundColor: '#da1e37',
-                                    borderRadius: 5,
-                                }}>
-                                    <Text>Encerrado</Text>
-                                </Status>
-                            </>
-                        }
-
-                    </CardHunch>
-
-
-                </Card>
+                <Modal
+                    visible={hunchModal}
+                    animationType='slide'
+                    transparent={true}
+                >
+                    <HunchModal
+                        closeModal={handleCloseHunchModal}
+                        title='Qual o seu palpite?'
+                        handleHunch={handleHunch}
+                        data={dataMatch}
+                    />
+                </Modal>
             </Container>
-            <Modal
-                visible={hunchModal}
-                animationType='slide'
-                transparent={true}
-            >
-                <HunchModal
-                    closeModal={handleCloseHunchModal}
-                    data={data}
-                    handleScore={handleScore}
-                    title='Qual o seu palpite?'
-                />
-            </Modal>
         </>
     );
 }

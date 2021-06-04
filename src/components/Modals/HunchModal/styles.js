@@ -34,6 +34,11 @@ export const Title = styled.Text`
     margin-left: 15px;
 `;
 
+export const Flag = styled.Image`
+    width: 55px;
+    height: 35px;
+`;
+
 export const HunchInfo = styled.View`
     flex-direction: row;
     align-items: center;
@@ -42,9 +47,9 @@ export const HunchInfo = styled.View`
 `;
 
 export const HunchScore = styled.View`
-    width: 50px;
-    height: 60px;
-    border-width: 1px;
+    width: 45px;
+    height: 55px;
+    border-width: 0.5px;
     border-color: #FFF;
     align-items: center;
     justify-content: center;
@@ -77,7 +82,6 @@ export const Text = styled.Text`
 
 export const HunchText = styled.Text`
     font-size: 35px;
-    font-weight: bold;
     color: #FFF;
 `;
 
@@ -103,11 +107,11 @@ export const ErrorText = styled.Text`
 `;
 
 export const Input = styled.TextInput`
+    height: 100%;
+    width: 100%;
     font-size: 30px;
-    font-weight: bold;
     color: #FFF;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
 `;
 
 
