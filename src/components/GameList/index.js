@@ -16,8 +16,6 @@ import {
 
 const GameList = ({ data }) => {
 
-    const [homeScore, setHomeScore] = useState(null)
-    const [awayScore, setAwayScore] = useState(null)
     const [hunchs, setHunchs] = useState([])
     const [hunchModal, setHunchModal] = useState(false)
     const [dataMatch, setDataMatch] = useState([])
@@ -46,18 +44,14 @@ const GameList = ({ data }) => {
     const handleOpenHunchModal = () => setHunchModal(true)
     const handleCloseHunchModal = () => setHunchModal(false)
 
+    //Testar filtro no Modal depois
     const filterConfrontations = (id) => {
         const result = confrontations.filter(i => i.id == id)
         setDataMatch(result)
     }
 
     const dateFormat = (date) => {
-        return format(parseISO(date), "EEE, d 'de' LLL 'às' hh:mm", { locale: pt })
-    }
-
-    const locationFormat = (local) => {
-        if (local.length > 18)
-            return local = local.substring(0, 19) + '...'
+        return format(parseISO(date), "d 'de' LLL 'às' hh:mm", { locale: pt })
     }
 
     return (
@@ -76,7 +70,7 @@ const GameList = ({ data }) => {
                         <CardHeader>
                             <InfoHeader>
                                 <Icon name='soccer-field' size={22} color='#072' />
-                                <Label>{locationFormat(match.confrontationLocation?.local)}</Label>
+                                <Label>{match.confrontationLocation?.local}</Label>
                             </InfoHeader>
 
                             <InfoHeader>
@@ -89,15 +83,6 @@ const GameList = ({ data }) => {
                         <Divider />
 
                         <CardHunch>
-                            <Score>
-                                {match.scoreBoard &&
-                                    <>
-                                        <ScoreText>{match.scoreBoard?.golsHome}</ScoreText>
-                                        <Icon name='alpha-x' size={25} color='#da1e37' />
-                                        <ScoreText>{match.scoreBoard?.golsVisiting}</ScoreText>
-                                    </>
-                                }
-                            </Score>
 
                             <HunchInfo>
                                 <Team>
@@ -132,9 +117,19 @@ const GameList = ({ data }) => {
                                 </Team>
 
                             </HunchInfo>
+
+                            <Score>
+                                {match.scoreBoard &&
+                                    <>
+                                        <ScoreText>{match.scoreBoard?.golsHome}</ScoreText>
+                                        <Icon name='alpha-x' size={25} color='#da1e37' />
+                                        <ScoreText>{match.scoreBoard?.golsVisiting}</ScoreText>
+                                    </>
+                                }
+                            </Score>
+
                             {match.scoreBoard &&
                                 <>
-                                    <Divider />
                                     <Status style={{
                                         backgroundColor: '#da1e37',
                                         borderRadius: 5,

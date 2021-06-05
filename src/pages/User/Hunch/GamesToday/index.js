@@ -25,7 +25,6 @@ const GamesToday = () => {
 		loadJackpots()
 	}, [])
 
-
 	const handleRefresh = async () => {
 		setRefreshing(true)
 		await loadJackpots()

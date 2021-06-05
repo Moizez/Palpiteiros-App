@@ -89,9 +89,9 @@ export const TeamName = styled.Text`
 
 
 export const Label = styled.Text`
-font-size: 12px;
+font-size: 11px;
 color: #000;
-margin-left: 3px;
+margin-left: 2px;
 `;
 
 export const Text = styled.Text`
