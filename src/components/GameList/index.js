@@ -34,14 +34,13 @@ const GameList = ({ data, idChampionship, idJackpot }) => {
             const [exist] = hunchs?.map(i => i.jackpot.id === idJackpot)
             if (exist) {
                 const { idHunch } = hunchs?.find(i => i.jackpot.id === idJackpot)
-                const response = await api.updateHunch(idHunch, idJackpot, idConfrontation, homeGoals, awayGoals)
+                const response = await api.updateHunchs(idHunch, idJackpot, idConfrontation, homeGoals, awayGoals)
                 if (response.data) {
                     alert('Atualizar deu certo!')
                 } else {
                     alert('Atualizar deu ruim!' + response.status)
                 }
             }
-            return
         } else {
             const response = api.createHunchs(idJackpot, idConfrontation, homeGoals, awayGoals)
             if (response.data) {
