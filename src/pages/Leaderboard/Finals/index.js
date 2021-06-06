@@ -10,7 +10,7 @@ const Finals = (props) => {
 
     return (
         <Container>
-           <Title>SEMIFINAIS, 3º E 4º LUGAR E FINAIS</Title>
+           <Title>SEMIFINAL E FINAIS</Title>
         </Container>
     )
 }

@@ -1,33 +1,31 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components/native'
 
-import api from '../../../../services/api_jackpots'
+import api from '../../../../../services/api_confrontation'
 
-import GameList from '../../../../components/GameList'
-import EmptyList from '../../../../components/EmptyList'
-import Loading from '../../../../components/Loading'
+import GameList from '../../../../../components/GameList'
+import EmptyList from '../../../../../components/EmptyList'
+import Loading from '../../../../../components/Loading'
 
-const GamesToday = () => {
+const GamesToday = ({ idChampionship, idJackpot }) => {
 
 	const [refreshing, setRefreshing] = useState(false)
 	const [loading, setLoading] = useState(true)
+	const [confrontations, setConfrontations] = useState([])
 
-	const [jackpots, setJackpots] = useState([])
-
-	const loadJackpots = async () => {
-		setLoading(true)
-		const response = await api.getJackpotsByUserId()
-		setJackpots(response.data)
+	const loadConfrontations = async () => {
+		const response = await api.getAllConfrontationByChampionships(idChampionship)
+		setConfrontations(response.data)
 		setLoading(false)
 	}
 
 	useEffect(() => {
-		loadJackpots()
+		loadConfrontations()
 	}, [])
 
 	const handleRefresh = async () => {
 		setRefreshing(true)
-		await loadJackpots()
+		await loadConfrontations()
 		setRefreshing(false)
 	}
 
@@ -35,11 +33,17 @@ const GamesToday = () => {
 		<Container>
 
 			<FlatList
-				data={jackpots}
+				data={confrontations}
 				keyExtractor={(item) => item.id}
-				renderItem={({ item }) => <GameList data={item} />}
+				renderItem={({ item }) =>
+					<GameList
+						data={item}
+						idChampionship={idChampionship}
+						idJackpot={idJackpot}
+					/>
+				}
 				showsVerticalScrollIndicator={false}
-				initialNumToRender={jackpots.length}
+				initialNumToRender={confrontations.length}
 				removeClippedSubviews
 				refreshControl={
 					<RefreshControl
@@ -52,7 +56,7 @@ const GamesToday = () => {
 					<EmptyList message='Nenhum jogo disponível!' />
 				}
 			/>
-			{loading && !refreshing && <Loading />}
+			{loading && <Loading />}
 		</Container>
 	)
 }

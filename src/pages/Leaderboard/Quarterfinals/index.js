@@ -3,13 +3,13 @@ import { DataTable } from 'react-native-paper'
 
 import { Container, Title, TitleBox } from './styles'
 
-const Qualifiers = (props) => {
+const Quarterfinals = (props) => {
 
     return (
         <Container>
-           <Title>QUARTAS E OITAVAS</Title>
+           <Title>QUARTAS DE FINAIS</Title>
         </Container>
     )
 }
 
-export default Qualifiers
+export default Quarterfinals

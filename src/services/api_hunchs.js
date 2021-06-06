@@ -8,7 +8,7 @@ export default {
         return response
     },
 
-    onHunchs: async (confrontationId, homeGoals, awayGoals, jackpotId) => {
+    createHunchs: async (confrontationId, homeGoals, awayGoals, jackpotId) => {
         const user = await JSON.parse(await AsyncStorage.getItem('@palpiteiros:user')) || []
         console.log(user.id, confrontationId, homeGoals, awayGoals, jackpotId)
         const data = {

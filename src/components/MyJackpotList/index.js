@@ -1,27 +1,40 @@
-import React from 'react';
-import { Image } from 'react-native'
+import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 
-import { Container, Title, Label, Card, CardHeader } from './styles'
+import logo from '../../assets/images/logo_euro.png'
+
+import {
+    Container, Title, Label, Card, CardHeader, Image
+} from './styles'
 
 const MyJackpotList = ({ data }) => {
 
     const navigation = useNavigation()
+    const { id: idJackpot, championship: { year, id: idChampionship } } = data
 
     return (
-        <Container>
-            <Card onPress={() => navigation.navigate('JackpotDetails', { data: data })} activeOpacity={0.8}>
-                <CardHeader>
-                    <Title>{data.name}</Title>
-                    <Label>Criado por: {data.create}</Label>
-                </CardHeader>
-                <Image
-                    style={{ width: 60, height: 60 }}
-                    source={{ uri: data.image }}
-                    resizeMode='center'
-                />
-            </Card>
-        </Container>
+        <>
+            <Container>
+                <Card
+                    onPress={() => navigation.navigate('Hunchs', {
+                        idChampionship: idChampionship,
+                        idJackpot: idJackpot
+
+                    })}
+                    activeOpacity={0.8}
+                >
+                    <Image
+                        source={logo}
+                        resizeMode='contain'
+                    />
+                    <CardHeader>
+                        <Title>{data.name}</Title>
+                        <Label>Edição: {year}</Label>
+                        <Label>Início: Sex. 11/06 às 16h</Label>
+                    </CardHeader>
+                </Card>
+            </Container>
+        </>
     );
 }
 

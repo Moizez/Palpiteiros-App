@@ -18,7 +18,7 @@ const GroupStage = ({ data, loading }) => {
                         </TitleBox>
                         <DataTable.Header>
                             <DataTable.Title style={{ flex: 0.5 }}></DataTable.Title>
-                            <DataTable.Title style={{ flex: 2 }} >SELEÇÃO</DataTable.Title>
+                            <DataTable.Title style={{ flex: 2 }} >SELEÇÕES</DataTable.Title>
                             <DataTable.Title style={{ flex: 0.5 }} numeric>P</DataTable.Title>
                             <DataTable.Title style={{ flex: 0.5 }} numeric>J</DataTable.Title>
                             <DataTable.Title style={{ flex: 0.5 }} numeric>V</DataTable.Title>

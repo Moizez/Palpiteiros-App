@@ -8,7 +8,7 @@ export default {
     },
 
     getAllConfrontationByChampionships: async (id) => {
-        const response = await api_fetch.get(`/confrontations/findManyByLaterHourAndChampionshipContainsId/${id}`)
+        const response = await api_fetch.get(`/confrontations/findManyByBeforeOfGameChampionshipContainsId/${id}`)
         return response
     },
 

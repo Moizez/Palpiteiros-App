@@ -10,6 +10,7 @@ import ChampionshipSelection from '../pages/User/Jackpot/MyJackpot/CreateJackpot
 import JackpotDetails from '../pages/User/Jackpot/JackpotDetails'
 
 import Leaderboard from '../pages/Leaderboard'
+import Hunchs from '../pages/User/Games/Hunchs'
 
 
 const Stack = createStackNavigator()
@@ -23,6 +24,7 @@ const AppRoutes = () => {
             <Stack.Screen name='ChampionshipSelection' component={ChampionshipSelection} />
             <Stack.Screen name='JackpotDetails' component={JackpotDetails} />
             <Stack.Screen name='Leaderboard' component={Leaderboard} />
+            <Stack.Screen name='Hunchs' component={Hunchs} />
         </Stack.Navigator>
     )
 

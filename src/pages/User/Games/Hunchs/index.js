@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
 import { Dimensions, Text } from 'react-native'
-import { TabView, SceneMap, TabBar } from 'react-native-tab-view'
+import { TabView, TabBar } from 'react-native-tab-view'
 
-import Header from '../../../components/Header'
+import Header from '../../../../components/Header'
 import PastGames from './PastGames'
 import GamesToday from './GamesToday'
 import FutureGames from './FutureGames'
 
 const initialLayout = { width: Dimensions.get('window').width }
 
-const Hunch = () => {
+const Hunchs = ({ route }) => {
+
+	const { idChampionship, idJackpot } = route.params
 
 	const [index, setIndex] = useState(1)
 	const [routes] = useState([
@@ -30,11 +32,21 @@ const Hunch = () => {
 		/>
 	)
 
-	const renderScene = SceneMap({
-		first: () => <PastGames />,
-		second: GamesToday,
-		third: () => <FutureGames />
-	})
+	const renderScene = ({ route }) => {
+		switch (route.key) {
+			case 'first':
+				return <PastGames />
+			case 'second':
+				return <GamesToday
+					idChampionship={idChampionship}
+					idJackpot={idJackpot}
+				/>
+			case 'third':
+				return <FutureGames />
+			default:
+				return null;
+		}
+	}
 
 	return (
 		<>
@@ -52,4 +64,4 @@ const Hunch = () => {
 	)
 }
 
-export default Hunch
+export default Hunchs

@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 //Main pages
 import Jackpot from '../pages/User/Jackpot'
 import Profile from '../pages/User/Profile'
-import Hunch from '../pages/User/Hunch'
+import Games from '../pages/User/Games'
 import Statistic from '../pages/User/Statistic'
 import Setting from '../pages/User/Setting'
 
@@ -39,10 +39,10 @@ const User = () => {
             initialRouteName='Jackpot'
             screenOptions={({ route, navigation }) => ({
                 tabBarIcon: ({ color, size, focused }) => {
-                    if (route.name === 'Hunch') {
+                    if (route.name === 'Games') {
                         return (
                             <GameButton
-                                onPress={() => navigation.navigate('Hunch')}
+                                onPress={() => navigation.navigate('Games')}
                                 focused={focused}
                             />
                         )
@@ -80,8 +80,8 @@ const User = () => {
                 }} />
 
             <AppTab.Screen
-                name='Hunch'
-                component={Hunch}
+                name='Games'
+                component={Games}
                 options={{
                     title: ''
                 }} />

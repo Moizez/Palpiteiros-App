@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components/native'
 
-import GameList from '../../../../components/GameList'
-import EmptyList from '../../../../components/EmptyList'
-import Loading from '../../../../components/Loading'
+import GameList from '../../../../../components/GameList'
+import EmptyList from '../../../../../components/EmptyList'
+import Loading from '../../../../../components/Loading'
 
-const PastGames = () => {
+const FutureGames = () => {
 
 	const [hunchs, setHunchs] = useState([])
     const [refreshing, setRefreshing] = useState(false)
@@ -62,5 +62,5 @@ background-color: #FFF;
 
 const RefreshControl = styled.RefreshControl``;
 
-export default PastGames
+export default FutureGames
 

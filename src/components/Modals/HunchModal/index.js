@@ -12,9 +12,9 @@ import {
     ErrorText, Input, Flag
 } from './styles'
 
-const HunchModal = (props) => {
+const HunchModal = ({ data, closeModal, handleHunch }) => {
 
-    const [data] = props.data
+    console.log(data)
 
     const validationSchema = yup.object().shape({
         home: yup.number()
@@ -33,18 +33,18 @@ const HunchModal = (props) => {
         initialValues: { home: null, away: null },
         validationSchema: validationSchema,
         onSubmit: async (values, actions) => {
-            props.handleHunch(data.id, values.home, values.away)
+            handleHunch(data.id, values.home, values.away)
             actions.resetForm()
-            props.closeModal()
+            closeModal()
         }
     })
 
     return (
         <Container>
-            <CloseContainer onPress={props.closeModal} activeOpacity={1} />
+            <CloseContainer onPress={closeModal} activeOpacity={1} />
             <ModalBox>
                 <ModalHeader>
-                    <CloseButton onPress={props.closeModal}>
+                    <CloseButton onPress={closeModal}>
                         <Icon name='chevron-down' color='#FFF' size={35} />
                     </CloseButton>
                     <Title>Qual o seu palpite?</Title>
