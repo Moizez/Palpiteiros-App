@@ -28,8 +28,8 @@ const GameList = ({ data, idChampionship, idJackpot }) => {
         getHunchs()
     }, [])
 
-    let teste
-    console.log(teste = hunchs.find(i => i.jackpot.id == idJackpot))
+    const idHunchs = hunchs.find(i => i.jackpot.id == idJackpot)
+    console.log(idHunchs)
 
     const handleHunch = async (homeGoals, awayGoals) => {
         if (hunchs) {
