@@ -8,13 +8,13 @@ export default {
         return response
     },
 
-    createHunchs: async (confrontationId, homeGoals, awayGoals, jackpotId) => {
+    createHunchs: async (idJackpot, idConfrontation, homeGoals, awayGoals) => {
         const user = await JSON.parse(await AsyncStorage.getItem('@palpiteiros:user')) || []
-        console.log(user.id, confrontationId, homeGoals, awayGoals, jackpotId)
+        console.log(idJackpot, idConfrontation, homeGoals, awayGoals)
         const data = {
             resultHunch: {
                 confrontation: {
-                    id: confrontationId
+                    id: idConfrontation
                 },
                 golsHome: homeGoals,
                 golsVisiting: awayGoals
@@ -23,11 +23,34 @@ export default {
                 id: user.id
             },
             jackpot: {
-                id: jackpotId
+                id: idJackpot
             }
         }
 
         const request = await api_fetch.post('/hunchs', data)
+        return request
+    },
+
+    updateHunchs: async (idHunch, idJackpot, idConfrontation, homeGoals, awayGoals) => {
+        const user = await JSON.parse(await AsyncStorage.getItem('@palpiteiros:user')) || []
+        console.log(idJackpot, idConfrontation, homeGoals, awayGoals)
+        const data = {
+            resultHunch: {
+                confrontation: {
+                    id: idConfrontation
+                },
+                golsHome: homeGoals,
+                golsVisiting: awayGoals
+            },
+            user: {
+                id: user.id
+            },
+            jackpot: {
+                id: idJackpot
+            }
+        }
+
+        const request = await api_fetch.put(`/hunchs/${idHunch}`, data)
         return request
     },
 

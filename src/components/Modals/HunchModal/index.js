@@ -14,8 +14,6 @@ import {
 
 const HunchModal = ({ data, closeModal, handleHunch }) => {
 
-    console.log(data)
-
     const validationSchema = yup.object().shape({
         home: yup.number()
             .required('Digite um placar!')
