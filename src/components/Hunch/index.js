@@ -14,7 +14,7 @@ import {
     ScoreText, Text, Label, Divider, Modal, Flag
 } from './styles'
 
-const GameHunch = ({ data, idJackpot }) => {
+const GameHunch = ({ data, idJackpot, isRefresh }) => {
 
     const [hunch, setHunch] = useState(null)
     const [hunchModal, setHunchModal] = useState(false)
@@ -26,7 +26,7 @@ const GameHunch = ({ data, idJackpot }) => {
 
     useEffect(() => {
         getHunch()
-    }, [])
+    }, [isRefresh])
 
     const handleHunch = async (idConfrontation, homeGoals, awayGoals) => {
 

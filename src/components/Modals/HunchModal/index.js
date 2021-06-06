@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
@@ -12,7 +12,11 @@ import {
     ErrorText, Input, Flag
 } from './styles'
 
-const HunchModal = ({ data, closeModal, handleHunch }) => {
+const HunchModal = ({ data, closeModal, handleHunch, hunch }) => {
+    const [home, setHome] = useState(hunch ? hunch.resultHunch.golsHome : '')
+    const [away, setAway] = useState(hunch ? hunch.resultHunch.golsVisiting : '')
+
+    console.log("Modal", home)
 
     const validationSchema = yup.object().shape({
         home: yup.number()
@@ -28,7 +32,7 @@ const HunchModal = ({ data, closeModal, handleHunch }) => {
     })
 
     const formik = useFormik({
-        initialValues: { home: null, away: null },
+        initialValues: { home: home, away: away},
         validationSchema: validationSchema,
         onSubmit: async (values, actions) => {
             handleHunch(data.id, values.home, values.away)

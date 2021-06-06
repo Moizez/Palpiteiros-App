@@ -32,6 +32,7 @@ const GamesToday = ({ idChampionship, idJackpot }) => {
 	const renderGame = ({item})=>{
 		return (
 			<GameHunch
+				isRefresh={refreshing}
 				data={item}
 				idJackpot={idJackpot}
 			/>

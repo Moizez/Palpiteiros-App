@@ -1,12 +1,28 @@
 import React from 'react'
 import { Image, View } from 'react-native'
 import { DataTable } from 'react-native-paper'
-import styled from 'styled-components/native'
-
+import {TitleBox, Title, CellCustomized, Container} from './style'
 import Loading from '../../../components/Loading'
 import { changeFlags } from '../../../helpers/data'
 
 const GroupStage = ({ data, loading }) => {
+
+    const renderCell = (index, value)=>{
+        if (index < 2){
+            return (
+                <CellCustomized>
+                    {value}
+                </CellCustomized>
+            )
+        } else if (index === 2){
+            return (
+                <CellCustomized>
+                    {value}
+                </CellCustomized>
+            )
+        }
+        return value;
+    }
 
     return (
         <>
@@ -27,9 +43,9 @@ const GroupStage = ({ data, loading }) => {
                         </DataTable.Header>
                         {group?.punctuations?.map((punctuation, index) => (
                             <DataTable.Row key={punctuation.id} style={{
-                                backgroundColor: index < 2 ? '#022c6f' : index === 2 ? '#022a5a' : null, color: '#fff'}}>
+                                backgroundColor: index < 2 ? '#022c6f' : index === 2 ? '#4c82bf' : null}}>
                                 <DataTable.Cell style={{ flex: 0.5}}>
-                                    {punctuation.position === 0 ? 1 : punctuation.position}
+                                    {renderCell(index, punctuation.position === 0 ? 1 : punctuation.position)}
                                 </DataTable.Cell>
                                 <View style={{ alignItems: 'center', justifyContent: 'center'}}>
                                     <Image
@@ -38,12 +54,12 @@ const GroupStage = ({ data, loading }) => {
                                         resizeMode='contain'
                                     />
                                 </View>
-                                <DataTable.Cell style={{ flex: 2, marginLeft: 5 }}>{punctuation.team.name}</DataTable.Cell>
-                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{punctuation.points}</DataTable.Cell>
-                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{punctuation.matchs}</DataTable.Cell>
-                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{punctuation.victory}</DataTable.Cell>
-                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{punctuation.draw}</DataTable.Cell>
-                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{punctuation.defeat}</DataTable.Cell>
+                                <DataTable.Cell style={{ flex: 2, marginLeft: 5 }}>{renderCell(index, punctuation.team.name)}</DataTable.Cell>
+                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{renderCell(index, punctuation.points)}</DataTable.Cell>
+                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{renderCell(index, punctuation.matchs)}</DataTable.Cell>
+                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{renderCell(index, punctuation.victory)}</DataTable.Cell>
+                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{renderCell(index, punctuation.draw)}</DataTable.Cell>
+                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{renderCell(index, punctuation.defeat)}</DataTable.Cell>
                             </DataTable.Row>
                         ))}
                     </DataTable>
@@ -53,20 +69,4 @@ const GroupStage = ({ data, loading }) => {
         </>
     )
 }
-
-const Container = styled.ScrollView``;
-
-const TitleBox = styled.View`
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0,0,0,0.1);
-    padding: 8px;
-`;
-
-const Title = styled.Text`
-    font-weight: bold;
-    text-transform: uppercase;
-`;
-
-
 export default GroupStage

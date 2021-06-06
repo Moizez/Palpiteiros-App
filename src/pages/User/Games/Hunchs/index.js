@@ -51,7 +51,8 @@ const Hunchs = ({ route }) => {
 	return (
 		<>
 			<Header
-				title='Lista de Palpites'
+				hasIcon
+				title='Lista de Jogos'
 			/>
 			<TabView
 				navigationState={{ index, routes }}
