@@ -18,28 +18,32 @@ const GroupStage = ({ data, loading }) => {
                         </TitleBox>
                         <DataTable.Header>
                             <DataTable.Title style={{ flex: 0.5 }}></DataTable.Title>
-                            <DataTable.Title style={{ flex: 2 }} >SELEÇÕES</DataTable.Title>
+                            <DataTable.Title style={{ flex: 2.5 }} >SELEÇÕES</DataTable.Title>
                             <DataTable.Title style={{ flex: 0.5 }} numeric>P</DataTable.Title>
                             <DataTable.Title style={{ flex: 0.5 }} numeric>J</DataTable.Title>
                             <DataTable.Title style={{ flex: 0.5 }} numeric>V</DataTable.Title>
                             <DataTable.Title style={{ flex: 0.5 }} numeric>E</DataTable.Title>
                             <DataTable.Title style={{ flex: 0.5 }} numeric>D</DataTable.Title>
                         </DataTable.Header>
-                        {group?.punctuations?.map(i => (
-                            <DataTable.Row key={i.id}>
+                        {group?.punctuations?.map((punctuation, index) => (
+                            <DataTable.Row key={punctuation.id} style={{
+                                backgroundColor: index < 2 ? '#022c6f' : index === 2 ? '#022a5a' : null, color: '#fff'}}>
+                                <DataTable.Cell style={{ flex: 0.5}}>
+                                    {punctuation.position === 0 ? 1 : punctuation.position}
+                                </DataTable.Cell>
                                 <View style={{ alignItems: 'center', justifyContent: 'center'}}>
                                     <Image
                                         style={{ height: 40, width: 30 }}
-                                        source={changeFlags(i.team.initials)}
+                                        source={changeFlags(punctuation.team.initials)}
                                         resizeMode='contain'
                                     />
                                 </View>
-                                <DataTable.Cell style={{ flex: 2, marginLeft: 5 }}>{i.team.name}</DataTable.Cell>
-                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{i.points}</DataTable.Cell>
-                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{i.matchs}</DataTable.Cell>
-                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{i.victory}</DataTable.Cell>
-                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{i.draw}</DataTable.Cell>
-                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{i.defeat}</DataTable.Cell>
+                                <DataTable.Cell style={{ flex: 2, marginLeft: 5 }}>{punctuation.team.name}</DataTable.Cell>
+                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{punctuation.points}</DataTable.Cell>
+                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{punctuation.matchs}</DataTable.Cell>
+                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{punctuation.victory}</DataTable.Cell>
+                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{punctuation.draw}</DataTable.Cell>
+                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{punctuation.defeat}</DataTable.Cell>
                             </DataTable.Row>
                         ))}
                     </DataTable>

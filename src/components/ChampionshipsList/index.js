@@ -1,8 +1,6 @@
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 
-import logo from '../../assets/images/logo_euro.png'
-
 import { Container, Title, Label, Card, CardHeader, Image } from './styles'
 
 const ChampionshipsList = ({ data }) => {
@@ -16,7 +14,7 @@ const ChampionshipsList = ({ data }) => {
                 activeOpacity={0.8}
             >
                 <Image
-                    source={logo}
+                    source={require('../../assets/images/logo_euro.png')}
                     resizeMode='contain'
                 />
                 <CardHeader>

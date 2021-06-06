@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components/native'
 
 import api from '../../../../../services/api_confrontation'
-
-import GameList from '../../../../../components/GameList'
 import EmptyList from '../../../../../components/EmptyList'
 import Loading from '../../../../../components/Loading'
+import GameHunch from '../../../../../components/Hunch';
 
 const GamesToday = ({ idChampionship, idJackpot }) => {
 
@@ -15,6 +14,7 @@ const GamesToday = ({ idChampionship, idJackpot }) => {
 
 	const loadConfrontations = async () => {
 		const response = await api.getAllConfrontationByChampionships(idChampionship)
+
 		setConfrontations(response.data)
 		setLoading(false)
 	}
@@ -29,21 +29,23 @@ const GamesToday = ({ idChampionship, idJackpot }) => {
 		setRefreshing(false)
 	}
 
+	const renderGame = ({item})=>{
+		return (
+			<GameHunch
+				data={item}
+				idJackpot={idJackpot}
+			/>
+		)
+	}
+
 	return (
 		<Container>
 
 			<FlatList
 				data={confrontations}
 				keyExtractor={(item) => item.id}
-				renderItem={({ item }) =>
-					<GameList
-						data={item}
-						idChampionship={idChampionship}
-						idJackpot={idJackpot}
-					/>
-				}
+				renderItem={(item) => renderGame(item)}
 				showsVerticalScrollIndicator={false}
-				initialNumToRender={confrontations.length}
 				removeClippedSubviews
 				refreshControl={
 					<RefreshControl

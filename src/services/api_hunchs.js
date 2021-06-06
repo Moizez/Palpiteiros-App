@@ -10,7 +10,7 @@ export default {
 
     createHunchs: async (idJackpot, idConfrontation, homeGoals, awayGoals) => {
         const user = await JSON.parse(await AsyncStorage.getItem('@palpiteiros:user')) || []
-        console.log(idJackpot, idConfrontation, homeGoals, awayGoals)
+        console.log(user.id, idJackpot, idConfrontation, homeGoals, awayGoals)
         const data = {
             resultHunch: {
                 confrontation: {
@@ -33,7 +33,8 @@ export default {
 
     updateHunchs: async (idHunch, idJackpot, idConfrontation, homeGoals, awayGoals) => {
         const user = await JSON.parse(await AsyncStorage.getItem('@palpiteiros:user')) || []
-        console.log(idJackpot, idConfrontation, homeGoals, awayGoals)
+
+        console.log(user.id, idHunch, idJackpot, idConfrontation, homeGoals, awayGoals)
         const data = {
             resultHunch: {
                 confrontation: {
@@ -59,6 +60,13 @@ export default {
         const response = await api_fetch.get(`/hunchs/findManyByChampionshipContainsIdAndUserContainsId/${id}/${user.id}`)
         return response
     },
+
+    getOneByConfrontationAndJackpotAndUser: async (idConfrontation, idJackpot)=>{
+        ///findManyByConfrontationContainsIdAndUserContainsIdAndJackpotContainsId/
+        const user = await JSON.parse(await AsyncStorage.getItem('@palpiteiros:user')) || []
+        const response = await api_fetch.get(`/hunchs/findOneByConfrontationContainsIdAndUserContainsIdAndJackpotContainsId/${idConfrontation}/${user.id}/${idJackpot}`)
+        return response
+    }
 
 
 }

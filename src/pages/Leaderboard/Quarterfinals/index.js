@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import { DataTable } from 'react-native-paper'
+import React from 'react'
 
-import { Container, Title, TitleBox } from './styles'
+import { Container, Title } from './styles'
 
 const Quarterfinals = (props) => {
 

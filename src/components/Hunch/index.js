@@ -14,14 +14,13 @@ import {
     ScoreText, Text, Label, Divider, Modal, Flag
 } from './styles'
 
-const GameList = ({ data, idJackpot }) => {
+const GameHunch = ({ data, idJackpot }) => {
 
     const [hunch, setHunch] = useState(null)
     const [hunchModal, setHunchModal] = useState(false)
 
     const getHunch = async () => {
         const response = await api.getOneByConfrontationAndJackpotAndUser(data.id, idJackpot)
-        console.log("Hunch -> ", response)
         setHunch(response.data)
     }
 
@@ -30,17 +29,29 @@ const GameList = ({ data, idJackpot }) => {
     }, [])
 
     const handleHunch = async (idConfrontation, homeGoals, awayGoals) => {
-        /*const [exist] = hunchs?.map(i => i.jackpot.id === idJackpot)
-        if (hunchs && exist) {
-            console.log('aqui')
-            const { id: idHunch } = hunchs?.find(i => i.jackpot.id === idJackpot)
-            const response = await api.updateHunchs(idHunch, idJackpot, idConfrontation, homeGoals, awayGoals)
-            if (response.status === 200) {
+
+
+        if (hunch){
+            const response = await api.updateHunchs(hunch.id, idJackpot, idConfrontation, homeGoals, awayGoals)
+            if (response.data) {
                 alert('Update deu certo!')
             } else {
                 alert('Update deu ruim!' + response.status)
             }
-        } */
+            return;
+        }
+
+        /*const [exist] = hunchs?.map(i => i.jackpot.id === idJackpot)
+         if (hunchs && exist) {
+         console.log('aqui')
+         const { id: idHunch } = hunchs?.find(i => i.jackpot.id === idJackpot)
+         const response = await api.updateHunchs(idHunch, idJackpot, idConfrontation, homeGoals, awayGoals)
+         if (response.status === 200) {
+         alert('Update deu certo!')
+         } else {
+         alert('Update deu ruim!' + response.status)
+         }
+         } */
         const response = await api.createHunchs(idJackpot, idConfrontation, homeGoals, awayGoals)
         if (response.data) {
             alert('Criação deu certo!')
@@ -54,6 +65,32 @@ const GameList = ({ data, idJackpot }) => {
 
     const dateFormat = (date) => {
         return format(parseISO(date), "d 'de' LLL 'às' hh:mm", { locale: pt })
+    }
+
+    const renderScore = () =>{
+        return (
+            <HunchInfo>
+                <Team>
+                    <Flag source={changeFlags(data?.teamHome?.initials)} />
+                    <TeamName>{data?.teamHome?.initials}</TeamName>
+                </Team>
+                <HunchScore>
+                    <HunchText>
+                        {hunch?.resultHunch?.golsHome}
+                    </HunchText>
+                </HunchScore>
+                <Icon name='alpha-x' size={50} color='#000' />
+                <HunchScore>
+                    <HunchText>
+                        {hunch?.resultHunch?.golsVisiting}
+                    </HunchText>
+                </HunchScore>
+                <Team>
+                    <Flag source={changeFlags(data?.teamVisiting?.initials)} />
+                    <TeamName>{data?.teamVisiting?.initials}</TeamName>
+                </Team>
+            </HunchInfo>
+        )
     }
 
     return (
@@ -80,63 +117,26 @@ const GameList = ({ data, idJackpot }) => {
                     <Divider />
 
                     <CardHunch>
-
-                        <HunchInfo>
-                            <Team>
-                                <Flag source={changeFlags(data?.teamHome?.initials)} />
-                                <TeamName>{data?.teamHome?.initials}</TeamName>
-                            </Team>
-
-                            {hunch &&(
-                                <HunchScoreBox key={hunch.id}>
-
-                                    <HunchScore>
-                                        <HunchText>
-                                            {hunch.resultHunch?.golsHome}
-                                        </HunchText>
-                                    </HunchScore>
-
-                                    <Icon name='alpha-x' size={50} color='#000' />
-
-                                    <HunchScore>
-                                        <HunchText>
-                                            {hunch.resultHunch?.golsVisiting}
-                                        </HunchText>
-                                    </HunchScore>
-
-                                </HunchScoreBox>
-                            )}
-
-                            {!hunch && (
-                                <Icon name='alpha-x' size={50} color='#000' />
-                            )}
-
-                            <Team>
-                                <Flag source={changeFlags(data?.teamVisiting?.initials)} />
-                                <TeamName>{data?.teamVisiting?.initials}</TeamName>
-                            </Team>
-
-                        </HunchInfo>
-
+                        {renderScore()}
                         <Score>
                             {data.scoreBoard &&
-                                <>
-                                    <ScoreText>{data.scoreBoard?.golsHome}</ScoreText>
-                                    <Icon name='alpha-x' size={25} color='#da1e37' />
-                                    <ScoreText>{data.scoreBoard?.golsVisiting}</ScoreText>
-                                </>
+                            <>
+                                <ScoreText>{data.scoreBoard?.golsHome}</ScoreText>
+                                <Icon name='alpha-x' size={25} color='#da1e37' />
+                                <ScoreText>{data.scoreBoard?.golsVisiting}</ScoreText>
+                            </>
                             }
                         </Score>
 
                         {data.scoreBoard &&
-                            <>
-                                <Status style={{
-                                    backgroundColor: '#da1e37',
-                                    borderRadius: 5,
-                                }}>
-                                    <Text>Encerrado</Text>
-                                </Status>
-                            </>
+                        <>
+                            <Status style={{
+                                backgroundColor: '#da1e37',
+                                borderRadius: 5,
+                            }}>
+                                <Text>Encerrado</Text>
+                            </Status>
+                        </>
                         }
 
                     </CardHunch>
@@ -151,6 +151,7 @@ const GameList = ({ data, idJackpot }) => {
                         closeModal={handleCloseHunchModal}
                         handleHunch={handleHunch}
                         data={data}
+                        hunch={hunch}
                     />
                 </Modal>
             </Container>
@@ -158,4 +159,4 @@ const GameList = ({ data, idJackpot }) => {
     );
 }
 
-export default GameList
+export default GameHunch
