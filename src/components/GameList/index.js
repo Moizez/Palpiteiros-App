@@ -24,11 +24,12 @@ const GameList = ({ data, idChampionship, idJackpot }) => {
         setHunchs(response.data)
     }
 
-    console.log(hunchs)
-
     useEffect(() => {
         getHunchs()
     }, [])
+
+    let teste
+    console.log(teste = hunchs.find(i => i.jackpot.id == idJackpot))
 
     const handleHunch = async (homeGoals, awayGoals) => {
         if (hunchs) {
@@ -82,7 +83,7 @@ const GameList = ({ data, idChampionship, idJackpot }) => {
                                 <TeamName>{data?.teamHome?.initials}</TeamName>
                             </Team>
 
-                            {hunchs[0].confrontation?.map((hint) =>
+                            {hunchs[0]?.confrontation?.map((hint) =>
                                 <HunchScoreBox key={hint.id}>
 
                                     <HunchScore>
