@@ -43,7 +43,6 @@ const GamesToday = ({ idChampionship, idJackpot }) => {
 					/>
 				}
 				showsVerticalScrollIndicator={false}
-				initialNumToRender={confrontations.length}
 				removeClippedSubviews
 				refreshControl={
 					<RefreshControl

@@ -29,29 +29,24 @@ const GameList = ({ data, idChampionship, idJackpot }) => {
     }, [])
 
     const handleHunch = async (idConfrontation, homeGoals, awayGoals) => {
-
-        if (hunchs) {
-            const [exist] = hunchs?.map(i => i.jackpot.id === idJackpot)
-            if (exist) {
-                const { idHunch } = hunchs?.find(i => i.jackpot.id === idJackpot)
-                const response = await api.updateHunchs(idHunch, idJackpot, idConfrontation, homeGoals, awayGoals)
-                if (response.data) {
-                    alert('Atualizar deu certo!')
-                } else {
-                    alert('Atualizar deu ruim!' + response.status)
-                }
-            }
-        } else {
-            const response = api.createHunchs(idJackpot, idConfrontation, homeGoals, awayGoals)
-            if (response.data) {
-                alert('Criar deu certo!')
+        /*const [exist] = hunchs?.map(i => i.jackpot.id === idJackpot)
+        if (hunchs && exist) {
+            console.log('aqui')
+            const { id: idHunch } = hunchs?.find(i => i.jackpot.id === idJackpot)
+            const response = await api.updateHunchs(idHunch, idJackpot, idConfrontation, homeGoals, awayGoals)
+            if (response.status === 200) {
+                alert('Update deu certo!')
             } else {
-                alert('Criar deu ruim!' + response.status)
+                alert('Update deu ruim!' + response.status)
             }
+        } */
+        const response = await api.createHunchs(idJackpot, idConfrontation, homeGoals, awayGoals)
+        if (response.data) {
+            alert('Criação deu certo!')
+        } else {
+            alert('Criação deu ruim!' + response.status)
         }
     }
-
-
 
     const handleOpenHunchModal = () => setHunchModal(true)
     const handleCloseHunchModal = () => setHunchModal(false)
@@ -91,7 +86,7 @@ const GameList = ({ data, idChampionship, idJackpot }) => {
                                 <TeamName>{data?.teamHome?.initials}</TeamName>
                             </Team>
 
-                            {hunchs[0]?.confrontation?.map((hint) =>
+                            {hunchs?.map((hint) =>
                                 <HunchScoreBox key={hint.id}>
 
                                     <HunchScore>

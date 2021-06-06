@@ -28,7 +28,7 @@ const HunchModal = ({ data, closeModal, handleHunch }) => {
     })
 
     const formik = useFormik({
-        initialValues: { home: null, away: null },
+        initialValues: { home: '', away: ''},
         validationSchema: validationSchema,
         onSubmit: async (values, actions) => {
             handleHunch(data.id, values.home, values.away)

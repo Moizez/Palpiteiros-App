@@ -10,7 +10,7 @@ export default {
 
     createHunchs: async (idJackpot, idConfrontation, homeGoals, awayGoals) => {
         const user = await JSON.parse(await AsyncStorage.getItem('@palpiteiros:user')) || []
-        console.log(idJackpot, idConfrontation, homeGoals, awayGoals)
+        console.log(user.id, idJackpot, idConfrontation, homeGoals, awayGoals)
         const data = {
             resultHunch: {
                 confrontation: {
@@ -33,7 +33,8 @@ export default {
 
     updateHunchs: async (idHunch, idJackpot, idConfrontation, homeGoals, awayGoals) => {
         const user = await JSON.parse(await AsyncStorage.getItem('@palpiteiros:user')) || []
-        console.log(idJackpot, idConfrontation, homeGoals, awayGoals)
+
+        console.log(user.id, idHunch, idJackpot, idConfrontation, homeGoals, awayGoals)
         const data = {
             resultHunch: {
                 confrontation: {
