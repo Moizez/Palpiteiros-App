@@ -1,5 +1,5 @@
-//const API = 'https://palpiteiros-api.herokuapp.com/api'
-const API = 'http://192.168.0.9:8080/api'
+const API = 'https://palpiteiros-api.herokuapp.com/api'
+//const API = 'http://192.168.0.9:8080/api'
 
 export default {
 

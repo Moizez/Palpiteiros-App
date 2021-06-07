@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Dimensions, Text } from 'react-native'
-import { TabView, SceneMap, TabBar } from 'react-native-tab-view'
+import { TabView, TabBar } from 'react-native-tab-view'
 
 import api_groups from '../../services/api_groups'
 import api_qualifiers from '../../services/api_qualifiers'
@@ -10,6 +10,7 @@ import GroupStage from './GroupStage'
 import RoundOf16 from './RoundOf16'
 import Quarterfinals from './Quarterfinals'
 import Finals from './Finals'
+import Loading from '../../components/Loading'
 
 const initialLayout = { width: Dimensions.get('window').width }
 
@@ -60,9 +61,9 @@ const Leaderboard = ({ route }) => {
     const renderScene = ({ route }) => {
         switch (route.key) {
             case 'first':
-                return <GroupStage data={groups} loading={loading} />
+                return <GroupStage data={groups} />
             case 'second':
-                return <RoundOf16 data={roundOf16} loading={loading} />
+                return <RoundOf16 data={roundOf16} />
             case 'third':
                 return <Quarterfinals />
             case 'fourth':
@@ -87,6 +88,7 @@ const Leaderboard = ({ route }) => {
                 initialLayout={initialLayout}
                 renderTabBar={renderTabBar}
             />
+            {loading && <Loading />}
         </>
     )
 }

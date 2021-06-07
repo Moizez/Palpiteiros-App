@@ -4,8 +4,7 @@ import { TabView, TabBar } from 'react-native-tab-view'
 
 import Header from '../../../../components/Header'
 import PastGames from './PastGames'
-import GamesToday from './GamesToday'
-import FutureGames from './FutureGames'
+import NextGames from './NextGames'
 
 const initialLayout = { width: Dimensions.get('window').width }
 
@@ -16,8 +15,7 @@ const Hunchs = ({ route }) => {
 	const [index, setIndex] = useState(1)
 	const [routes] = useState([
 		{ key: 'first', title: 'Encerrados' },
-		{ key: 'second', title: 'Hoje' },
-		{ key: 'third', title: 'Futuros' }
+		{ key: 'second', title: 'Próximos' }
 	])
 
 	const renderTabBar = props => (
@@ -37,12 +35,10 @@ const Hunchs = ({ route }) => {
 			case 'first':
 				return <PastGames />
 			case 'second':
-				return <GamesToday
+				return <NextGames
 					idChampionship={idChampionship}
 					idJackpot={idJackpot}
 				/>
-			case 'third':
-				return <FutureGames />
 			default:
 				return null;
 		}

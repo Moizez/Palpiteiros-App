@@ -1,72 +1,89 @@
 import React from 'react'
 import { Image, View } from 'react-native'
 import { DataTable } from 'react-native-paper'
-import {TitleBox, Title, CellCustomized, Container} from './style'
-import Loading from '../../../components/Loading'
+import styled from 'styled-components/native';
+
 import { changeFlags } from '../../../helpers/data'
 
-const GroupStage = ({ data, loading }) => {
-
-    const renderCell = (index, value)=>{
-        if (index < 2){
-            return (
-                <CellCustomized>
-                    {value}
-                </CellCustomized>
-            )
-        } else if (index === 2){
-            return (
-                <CellCustomized>
-                    {value}
-                </CellCustomized>
-            )
-        }
-        return value;
-    }
+const GroupStage = ({ data }) => {
 
     return (
         <>
             <Container showsVerticalScrollIndicator={false}>
                 {data?.map(group =>
-                    <DataTable key={group.id}>
+                    <DataTable key={group.id} style={{backgroundColor: '#FFF'}}>
                         <TitleBox>
                             <Title>Grupo {group.name}</Title>
                         </TitleBox>
-                        <DataTable.Header>
-                            <DataTable.Title style={{ flex: 0.5 }}></DataTable.Title>
-                            <DataTable.Title style={{ flex: 2.5 }} >SELEÇÕES</DataTable.Title>
-                            <DataTable.Title style={{ flex: 0.5 }} numeric>P</DataTable.Title>
-                            <DataTable.Title style={{ flex: 0.5 }} numeric>J</DataTable.Title>
-                            <DataTable.Title style={{ flex: 0.5 }} numeric>V</DataTable.Title>
-                            <DataTable.Title style={{ flex: 0.5 }} numeric>E</DataTable.Title>
-                            <DataTable.Title style={{ flex: 0.5 }} numeric>D</DataTable.Title>
+                        <DataTable.Header style={{backgroundColor: '#ccc'}}>
+                            <DataTable.Title style={{ flex: 0.3 }}>
+                            </DataTable.Title>
+                            <DataTable.Title style={{ flex: 2.5}} >
+                                <Text>SELEÇÕES</Text>
+                            </DataTable.Title>
+                            <DataTable.Title style={{ flex: 0.5 }} numeric>
+                                <Text>P</Text>
+                            </DataTable.Title>
+                            <DataTable.Title style={{ flex: 0.5 }} numeric>
+                                <Text>J</Text>
+                            </DataTable.Title>
+                            <DataTable.Title style={{ flex: 0.5 }} numeric>
+                                <Text>V</Text>
+                            </DataTable.Title>
+                            <DataTable.Title style={{ flex: 0.5 }} numeric>
+                                <Text>E</Text>
+                            </DataTable.Title>
+                            <DataTable.Title style={{ flex: 0.5 }} numeric>
+                                <Text>D</Text>
+                            </DataTable.Title>
                         </DataTable.Header>
                         {group?.punctuations?.map((punctuation, index) => (
                             <DataTable.Row key={punctuation.id} style={{
-                                backgroundColor: index < 2 ? '#022c6f' : index === 2 ? '#4c82bf' : null}}>
-                                <DataTable.Cell style={{ flex: 0.5}}>
-                                    {renderCell(index, punctuation.position === 0 ? 1 : punctuation.position)}
+                                backgroundColor: index < 2 ? '#ddd' : index === 2 ? '#eee' : null
+                            }}>
+                                <DataTable.Cell style={{ flex: 0.3 }}>
+                                    {punctuation.position === 0 ? '' : punctuation.position + 'º'}
                                 </DataTable.Cell>
-                                <View style={{ alignItems: 'center', justifyContent: 'center'}}>
+                                <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                                     <Image
                                         style={{ height: 40, width: 30 }}
                                         source={changeFlags(punctuation.team.initials)}
                                         resizeMode='contain'
                                     />
                                 </View>
-                                <DataTable.Cell style={{ flex: 2, marginLeft: 5 }}>{renderCell(index, punctuation.team.name)}</DataTable.Cell>
-                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{renderCell(index, punctuation.points)}</DataTable.Cell>
-                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{renderCell(index, punctuation.matchs)}</DataTable.Cell>
-                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{renderCell(index, punctuation.victory)}</DataTable.Cell>
-                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{renderCell(index, punctuation.draw)}</DataTable.Cell>
-                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{renderCell(index, punctuation.defeat)}</DataTable.Cell>
+                                <DataTable.Cell style={{ flex: 2, marginLeft: 3 }}>{punctuation.team.name}</DataTable.Cell>
+                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{punctuation.points}</DataTable.Cell>
+                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{punctuation.matchs}</DataTable.Cell>
+                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{punctuation.victory}</DataTable.Cell>
+                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{punctuation.draw}</DataTable.Cell>
+                                <DataTable.Cell style={{ flex: 0.5 }} numeric>{punctuation.defeat}</DataTable.Cell>
                             </DataTable.Row>
                         ))}
                     </DataTable>
                 )}
             </Container>
-            {loading && <Loading />}
         </>
     )
 }
+
+const Container = styled.ScrollView``;
+
+const TitleBox = styled.View`
+    align-items: center;
+    justify-content: center;
+    background-color: #1d4e89;
+    padding: 8px;
+`;
+
+const Title = styled.Text`
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff;
+`;
+
+const Text = styled.Text`
+    color: #000;
+    font-weight: bold;
+`;
+
 export default GroupStage

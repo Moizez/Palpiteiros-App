@@ -4,9 +4,9 @@ import styled from 'styled-components/native'
 import api from '../../../../../services/api_confrontation'
 import EmptyList from '../../../../../components/EmptyList'
 import Loading from '../../../../../components/Loading'
-import GameHunch from '../../../../../components/Hunch';
+import GameList from '../../../../../components/GameList'
 
-const GamesToday = ({ idChampionship, idJackpot }) => {
+const NextGames = ({ idChampionship, idJackpot }) => {
 
 	const [refreshing, setRefreshing] = useState(false)
 	const [loading, setLoading] = useState(true)
@@ -29,23 +29,19 @@ const GamesToday = ({ idChampionship, idJackpot }) => {
 		setRefreshing(false)
 	}
 
-	const renderGame = ({item})=>{
-		return (
-			<GameHunch
-				isRefresh={refreshing}
-				data={item}
-				idJackpot={idJackpot}
-			/>
-		)
-	}
-
 	return (
 		<Container>
 
 			<FlatList
 				data={confrontations}
 				keyExtractor={(item) => item.id}
-				renderItem={(item) => renderGame(item)}
+				renderItem={({ item }) =>
+					<GameList
+						isRefresh={refreshing}
+						data={item}
+						idJackpot={idJackpot}
+					/>
+				}
 				showsVerticalScrollIndicator={false}
 				removeClippedSubviews
 				refreshControl={
@@ -78,5 +74,5 @@ background-color: #FFF;
 
 const RefreshControl = styled.RefreshControl``;
 
-export default GamesToday
+export default NextGames
 

@@ -1,44 +1,4 @@
-import React from 'react'
 import uuid from 'react-native-uuid'
-
-export const jackpots = [
-    {
-        key: String(Math.random()),
-        name: 'Bolão da Galera',
-        image: 'https://upload.wikimedia.org/wikipedia/pt/e/ea/Copa_Continental_do_Brasil.png',
-        create: 'Moisés',
-    },
-    {
-        key: String(Math.random()),
-        name: 'Bolão do Vina',
-        image: 'https://upload.wikimedia.org/wikipedia/pt/e/ea/Copa_Continental_do_Brasil.png',
-        create: 'Vinicius',
-    },
-    {
-        key: String(Math.random()),
-        name: 'Bolão das Gatinhas',
-        image: 'https://upload.wikimedia.org/wikipedia/pt/e/ea/Copa_Continental_do_Brasil.png',
-        create: 'Antônio'
-    },
-    {
-        key: String(Math.random()),
-        name: 'Bolão da Bagaceira',
-        image: 'https://upload.wikimedia.org/wikipedia/pt/e/ea/Copa_Continental_do_Brasil.png',
-        create: 'Arthur'
-    },
-    {
-        key: String(Math.random()),
-        name: 'Bolão do Gamer True',
-        image: 'https://upload.wikimedia.org/wikipedia/pt/e/ea/Copa_Continental_do_Brasil.png',
-        create: 'Ivan Jr'
-    },
-    {
-        key: String(Math.random()),
-        name: 'Bolão do Mala',
-        image: 'https://upload.wikimedia.org/wikipedia/pt/e/ea/Copa_Continental_do_Brasil.png',
-        create: 'Jeferson'
-    },
-]
 
 export const users = [
     {
@@ -122,6 +82,66 @@ export const championships = [
         year: 2022,
         image: 'https://upload.wikimedia.org/wikipedia/pt/e/ea/Copa_Continental_do_Brasil.png',
     }
+]
+
+export const roundOf16 = [
+    {
+        id: uuid.v4(),
+        title: 'Oitavas 1',
+        info: 'DOM, 27/06/21 - LA CARTUJA DE SEVILLA 16h',
+        home: '1º B',
+        away: '3º ADEF'
+    },
+    {
+        id: uuid.v4(),
+        title: 'Oitavas 2',
+        info: 'SÁB, 26/06/21 - WEMBLEY 16h',
+        home: '1º A',
+        away: '2º C'
+    },
+    {
+        id: uuid.v4(),
+        title: 'Oitavas 3',
+        info: 'SEG, 28/06/21 - NACIONAL BUCARESTE 16h',
+        home: '1º F',
+        away: '3º ABC'
+    },
+    {
+        id: uuid.v4(),
+        title: 'Oitavas 4',
+        info: 'SEG, 28/06/21 - PARKEN 13h',
+        home: '2º D',
+        away: '2º E'
+    },
+    {
+        id: uuid.v4(),
+        title: 'Oitavas 5',
+        info: 'TER, 29/06/21 - HAMPDEN PARK 16h',
+        home: '1º E',
+        away: '3º ABCD'
+    },
+    {
+        id: uuid.v4(),
+        title: 'Oitavas 6',
+        info: 'TER, 29/06/21 - WEMBLEY 13h',
+        home: '1º D',
+        away: '2º F'
+    },
+    {
+        id: uuid.v4(),
+        title: 'Oitavas 7',
+        info: 'DOM, 27/06/21 - PUSKÁS ARÉNA 13h',
+        home: '1º C',
+        away: '3º DEF'
+    },
+    {
+        id: uuid.v4(),
+        title: 'Oitavas 8',
+        info: 'SÁB, 26/06/21 - JOHAN CRUIJFF 13h',
+        home: '2º A',
+        away: '2º B'
+    },
+
 ]
 
 export const changeFlags = (flag) => {

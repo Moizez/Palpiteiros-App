@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect } from 'react'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
@@ -12,27 +12,18 @@ import {
     ErrorText, Input, Flag
 } from './styles'
 
-const HunchModal = ({ data, closeModal, handleHunch, hunch }) => {
-    const [home, setHome] = useState(hunch ? hunch.resultHunch.golsHome : '')
-    const [away, setAway] = useState(hunch ? hunch.resultHunch.golsVisiting : '')
-
-    console.log("Modal", home)
+const HunchModal = ({ data, closeModal, handleHunch, golsHome, golsAway }) => {
 
     const validationSchema = yup.object().shape({
-        home: yup.number()
+        home: yup.string('Digite um placar!')
+            .required(),
+           // .test('home', 'Caiu', value => typeof value == number),
+        away: yup.string()
             .required('Digite um placar!')
-            .integer()
-            .min(0, 'Min. é 0')
-            .max(10, 'Max. é 10'),
-        away: yup.number()
-            .required('Digite um placar!')
-            .integer()
-            .min(0, 'Min. é 0')
-            .max(10, 'Max. é 10')
     })
 
     const formik = useFormik({
-        initialValues: { home: home, away: away},
+        initialValues: { home: '', away: '' },
         validationSchema: validationSchema,
         onSubmit: async (values, actions) => {
             handleHunch(data.id, values.home, values.away)
@@ -40,6 +31,11 @@ const HunchModal = ({ data, closeModal, handleHunch, hunch }) => {
             closeModal()
         }
     })
+
+    useEffect(() => {
+        formik.setFieldValue('home', golsHome?.toString())
+        formik.setFieldValue('away', golsAway?.toString())
+    }, [])
 
     return (
         <Container>
@@ -65,7 +61,7 @@ const HunchModal = ({ data, closeModal, handleHunch, hunch }) => {
                                 placeholder='__'
                                 placeholderTextColor='#FFF'
                                 keyboardType='phone-pad'
-                                value={formik.values.home}
+                                value={formik.values?.home}
                                 onChangeText={formik.handleChange('home')}
                                 onBlur={formik.handleBlur('home')}
                                 error={formik.touched.home && formik.errors.home}
@@ -79,7 +75,7 @@ const HunchModal = ({ data, closeModal, handleHunch, hunch }) => {
                                 placeholder='__'
                                 placeholderTextColor='#FFF'
                                 keyboardType='phone-pad'
-                                value={formik.values.away}
+                                value={formik.values?.away}
                                 onChangeText={formik.handleChange('away')}
                                 onBlur={formik.handleBlur('away')}
                                 error={formik.touched.away && formik.errors.away}
@@ -97,14 +93,13 @@ const HunchModal = ({ data, closeModal, handleHunch, hunch }) => {
 
                 <ErrorBox>
                     {formik.touched.home && formik.errors.home &&
-                        <ErrorText>{data.teamHome}: {formik.errors.home}</ErrorText>
+                        <ErrorText>{data.teamHome.initials}: {formik.errors.home}</ErrorText>
                     }
 
                     {formik.touched.away && formik.errors.away &&
-                        <ErrorText>{data.teamVisiting}: {formik.errors.away}</ErrorText>
+                        <ErrorText>{data.teamVisiting.initials}: {formik.errors.away}</ErrorText>
                     }
                 </ErrorBox>
-
                 <HunchButton onPress={formik.handleSubmit}>
                     <Text>Salvar</Text>
                 </HunchButton>

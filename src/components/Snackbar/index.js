@@ -5,12 +5,15 @@ const Snackbar = (props) => {
 
     setTimeout(() => {
         props.onDismiss()
-    }, 3000);
+    }, props.time ? props.time : 3000);
 
     return (
-        <Container hasColor={props.hasColor}>
+        <Container hasBgColor={props.hasBgColor}>
             <CloseContainer onPress={props.onDismiss} activeOpacity={1} />
-            <Snack style={{ elevation: 5 }}>
+            <Snack
+                hasColor={props.hasColor}
+                hasBottom={props.hasBottom}
+            >
                 <Message>{props.message}</Message>
             </Snack>
             <CloseContainer onPress={props.onDismiss} activeOpacity={1} />
@@ -18,9 +21,9 @@ const Snackbar = (props) => {
     )
 }
 
-const Container = styled.View(({ hasColor }) => ({
+const Container = styled.View(({ hasBgColor }) => ({
     flex: 1,
-    backgroundColor: hasColor ? 'rgba(0,0,0,0.2)' : null,
+    backgroundColor: hasBgColor ? 'rgba(0,0,0,0.2)' : null,
     paddingLeft: 20,
     paddingRight: 20
 }));
@@ -29,13 +32,14 @@ const CloseContainer = styled.TouchableOpacity`
     flex: 1;
 `;
 
-const Snack = styled.View`
-    align-items: center;
-    bottom: 45%;
-    background-color: #ad2e24;
-    padding: 10px;
-    border-radius: 5px;
-`;
+const Snack = styled.View(({ hasColor, hasBottom }) => ({
+    alignItems: 'center',
+    bottom: hasBottom ? hasBottom : '45%',
+    backgroundColor: hasColor ? hasColor : '#ad2e24',
+    padding: 10,
+    borderRadius: 5,
+    elevation: 5
+}));
 
 const Message = styled.Text`
     font-size: 16px;

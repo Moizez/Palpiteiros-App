@@ -97,7 +97,7 @@ const AuthProvider = ({ children }) => {
                 <Snackbar
                     message={message}
                     onDismiss={handleCloseSnack}
-                    hasColor
+                    hasBgColor
                 />
             </Modal>
 
