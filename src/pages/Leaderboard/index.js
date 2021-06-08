@@ -27,6 +27,9 @@ const Leaderboard = ({ route }) => {
 
     const [groups, setGroups] = useState([])
     const [roundOf16, setRoundOf16] = useState([])
+    const [quarterfinals, setQuarterfinals] = useState([])
+    const [semifinals, setSemifinals] = useState([])
+    const [finals, setFinals] = useState([])
     const [loading, setLoading] = useState(true)
 
     const loadGroups = async () => {
@@ -41,9 +44,30 @@ const Leaderboard = ({ route }) => {
         setLoading(false)
     }
 
+    const loadQuarterfinals = async () => {
+        const response = await api_qualifiers.getAllQuarterfinals()
+        setQuarterfinals(response.data)
+        setLoading(false)
+    }
+
+    const loadSemifinals = async () => {
+        const response = await api_qualifiers.getAllSemis()
+        setSemifinals(response.data)
+        setLoading(false)
+    }
+
+    const loadFinals = async () => {
+        const response = await api_qualifiers.getAllFinals()
+        setFinals(response.data)
+        setLoading(false)
+    }
+
     useEffect(() => {
         loadGroups()
         loadRoundOf16()
+        loadQuarterfinals()
+        loadSemifinals()
+        loadFinals()
     }, [])
 
     const renderTabBar = props => (
@@ -65,9 +89,9 @@ const Leaderboard = ({ route }) => {
             case 'second':
                 return <RoundOf16 data={roundOf16} />
             case 'third':
-                return <Quarterfinals />
+                return <Quarterfinals data={quarterfinals} />
             case 'fourth':
-                return <Finals />
+                return <Finals dataSemi={semifinals} dataFinals={finals} />
             default:
                 return null;
         }

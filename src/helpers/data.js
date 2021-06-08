@@ -144,6 +144,64 @@ export const roundOf16 = [
 
 ]
 
+export const quarterfinals = [
+    {
+        id: uuid.v4(),
+        title: 'Quartas 1',
+        info: 'SEX, 02/07/21 ARENA DE MUNIQUE 16h',
+        home: 'Venc. Oitavas 1',
+        away: 'Venc. Oitavas 2'
+    },
+    {
+        id: uuid.v4(),
+        title: 'Quartas 2',
+        info: 'SEX, 02/07/21 SÃO PETERSBURGO 13h',
+        home: 'Venc. Oitavas 3',
+        away: 'Venc. Oitavas 4'
+    },
+    {
+        id: uuid.v4(),
+        title: 'Quartas 3',
+        info: 'SÁB, 03/07/21 OLÍMPICO DE ROMA 16h',
+        home: 'Venc. Oitavas 5',
+        away: 'Venc. Oitavas 6'
+    },
+    {
+        id: uuid.v4(),
+        title: 'Quartas 4',
+        info: 'SÁB, 03/07/21 OLÍMPICO DE BAKU 13h',
+        home: 'Venc. Oitavas 7',
+        away: 'Venc. Oitavas 8'
+    },
+]
+
+export const semifinal = [
+    {
+        id: uuid.v4(),
+        title: 'Semifinal 1',
+        info: 'TER, 06/07/21 WEMBLEY 16h',
+        home: 'Venc. Quartas 1',
+        away: 'Venc. Quartas 2'
+    },
+    {
+        id: uuid.v4(),
+        title: 'Semifinal 2',
+        info: 'QUA, 07/07/21 WEMBLEY 16h',
+        home: 'Venc. Quartas 3',
+        away: 'Venc. Quartas 4'
+    }   
+]
+
+export const final = [
+    {
+        id: uuid.v4(),
+        title: 'Final',
+        info: 'DOM, 11/07/21 WEMBLEY 16h',
+        home: 'Venc. Semifinal 1',
+        away: 'Venc. Semifinal 2'
+    },
+]
+
 export const changeFlags = (flag) => {
     const url = '../assets/images/flags'
     if (flag === 'ALE') return require(`${url}/ALE.png`)

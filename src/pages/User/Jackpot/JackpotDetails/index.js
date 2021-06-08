@@ -1,53 +1,36 @@
 import React from 'react'
-import { useNavigation } from '@react-navigation/native'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-
+import { DataTable } from 'react-native-paper'
+import styled from 'styled-components/native'
 import JackpotRankingList from '../../../../components/JackpotRankingList'
+import Header from '../../../../components/Header'
 
-import { users } from '../../../../helpers/data'
+const JackpotDetails = ({ route }) => {
 
-import {
-    Container, Header, BackButton, HeaderTitle, Ranking,
-    RankingItem, FlatList, Title, Label
-} from './styles'
-
-const JackpotDetails = () => {
-
-    const navigation = useNavigation()
+    const { data, jackpotName } = route.params
 
     return (
         <Container>
 
-            <Header>
-                <BackButton onPress={() => navigation.goBack()}>
-                    <Icon name='chevron-down' size={35} color='#FFF' />
-                </BackButton>
-                <Title>Teste</Title>
-                <BackButton>
-                    <Icon name='dots-vertical' size={30} color='#FFF' />
-                </BackButton>
-            </Header>
+            <Header
+                title={jackpotName}
+                hasIcon
+            />
 
-            <HeaderTitle>
-                <Title style={{ marginRight: 20, fontSize: 20 }}>Ranking</Title>
-                <Icon name='crown-outline' size={30} color='#FFF' />
-            </HeaderTitle>
+            <TitleBox>
+                <Title>Classificação</Title>
+            </TitleBox>
 
-            <Ranking>
-                <RankingItem style={{ flex: 1 }}>
-                    <Label>POS</Label>
-                </RankingItem>
-                <RankingItem style={{ flex: 2 }}>
-                    <Label>JOGADOR</Label>
-                </RankingItem>
-                <RankingItem style={{ flex: 1 }}>
-                    <Label>PTS</Label>
-                </RankingItem>
-            </Ranking>
+            <DataTable>
+                <DataTable.Header>
+                    <DataTable.Title><Text>Posição</Text></DataTable.Title>
+                    <DataTable.Title><Text>Nome</Text></DataTable.Title>
+                    <DataTable.Title numeric><Text>Pontos</Text></DataTable.Title>
+                </DataTable.Header>
+            </DataTable>
 
             <FlatList
-                data={users}
-                keyExtractor={(item) => item.key}
+                data={data}
+                keyExtractor={(item) => item.id}
                 renderItem={({ item }) => <JackpotRankingList data={item} />}
                 showsVerticalScrollIndicator={false}
             />
@@ -55,5 +38,35 @@ const JackpotDetails = () => {
         </Container>
     );
 }
+
+const Container = styled.View`
+flex:1;
+`;
+
+const FlatList = styled.FlatList`
+flex: 1;
+width: 100%;
+margin-bottom: 10px;
+`;
+
+const TitleBox = styled.View`
+    align-items: center;
+    justify-content: center;
+    background-color: #1d4e89;
+    padding: 8px;
+`;
+
+const Title = styled.Text`
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff;
+`;
+
+const Text = styled.Text`
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #000;
+`;
+
 
 export default JackpotDetails

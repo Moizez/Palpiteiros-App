@@ -5,7 +5,7 @@ import styled from 'styled-components/native'
 
 import Loading from '../../../components/Loading'
 import { roundOf16 } from '../../../helpers/data'
-import changeFlags from '../../../helpers/validations'
+import { changeFlags } from '../../../helpers/data'
 
 const RoundOf16 = ({ data, loading }) => {
 
@@ -14,7 +14,7 @@ const RoundOf16 = ({ data, loading }) => {
             {data ?
                 <Container showsVerticalScrollIndicator={false}>
                     <TitleBox>
-                        <Title>Placar</Title>
+                        <Title>Oitavas de Finais</Title>
                     </TitleBox>
 
                     {data?.map(match =>
@@ -28,7 +28,7 @@ const RoundOf16 = ({ data, loading }) => {
                                     />
                                 </View>
                                 <DataTable.Cell style={{ flex: 2, justifyContent: 'space-around' }}>{match.teamHome.name}</DataTable.Cell>
-                                <DataTable.Cell style={{ flex: 1, justifyContent: 'space-around' }}>2 X 5</DataTable.Cell>
+                                <DataTable.Cell style={{ flex: 1, justifyContent: 'space-around' }}>{match.scoreBoard?.golsHome} X {match.scoreBoard?.golsVisiting}</DataTable.Cell>
                                 <DataTable.Cell style={{ flex: 2, justifyContent: 'space-around' }}>{match.teamVisiting.name}</DataTable.Cell>
                                 <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                                     <Image
@@ -44,7 +44,7 @@ const RoundOf16 = ({ data, loading }) => {
                 :
                 <Container>
                     <TitleBox>
-                        <Title>Confrontos</Title>
+                        <Title>Confrontos das oitavas de finais</Title>
                     </TitleBox>
                     {roundOf16.map(i =>
                         <DataTable key={i.id}>
