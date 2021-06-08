@@ -33,7 +33,7 @@ const JackpotModal = (props) => {
                     <BoldText>Campeonato: <Text>{props.championship}</Text></BoldText>
                     <BoldText>Ano: <Text>{props.year}</Text></BoldText>
                     <BoldText>Início: <Text>sáb, 11/06</Text></BoldText>
-                    <BoldText>Nº de participantes: <Text>27</Text></BoldText>
+                    <BoldText>Nº de participantes: <Text>{props.totalParticipants}</Text></BoldText>
                     <BoldText>ID da competição: <Text>{props.id}</Text></BoldText>
 
                     <Description>

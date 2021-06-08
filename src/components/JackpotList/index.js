@@ -29,15 +29,18 @@ const JackpotList = ({ data }) => {
         setJackpotRanking(response.data)
     }
 
+    const totalParticipants = jackpotRanking.length
+
     const handleJackpotRegister = async () => {
         const response = await api.onJackpotRegister(id)
         if (response.status === 201) {
+            handleCloseJackpotModal()
             setMessage('Você ingressou no bolão!')
             setSnackColor('#43aa8b')
-            setSnackTime(1500)
+            setSnackTime(2000)
             handleShowSnack()
             setTimeout(() => {
-                handleCloseJackpotModal()
+                handleShowSnack()
             }, 1000);
         } else {
             setSnackColor('#ad2e24')
@@ -96,6 +99,7 @@ const JackpotList = ({ data }) => {
                     title={data.name}
                     closeModal={handleCloseJackpotModal}
                     confirmModal={handleJackpotRegister}
+                    totalParticipants={totalParticipants}
                     jackpotName={jackpotName}
                     championship={name}
                     year={year}

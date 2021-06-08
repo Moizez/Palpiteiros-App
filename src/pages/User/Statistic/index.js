@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import styled from 'styled-components/native';
 
 import api from '../../../services/api_championships'
 import EmptyList from '../../../components/EmptyList'
 import ChampionshipsList from '../../../components/ChampionshipsList'
 import Header from '../../../components/Header'
 import Loading from '../../../components/Loading'
-
-import { Container, FlatList } from './styles'
 
 const Statistic = () => {
 
@@ -44,5 +43,20 @@ const Statistic = () => {
 		</>
 	);
 }
+
+const Container = styled.View`
+flex:1;
+align-items: center;
+justify-content: center;
+background-color: #022c6f;
+`;
+
+const FlatList = styled.FlatList`
+flex: 1;
+width: 100%;
+background-color: #FFF;
+border-top-left-radius: 20px;
+padding: 10px 20px;
+`;
 
 export default Statistic

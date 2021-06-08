@@ -9,7 +9,7 @@ import {
     Container, CloseContainer, ModalBox, CloseButton,
     ModalHeader, Title, HunchInfo, HunchScoreBox, Text,
     Team, HunchScore, TeamName, HunchButton, ErrorBox,
-    ErrorText, Input, Flag
+    ErrorText, Input, Flag, PenaltyBox, HomeWin, AwayWin
 } from './styles'
 
 const HunchModal = ({ data, closeModal, handleHunch, golsHome, golsAway }) => {
@@ -17,7 +17,7 @@ const HunchModal = ({ data, closeModal, handleHunch, golsHome, golsAway }) => {
     const validationSchema = yup.object().shape({
         home: yup.string('Digite um placar!')
             .required(),
-           // .test('home', 'Caiu', value => typeof value == number),
+        // .test('home', 'Caiu', value => typeof value == number),
         away: yup.string()
             .required('Digite um placar!')
     })
@@ -90,6 +90,18 @@ const HunchModal = ({ data, closeModal, handleHunch, golsHome, golsAway }) => {
                     </Team>
 
                 </HunchInfo>
+
+                <PenaltyBox>
+                    <HomeWin>
+                        <TeamName>{data.teamHome.name}</TeamName>
+                    </HomeWin>
+
+                    <Icon name='alpha-x' size={50} color='#FFF' />
+
+                    <AwayWin>
+                        <TeamName>{data.teamVisiting.name}</TeamName>
+                    </AwayWin>
+                </PenaltyBox>
 
                 <ErrorBox>
                     {formik.touched.home && formik.errors.home &&

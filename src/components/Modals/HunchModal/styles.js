@@ -114,6 +114,19 @@ export const Input = styled.TextInput`
     text-align: center;
 `;
 
+export const PenaltyBox = styled.View`
+    flex-direction: row;
+`;
+
+export const HomeWin = styled.TouchableOpacity`
+   
+`;
+
+export const AwayWin = styled.TouchableOpacity`
+   
+`;
+
+
 
 
 

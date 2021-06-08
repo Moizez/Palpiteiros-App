@@ -15,7 +15,7 @@ import {
     ScoreText, Text, Label, Divider, Modal, Flag
 } from './styles'
 
-const GameList = ({ data, idJackpot, isRefresh }) => {
+const GameList = ({ data, idJackpot, isRefresh, hasDisabled }) => {
 
     const [hunch, setHunch] = useState([])
     const [hunchModal, setHunchModal] = useState(false)
@@ -23,6 +23,8 @@ const GameList = ({ data, idJackpot, isRefresh }) => {
     const [snackColor, setSnackColor] = useState('')
     const [snackTime, setSnackTime] = useState(null)
     const [message, setMessage] = useState('')
+
+    console.log(data)
 
     const getHunch = async () => {
         const response = await api.getOneByConfrontationAndJackpotAndUser(data.id, idJackpot)
@@ -81,6 +83,7 @@ const GameList = ({ data, idJackpot, isRefresh }) => {
                     style={{ elevation: 5 }}
                     onPress={handleOpenHunchModal}
                     activeOpacity={0.8}
+                    disabled={hasDisabled}
                 >
                     <CardHeader>
                         <InfoHeader>

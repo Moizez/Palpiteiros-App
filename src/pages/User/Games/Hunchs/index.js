@@ -33,7 +33,10 @@ const Hunchs = ({ route }) => {
 	const renderScene = ({ route }) => {
 		switch (route.key) {
 			case 'first':
-				return <PastGames />
+				return <PastGames
+					idChampionship={idChampionship}
+					idJackpot={idJackpot}
+				/>
 			case 'second':
 				return <NextGames
 					idChampionship={idChampionship}

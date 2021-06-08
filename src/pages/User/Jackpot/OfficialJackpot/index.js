@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import styled from 'styled-components/native'
 
 import api from '../../../../services/api_jackpots'
 import JackpotList from '../../../../components/JackpotList'
 import EmptyList from '../../../../components/EmptyList'
 import Loading from '../../../../components/Loading'
-
-import { Container, FlatList, RefreshControl } from './styles'
 
 const OfficialJackpot = () => {
 
@@ -52,5 +51,21 @@ const OfficialJackpot = () => {
         </Container>
     );
 }
+
+const Container = styled.View`
+flex:1;
+align-items: center;
+justify-content: center;
+background-color: #fff;
+padding: 5px 20px;
+`;
+
+const FlatList = styled.FlatList`
+flex: 1;
+width: 100%;
+background-color: #FFF;
+`;
+
+const RefreshControl = styled.RefreshControl``;
 
 export default OfficialJackpot

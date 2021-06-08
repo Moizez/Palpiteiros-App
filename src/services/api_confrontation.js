@@ -12,4 +12,10 @@ export default {
         return response
     },
 
+
+    getAllConfrontationClosed: async (id) => {
+        const response = await api_fetch.get(`/confrontations/findManyByEnd`)
+        return response
+    },
+
 }

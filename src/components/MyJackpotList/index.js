@@ -10,7 +10,13 @@ import {
 const MyJackpotList = ({ data }) => {
 
     const navigation = useNavigation()
-    const { id: idJackpot, championship: { year, id: idChampionship } } = data
+    const {
+        id: idJackpot,
+        name: jackpotName,
+        championship: {
+            year, id: idChampionship
+        }
+    } = data
 
     return (
         <>
@@ -19,7 +25,6 @@ const MyJackpotList = ({ data }) => {
                     onPress={() => navigation.navigate('Hunchs', {
                         idChampionship: idChampionship,
                         idJackpot: idJackpot
-
                     })}
                     activeOpacity={0.8}
                 >
@@ -28,7 +33,7 @@ const MyJackpotList = ({ data }) => {
                         resizeMode='contain'
                     />
                     <CardHeader>
-                        <Title>{data.name}</Title>
+                        <Title>{jackpotName}</Title>
                         <Label>Edição: {year}</Label>
                         <Label>Início: Sex. 11/06 às 16h</Label>
                     </CardHeader>
