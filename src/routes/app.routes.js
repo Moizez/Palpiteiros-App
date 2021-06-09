@@ -11,6 +11,7 @@ import JackpotDetails from '../pages/User/Jackpot/JackpotDetails'
 
 import Leaderboard from '../pages/Leaderboard'
 import Hunchs from '../pages/User/Games/Hunchs'
+import OtherProfiles from '../pages/User/Profile/OtherProfiles'
 
 
 const Stack = createStackNavigator()
@@ -25,6 +26,7 @@ const AppRoutes = () => {
             <Stack.Screen name='JackpotDetails' component={JackpotDetails} />
             <Stack.Screen name='Leaderboard' component={Leaderboard} />
             <Stack.Screen name='Hunchs' component={Hunchs} />
+            <Stack.Screen name='OtherProfiles' component={OtherProfiles} />
         </Stack.Navigator>
     )
 

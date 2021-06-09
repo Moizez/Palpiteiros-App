@@ -7,16 +7,19 @@ import api_ranking from '../../../../services/api_ranking'
 import JackpotRankingList from '../../../../components/JackpotRankingList'
 import Header from '../../../../components/Header'
 import EmptyList from '../../../../components/EmptyList'
+import Loading from '../../../../components/Loading'
 
 const JackpotDetails = ({ route }) => {
 
     const { id, jackpotName } = route.params
     const [refreshing, setRefreshing] = useState(false)
     const [jackpotRanking, setJackpotRanking] = useState([])
+    const [loading, setLoading] = useState(true)
 
     const getJackpotRanking = async () => {
         const response = await api_ranking.getRankingByJackpot(id)
         setJackpotRanking(response.data)
+        setLoading(false)
     }
 
     useEffect(() => {
@@ -42,7 +45,7 @@ const JackpotDetails = ({ route }) => {
             </TitleBox>
 
             <DataTable>
-                <DataTable.Header style={{backgroundColor: '#ccc'}}>
+                <DataTable.Header style={{ backgroundColor: '#ccc' }}>
                     <DataTable.Title><Text>Nº</Text></DataTable.Title>
                     <DataTable.Title style={{ flex: 3 }}><Text>Nome</Text></DataTable.Title>
                     <DataTable.Title numeric><Text></Text></DataTable.Title>
@@ -68,7 +71,7 @@ const JackpotDetails = ({ route }) => {
                     <EmptyList message='Nenhum participante nesse bolão' />
                 }
             />
-
+            {loading && <Loading />}
         </Container>
     );
 }

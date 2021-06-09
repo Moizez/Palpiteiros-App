@@ -9,7 +9,7 @@ const JackpotRankingList = ({ data, index }) => {
     const navigation = useNavigation()
 
     return (
-        <Container onPress={() => navigation.navigate('Profile', { data: data })} activeOpacity={0.8}>
+        <Container disabled onPress={() => navigation.navigate('OtherProfiles', { data: data })} activeOpacity={0.8}>
             <DataTable>
                 <DataTable.Row
                     style={{

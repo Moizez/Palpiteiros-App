@@ -63,6 +63,7 @@ const JackpotList = ({ data }) => {
         <>
             <Container>
                 <Card
+                    style={{ elevation: 3}}
                     onPress={hasRegister}
                     activeOpacity={0.8}
                 >

@@ -1,35 +1,35 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import { AuthContext } from '../../../contexts/auth'
-import api_hunchs from '../../../services/api_hunchs'
-import api_ranking from '../../../services/api_ranking'
-import api_jackpots from '../../../services/api_jackpots'
-import avatar from '../../../assets/images/avatar.jpg'
+import api_hunchs from '../../../../services/api_hunchs'
+import api_ranking from '../../../../services/api_ranking'
+import api_jackpots from '../../../../services/api_jackpots'
+import avatar from '../../../../assets/images/avatar.jpg'
 
 import {
 	Container, Header, Image, InfoBox, GroupItem, InfoItem,
 	Title, Line, ScoreBox, Label, Box, UserName, Text
 } from './styles'
 
-const Profile = () => {
+const OtherProfiles = ({ route }) => {
+
+	const { data } = route.params
 
 	const [hunchs, setHunchs] = useState([])
 	const [ranking, setRanking] = useState([])
 	const [jackpots, setJackpots] = useState([])
-	const { user } = useContext(AuthContext)
 
 	const getHunchs = async () => {
-		const data = await api_hunchs.getAllHunchsById(user.id)
+		const data = await api_hunchs.getAllHunchsById(data.user?.id)
 		setHunchs(data)
 	}
 
 	const getRanks = async () => {
-		const data = await api_ranking.getRankingByUser(user.id)
+		const data = await api_ranking.getRankingByUser(data.user?.id)
 		setRanking(data)
 	}
 
 	const getJackpots = async () => {
-		const data = await api_jackpots.getJackpotsByUserIdOfLength(user.id)
+		const data = await api_jackpots.getJackpotsByUserIdOfLength(data.user?.id)
 		setJackpots(data)
 	}
 
@@ -54,7 +54,7 @@ const Profile = () => {
 					source={avatar}
 					resizeMode='cover'
 				/>
-				<UserName>{user?.name}</UserName>
+				<UserName>{data.user?.name}</UserName>
 			</Header>
 
 			<Box>
@@ -102,4 +102,4 @@ const Profile = () => {
 	)
 }
 
-export default Profile
+export default OtherProfiles

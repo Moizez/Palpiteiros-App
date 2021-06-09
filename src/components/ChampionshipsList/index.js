@@ -10,6 +10,7 @@ const ChampionshipsList = ({ data }) => {
     return (
         <Container>
             <Card
+                style={{elevation: 3}}
                 onPress={() => navigation.navigate('Leaderboard', { id, name, year })}
                 activeOpacity={0.8}
             >

@@ -14,9 +14,8 @@ export default {
         return response
     },
 
-    getJackpotsByUserIdOfLength: async () => {
-        const user = await JSON.parse(await AsyncStorage.getItem('@palpiteiros:user')) || []
-        const jacks = await api_fetch.get(`/jackpots/findManyByUserContainsId/${user.id}`)
+    getJackpotsByUserIdOfLength: async (id) => {
+        const jacks = await api_fetch.get(`/jackpots/findManyByUserContainsId/${id}`)
         return jacks?.data?.length;
     },
 }

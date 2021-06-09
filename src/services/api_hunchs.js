@@ -70,7 +70,6 @@ export default {
     },
 
     getOneByConfrontationAndJackpotAndUser: async (idConfrontation, idJackpot) => {
-        ///findManyByConfrontationContainsIdAndUserContainsIdAndJackpotContainsId/
         const user = await JSON.parse(await AsyncStorage.getItem('@palpiteiros:user')) || []
         const response = await api_fetch.get(`/hunchs/findOneByConfrontationContainsIdAndUserContainsIdAndJackpotContainsId/${idConfrontation}/${user.id}/${idJackpot}`)
         return response
