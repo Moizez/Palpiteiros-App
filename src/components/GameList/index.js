@@ -24,8 +24,6 @@ const GameList = ({ data, idJackpot, isRefresh, hasDisabled }) => {
     const [snackTime, setSnackTime] = useState(null)
     const [message, setMessage] = useState('')
 
-    console.log(data)
-
     const getHunch = async () => {
         const response = await api.getOneByConfrontationAndJackpotAndUser(data.id, idJackpot)
         setHunch(response.data)
@@ -54,7 +52,7 @@ const GameList = ({ data, idJackpot, isRefresh, hasDisabled }) => {
             return
         }
 
-        const response = await api.createHunchs(homeGoals, awayGoals)
+        const response = await api.createHunchs(idJackpot, data.id, homeGoals, awayGoals)
         if (response.data) {
             getHunch()
             setSnackColor('#43aa8b')
@@ -74,6 +72,47 @@ const GameList = ({ data, idJackpot, isRefresh, hasDisabled }) => {
 
     const dateFormat = (date) => {
         return format(parseISO(date), "d 'de' LLL 'às' hh:mm", { locale: pt })
+    }
+
+    const getStatus = () =>{
+        const isAccuracy = hunch?.resultHunch?.registerHunch?.accuracy;
+        const isHit = hunch?.resultHunch?.registerHunch?.accuracy;
+        const isNone = !isAccuracy && !isHit;
+
+        if (isAccuracy){
+            return (
+                <>
+                    <Status style={{
+                        backgroundColor: '#43aa8b',
+                        borderRadius: 5,
+                    }}>
+                        <Text>{'Placar Exato'}</Text>
+                    </Status>
+                </>
+            )
+        } else if (isHit){
+            return (
+                <>
+                    <Status style={{
+                        backgroundColor: '#1d4e89',
+                        borderRadius: 5,
+                    }}>
+                        <Text>{'Vencedor'}</Text>
+                    </Status>
+                </>
+            )
+        } else if (isNone){
+            return (
+                <>
+                    <Status style={{
+                        backgroundColor: '#da1e37',
+                        borderRadius: 5,
+                    }}>
+                        <Text>{'Errou'}</Text>
+                    </Status>
+                </>
+            )
+        }
     }
 
     return (
@@ -143,12 +182,7 @@ const GameList = ({ data, idJackpot, isRefresh, hasDisabled }) => {
 
                         {data.scoreBoard &&
                             <>
-                                <Status style={{
-                                    backgroundColor: '#da1e37',
-                                    borderRadius: 5,
-                                }}>
-                                    <Text>Encerrado</Text>
-                                </Status>
+                                {getStatus()}
                             </>
                         }
 

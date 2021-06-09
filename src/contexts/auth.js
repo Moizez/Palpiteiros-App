@@ -4,6 +4,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import api from '../services/api'
 import Snackbar from '../components/Snackbar'
+import api_users from '../services/api_users';
+import api_hunchs from '../services/api_hunchs';
+import api_ranking from '../services/api_ranking';
+import api_jackpots from '../services/api_jackpots';
 
 export const AuthContext = createContext({})
 
@@ -14,6 +18,9 @@ const AuthProvider = ({ children }) => {
     const [showSnack, setShowSnack] = useState(false)
     const [message, setMessage] = useState('')
     const [user, setUser] = useState(null)
+    const [hunchs, setHunchs] = useState(null)
+    const [ranking, setRanking] = useState(null)
+    const [lenJackpots, setLenJackpots] = useState(null)
 
     useEffect(() => {
         const loadStorage = async () => {
@@ -27,6 +34,13 @@ const AuthProvider = ({ children }) => {
         loadStorage()
     }, [])
 
+
+    const handleHunchs = async ()=>{
+        setHunchs(await api_hunchs.getAllHunchsById(user.id))
+        setRanking(await api_ranking.getRankingByUser(user.id))
+        console.log("Len ",await api_jackpots.getJackpotsByUserIdOfLength())
+        setLenJackpots(await api_jackpots.getJackpotsByUserIdOfLength())
+    }
 
     const handleSignIn = async (email, password) => {
         setLoadingAuth(true)
@@ -105,6 +119,8 @@ const AuthProvider = ({ children }) => {
             <AuthContext.Provider value={{
                 signed: !!user, user,
                 loading, loadingAuth,
+                hunchs, handleHunchs, ranking,
+                lenJackpots,
                 handleSignIn, handleSignUp, logOut
             }}>
                 {children}

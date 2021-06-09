@@ -8,6 +8,11 @@ export default {
         return response
     },
 
+    getAllHunchsById: async (id) => {
+        const response = await api_fetch.get('/hunchs')
+        return response.data.filter(hunch => hunch.user.id === id)
+    },
+
     createHunchs: async (idJackpot, idConfrontation, homeGoals, awayGoals) => {
         const user = await JSON.parse(await AsyncStorage.getItem('@palpiteiros:user')) || []
         const data = {
