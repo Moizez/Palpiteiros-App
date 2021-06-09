@@ -29,8 +29,6 @@ const GameList = ({ data, idJackpot, isRefresh, hasDisabled }) => {
         setHunch(response.data)
     }
 
-    console.log(hunch)
-
     useEffect(() => {
         getHunch()
     }, [isRefresh])
@@ -38,7 +36,7 @@ const GameList = ({ data, idJackpot, isRefresh, hasDisabled }) => {
     const handleHunch = async (idConfrontation, homeGoals, awayGoals, winner) => {
 
         if (hunch) {
-            const response = await api.updateHunchs(hunch.id, idJackpot, idConfrontation, homeGoals, awayGoals)
+            const response = await api.updateHunchs(hunch.id, idJackpot, idConfrontation, homeGoals, awayGoals, winner)
             if (response.data) {
                 getHunch()
                 setSnackColor('#43aa8b')
@@ -204,7 +202,7 @@ const GameList = ({ data, idJackpot, isRefresh, hasDisabled }) => {
                         data={data}
                         golsHome={hunch?.resultHunch?.golsHome}
                         golsAway={hunch?.resultHunch?.golsVisiting}
-                        getHunch={getHunch}
+                        idWinner={hunch?.resultHunch?.classified?.id}
                     />
                 </Modal>
                 <Modal

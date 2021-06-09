@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import { RadioButton } from 'react-native-paper';
+import { RadioButton } from 'react-native-paper'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 
@@ -13,7 +13,7 @@ import {
     ErrorText, Input, Flag, PenaltyBox, Divider
 } from './styles'
 
-const HunchModal = ({ data, closeModal, handleHunch, golsHome, golsAway }) => {
+const HunchModal = ({ data, closeModal, handleHunch, golsHome, golsAway, idWinner }) => {
 
     const validationSchema = yup.object().shape({
         home: yup.string()
@@ -29,7 +29,6 @@ const HunchModal = ({ data, closeModal, handleHunch, golsHome, golsAway }) => {
         initialValues: { home: '', away: '', winner: '' },
         validationSchema: validationSchema,
         onSubmit: async (values, actions) => {
-            console.log(values)
             handleHunch(data.id, values.home, values.away, values.winner)
             actions.resetForm()
             closeModal()
@@ -39,6 +38,7 @@ const HunchModal = ({ data, closeModal, handleHunch, golsHome, golsAway }) => {
     useEffect(() => {
         formik.setFieldValue('home', golsHome?.toString())
         formik.setFieldValue('away', golsAway?.toString())
+        formik.setFieldValue('winner', idWinner?.toString())
     }, [])
 
     return (
@@ -105,7 +105,7 @@ const HunchModal = ({ data, closeModal, handleHunch, golsHome, golsAway }) => {
                     }
                 </ErrorBox>
 
-                {//!data.round.name.search('rodada') &&
+                {data.round.name.search('rodada') < 0 &&
                     formik.values.home === formik.values.away
                     && formik.values.home != null
                     && formik.values.away != null &&
@@ -140,12 +140,6 @@ const HunchModal = ({ data, closeModal, handleHunch, golsHome, golsAway }) => {
                         </RadioButton.Group>
                     </>
                 }
-
-                <ErrorBox>
-                    {formik.touched.home && formik.errors.home &&
-                        <ErrorText>{formik.errors.home}</ErrorText>
-                    }
-                </ErrorBox>
 
                 <HunchButton onPress={formik.handleSubmit}>
                     <Text>Salvar</Text>
