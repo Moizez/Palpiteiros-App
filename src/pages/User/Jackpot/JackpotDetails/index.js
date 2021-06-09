@@ -42,19 +42,20 @@ const JackpotDetails = ({ route }) => {
             </TitleBox>
 
             <DataTable>
-                <DataTable.Header>
-                    <DataTable.Title><Text>Posição</Text></DataTable.Title>
-                    <DataTable.Title><Text>Nome</Text></DataTable.Title>
-                    <DataTable.Title numeric><Text>Pontos</Text></DataTable.Title>
-                    <DataTable.Title numeric><Text>Exato</Text></DataTable.Title>
-                    <DataTable.Title numeric><Text>%</Text></DataTable.Title>
+                <DataTable.Header style={{backgroundColor: '#ccc'}}>
+                    <DataTable.Title><Text>Nº</Text></DataTable.Title>
+                    <DataTable.Title style={{ flex: 3 }}><Text>Nome</Text></DataTable.Title>
+                    <DataTable.Title numeric><Text></Text></DataTable.Title>
+                    <DataTable.Title numeric><Text>Pt</Text></DataTable.Title>
+                    <DataTable.Title numeric><Text>Ex</Text></DataTable.Title>
+                    <DataTable.Title numeric><Text>Vt</Text></DataTable.Title>
                 </DataTable.Header>
             </DataTable>
 
             <FlatList
                 data={jackpotRanking}
                 keyExtractor={(item) => item.id}
-                renderItem={({ item }) => <JackpotRankingList data={item} />}
+                renderItem={({ item, index }) => <JackpotRankingList data={item} index={index} />}
                 showsVerticalScrollIndicator={false}
                 refreshControl={
                     <RefreshControl

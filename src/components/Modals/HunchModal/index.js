@@ -9,17 +9,18 @@ import {
     Container, CloseContainer, ModalBox, CloseButton,
     ModalHeader, Title, HunchInfo, HunchScoreBox, Text,
     Team, HunchScore, TeamName, HunchButton, ErrorBox,
-    ErrorText, Input, Flag, PenaltyBox, HomeWin, AwayWin
+    ErrorText, Input, Flag, PenaltyBox, HomeWin, AwayWin,
+    TeamNamePn, Divider
 } from './styles'
 
 const HunchModal = ({ data, closeModal, handleHunch, golsHome, golsAway }) => {
 
     const validationSchema = yup.object().shape({
-        home: yup.string('Digite um placar!')
-            .required(),
+        home: yup.string()
+            .required(`Digite um placar para ${data.teamHome.name}`),
         // .test('home', 'Caiu', value => typeof value == number),
         away: yup.string()
-            .required('Digite um placar!')
+            .required(`Digite um placar para ${data.teamVisiting.name}`)
     })
 
     const formik = useFormik({
@@ -91,33 +92,41 @@ const HunchModal = ({ data, closeModal, handleHunch, golsHome, golsAway }) => {
 
                 </HunchInfo>
 
-                <PenaltyBox>
-                    <HomeWin>
-                        <TeamName>{data.teamHome.name}</TeamName>
-                    </HomeWin>
-
-                    <Icon name='alpha-x' size={50} color='#FFF' />
-
-                    <AwayWin>
-                        <TeamName>{data.teamVisiting.name}</TeamName>
-                    </AwayWin>
-                </PenaltyBox>
-
                 <ErrorBox>
                     {formik.touched.home && formik.errors.home &&
-                        <ErrorText>{data.teamHome.initials}: {formik.errors.home}</ErrorText>
+                        <ErrorText>{formik.errors.home}</ErrorText>
                     }
 
                     {formik.touched.away && formik.errors.away &&
-                        <ErrorText>{data.teamVisiting.initials}: {formik.errors.away}</ErrorText>
+                        <ErrorText>{formik.errors.away}</ErrorText>
                     }
                 </ErrorBox>
+
+                {formik.values.home
+                    === formik.values.away
+                    && formik.values.home != null
+                    && formik.values.away != null &&
+                    <>
+                        <Title style={{ textAlign: 'center' }}>Quem segue na competição?</Title>
+                        <Divider />
+                        <PenaltyBox>
+                            <HomeWin>
+                                <TeamNamePn>{data.teamHome.initials}</TeamNamePn>
+                            </HomeWin>
+                            <TeamName>X</TeamName>
+                            <AwayWin>
+                                <TeamNamePn>{data.teamVisiting.initials}</TeamNamePn>
+                            </AwayWin>
+                        </PenaltyBox>
+                    </>
+                }
+
                 <HunchButton onPress={formik.handleSubmit}>
                     <Text>Salvar</Text>
                 </HunchButton>
 
             </ModalBox>
-        </Container>
+        </Container >
     );
 }
 

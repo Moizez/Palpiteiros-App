@@ -116,15 +116,43 @@ export const Input = styled.TextInput`
 
 export const PenaltyBox = styled.View`
     flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 `;
 
 export const HomeWin = styled.TouchableOpacity`
-   
+    height: 40px;
+    width: 45%;
+    background-color: #FFF;
+    padding: 3px 10px;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
 `;
 
 export const AwayWin = styled.TouchableOpacity`
-   
+    height: 40px;
+    width: 45%;
+    background-color: #FFF;
+    padding: 3px 10px;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
 `;
+
+export const TeamNamePn = styled.Text`
+    font-size: 15px;
+    color: #000;
+`;
+
+export const Divider = styled.View`
+    width: 100%;
+    height: 0.5px;
+    background-color: #FFF;
+    margin: 10px 0;
+    opacity: 0.2;
+`;
+
 
 
 
