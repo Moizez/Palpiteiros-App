@@ -9,6 +9,6 @@ export default {
 
     getRankingByUser: async (id) => {
         const response = await api_fetch.get(`/rankings`)
-        return response.data.filter(ranking => ranking.user.id === id)[0]
+        return response.data?.filter(ranking => ranking?.user?.id === id)[0]
     },
 }

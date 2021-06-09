@@ -46,7 +46,7 @@ const Profile = () => {
 				<InfoBox>
 					<GroupItem>
 						<InfoItem>
-							<Title style={{ fontSize: 25, fontWeight: 'bold' }}>{hunchs?.length}</Title>
+							<Title style={{ fontSize: 25, fontWeight: 'bold' }}>{hunchs?.length > 0 ? hunchs?.length : 0}</Title>
 							<Label>PALPITES</Label>
 						</InfoItem>
 
