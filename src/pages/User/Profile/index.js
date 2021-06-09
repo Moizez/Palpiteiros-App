@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, {useContext, useEffect, useState} from 'react';
 
 import { AuthContext } from '../../../contexts/auth'
 import avatar from '../../../assets/images/avatar.jpg'
@@ -9,8 +9,21 @@ import {
 } from './styles'
 
 const Profile = () => {
+	const [pre, setPre] = useState(0.0)
+	const { user, handleHunchs, hunchs, ranking, lenJackpots } = useContext(AuthContext)
 
-	const { user } = useContext(AuthContext)
+	useEffect(()=>{
+		handleHunchs();
+		const roleOfTree = ()=> {
+			const totalHunchs = hunchs?.length
+			const max = 100
+			const x = (ranking?.totalAccuracy * max) / totalHunchs;
+			if (x > 0){
+				setPre(x.toFixed(0))
+			}
+		}
+		roleOfTree();
+	}, [])
 
 	return (
 		<Container>
@@ -33,34 +46,34 @@ const Profile = () => {
 				<InfoBox>
 					<GroupItem>
 						<InfoItem>
-							<Title style={{ fontSize: 25, fontWeight: 'bold' }}>60</Title>
+							<Title style={{ fontSize: 25, fontWeight: 'bold' }}>{hunchs?.length}</Title>
 							<Label>PALPITES</Label>
 						</InfoItem>
 
 						<InfoItem>
-							<Title style={{ fontSize: 25, fontWeight: 'bold' }}>230</Title>
+							<Title style={{ fontSize: 25, fontWeight: 'bold' }}>{ranking?.totalPoints}</Title>
 							<Label>PONTOS</Label>
 						</InfoItem>
 
-						<InfoItem>
+						{/*<InfoItem>
 							<Title style={{ fontSize: 25, fontWeight: 'bold' }}>5</Title>
 							<Label>AMIGOS</Label>
-						</InfoItem>
+						</InfoItem>*/}
 					</GroupItem>
 
 					<GroupItem>
 						<InfoItem>
-							<Title style={{ fontSize: 25, fontWeight: 'bold' }}>2</Title>
+							<Title style={{ fontSize: 25, fontWeight: 'bold' }}>{lenJackpots}</Title>
 							<Label>BOLÕES</Label>
 						</InfoItem>
 
 						<InfoItem>
-							<Title style={{ fontSize: 25, fontWeight: 'bold' }}>56%</Title>
+							<Title style={{ fontSize: 25, fontWeight: 'bold' }}>{pre}%</Title>
 							<Label>PRECISÃO</Label>
 						</InfoItem>
 
 						<InfoItem>
-							<Title style={{ fontSize: 25, fontWeight: 'bold' }}>13</Title>
+							<Title style={{ fontSize: 25, fontWeight: 'bold' }}>{ranking?.totalAccuracy}</Title>
 							<Label>ACERTOS</Label>
 						</InfoItem>
 					</GroupItem>

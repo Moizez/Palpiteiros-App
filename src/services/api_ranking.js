@@ -6,4 +6,9 @@ export default {
         const response = await api_fetch.get(`/rankings/findClassification/${id}`)
         return response
     },
+
+    getRankingByUser: async (id) => {
+        const response = await api_fetch.get(`/rankings`)
+        return response.data.filter(ranking => ranking.user.id === id)[0]
+    },
 }
