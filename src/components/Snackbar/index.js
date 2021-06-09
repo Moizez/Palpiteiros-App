@@ -13,6 +13,7 @@ const Snackbar = (props) => {
             <Snack
                 hasColor={props.hasColor}
                 hasBottom={props.hasBottom}
+                style={{ elevation: 5 }}
             >
                 <Message>{props.message}</Message>
             </Snack>
@@ -37,8 +38,7 @@ const Snack = styled.View(({ hasColor, hasBottom }) => ({
     bottom: hasBottom ? hasBottom : '45%',
     backgroundColor: hasColor ? hasColor : '#ad2e24',
     padding: 10,
-    borderRadius: 5,
-    elevation: 5
+    borderRadius: 5
 }));
 
 const Message = styled.Text`

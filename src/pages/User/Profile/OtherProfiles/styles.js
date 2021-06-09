@@ -55,7 +55,6 @@ export const InfoItem = styled.View(() => ({
     borderRadius: 5,
     marginRight: 5,
     marginLeft: 5,
-    elevation: 5
 }));
 
 export const Line = styled.View`

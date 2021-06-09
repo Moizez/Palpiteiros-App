@@ -14,6 +14,8 @@ export default {
     },
 
     createHunchs: async (idJackpot, idConfrontation, homeGoals, awayGoals, winner) => {
+
+        console.log(idJackpot, idConfrontation, homeGoals, awayGoals, winner)
         const user = await JSON.parse(await AsyncStorage.getItem('@palpiteiros:user')) || []
         const data = {
             resultHunch: {

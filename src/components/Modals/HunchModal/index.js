@@ -21,15 +21,15 @@ const HunchModal = ({ data, closeModal, handleHunch, golsHome, golsAway, idWinne
         // .test('home', 'Caiu', value => typeof value == number),
         away: yup.string()
             .required(`Digite um placar para ${data.teamVisiting.name}`),
-        winner: yup.string()
-            .required(`Selecione um vencedor entre ${data.teamHome.name} e ${data.teamVisiting.name}`),
+        //winner: yup.string()
+        //  .required(`Selecione um vencedor entre ${data.teamHome.name} e ${data.teamVisiting.name}`),
     })
 
     const formik = useFormik({
         initialValues: { home: '', away: '', winner: '' },
         validationSchema: validationSchema,
         onSubmit: async (values, actions) => {
-            handleHunch(data.id, values.home, values.away, values.winner)
+            await handleHunch(data.id, values.home, values.away, values.winner)
             actions.resetForm()
             closeModal()
         }
