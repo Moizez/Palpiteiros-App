@@ -13,7 +13,7 @@ export default {
         return response?.data?.filter(hunch => hunch?.user?.id === id)
     },
 
-    createHunchs: async (idJackpot, idConfrontation, homeGoals, awayGoals) => {
+    createHunchs: async (idJackpot, idConfrontation, homeGoals, awayGoals, winner) => {
         const user = await JSON.parse(await AsyncStorage.getItem('@palpiteiros:user')) || []
         const data = {
             resultHunch: {
@@ -21,7 +21,10 @@ export default {
                     id: idConfrontation
                 },
                 golsHome: homeGoals,
-                golsVisiting: awayGoals
+                golsVisiting: awayGoals,
+                classified: {
+                    id: winner
+                }
             },
             user: {
                 id: user.id

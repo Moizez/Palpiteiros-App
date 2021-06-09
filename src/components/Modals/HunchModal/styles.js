@@ -120,26 +120,6 @@ export const PenaltyBox = styled.View`
     justify-content: space-between;
 `;
 
-export const HomeWin = styled.TouchableOpacity`
-    height: 40px;
-    width: 45%;
-    background-color: #FFF;
-    padding: 3px 10px;
-    border-radius: 5px;
-    align-items: center;
-    justify-content: center;
-`;
-
-export const AwayWin = styled.TouchableOpacity`
-    height: 40px;
-    width: 45%;
-    background-color: #FFF;
-    padding: 3px 10px;
-    border-radius: 5px;
-    align-items: center;
-    justify-content: center;
-`;
-
 export const TeamNamePn = styled.Text`
     font-size: 15px;
     color: #000;

@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { RadioButton } from 'react-native-paper';
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 
@@ -9,8 +10,7 @@ import {
     Container, CloseContainer, ModalBox, CloseButton,
     ModalHeader, Title, HunchInfo, HunchScoreBox, Text,
     Team, HunchScore, TeamName, HunchButton, ErrorBox,
-    ErrorText, Input, Flag, PenaltyBox, HomeWin, AwayWin,
-    TeamNamePn, Divider
+    ErrorText, Input, Flag, PenaltyBox, Divider
 } from './styles'
 
 const HunchModal = ({ data, closeModal, handleHunch, golsHome, golsAway }) => {
@@ -20,14 +20,17 @@ const HunchModal = ({ data, closeModal, handleHunch, golsHome, golsAway }) => {
             .required(`Digite um placar para ${data.teamHome.name}`),
         // .test('home', 'Caiu', value => typeof value == number),
         away: yup.string()
-            .required(`Digite um placar para ${data.teamVisiting.name}`)
+            .required(`Digite um placar para ${data.teamVisiting.name}`),
+        winner: yup.string()
+            .required(`Selecione um vencedor entre ${data.teamHome.name} e ${data.teamVisiting.name}`),
     })
 
     const formik = useFormik({
-        initialValues: { home: '', away: '' },
+        initialValues: { home: '', away: '', winner: '' },
         validationSchema: validationSchema,
         onSubmit: async (values, actions) => {
-            handleHunch(data.id, values.home, values.away)
+            console.log(values)
+            handleHunch(data.id, values.home, values.away, values.winner)
             actions.resetForm()
             closeModal()
         }
@@ -102,24 +105,47 @@ const HunchModal = ({ data, closeModal, handleHunch, golsHome, golsAway }) => {
                     }
                 </ErrorBox>
 
-                {formik.values.home
-                    === formik.values.away
+                {//!data.round.name.search('rodada') &&
+                    formik.values.home === formik.values.away
                     && formik.values.home != null
                     && formik.values.away != null &&
                     <>
                         <Title style={{ textAlign: 'center' }}>Quem segue na competição?</Title>
                         <Divider />
-                        <PenaltyBox>
-                            <HomeWin>
-                                <TeamNamePn>{data.teamHome.initials}</TeamNamePn>
-                            </HomeWin>
-                            <TeamName>X</TeamName>
-                            <AwayWin>
-                                <TeamNamePn>{data.teamVisiting.initials}</TeamNamePn>
-                            </AwayWin>
-                        </PenaltyBox>
+                        <RadioButton.Group
+                            onValueChange={formik.handleChange('winner')}
+                            value={formik.values?.winner}
+                        >
+                            <PenaltyBox>
+                                <RadioButton.Item
+                                    label={data.teamHome?.initials}
+                                    value={data.teamHome?.id.toString()}
+                                    labelStyle={{ marginRight: 45 }}
+                                    style={{
+                                        backgroundColor: '#FFF',
+                                        borderRadius: 5,
+                                    }}
+                                />
+                                <TeamName>X</TeamName>
+                                <RadioButton.Item
+                                    label={data.teamVisiting?.initials}
+                                    value={data.teamVisiting?.id.toString()}
+                                    labelStyle={{ marginRight: 45 }}
+                                    style={{
+                                        backgroundColor: '#FFF',
+                                        borderRadius: 5,
+                                    }}
+                                />
+                            </PenaltyBox>
+                        </RadioButton.Group>
                     </>
                 }
+
+                <ErrorBox>
+                    {formik.touched.home && formik.errors.home &&
+                        <ErrorText>{formik.errors.home}</ErrorText>
+                    }
+                </ErrorBox>
 
                 <HunchButton onPress={formik.handleSubmit}>
                     <Text>Salvar</Text>

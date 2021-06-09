@@ -29,11 +29,13 @@ const GameList = ({ data, idJackpot, isRefresh, hasDisabled }) => {
         setHunch(response.data)
     }
 
+    console.log(hunch)
+
     useEffect(() => {
         getHunch()
     }, [isRefresh])
 
-    const handleHunch = async (idConfrontation, homeGoals, awayGoals) => {
+    const handleHunch = async (idConfrontation, homeGoals, awayGoals, winner) => {
 
         if (hunch) {
             const response = await api.updateHunchs(hunch.id, idJackpot, idConfrontation, homeGoals, awayGoals)
@@ -52,7 +54,7 @@ const GameList = ({ data, idJackpot, isRefresh, hasDisabled }) => {
             return
         }
 
-        const response = await api.createHunchs(idJackpot, idConfrontation, homeGoals, awayGoals)
+        const response = await api.createHunchs(idJackpot, idConfrontation, homeGoals, awayGoals, winner)
         if (response.data) {
             getHunch()
             setSnackColor('#43aa8b')
@@ -74,13 +76,13 @@ const GameList = ({ data, idJackpot, isRefresh, hasDisabled }) => {
         return format(parseISO(date), "d 'de' LLL 'às' hh:mm", { locale: pt })
     }
 
-    const getStatus = () =>{
-        if (hunch?.resultHunch){
+    const getStatus = () => {
+        if (hunch?.resultHunch) {
             const isAccuracy = hunch?.resultHunch?.registerHunch?.accuracy;
             const isHit = hunch?.resultHunch?.registerHunch?.accuracy;
             const isNone = !isAccuracy && !isHit;
 
-            if (isAccuracy){
+            if (isAccuracy) {
                 return (
                     <>
                         <Status style={{
@@ -91,7 +93,7 @@ const GameList = ({ data, idJackpot, isRefresh, hasDisabled }) => {
                         </Status>
                     </>
                 )
-            } else if (isHit){
+            } else if (isHit) {
                 return (
                     <>
                         <Status style={{
@@ -102,7 +104,7 @@ const GameList = ({ data, idJackpot, isRefresh, hasDisabled }) => {
                         </Status>
                     </>
                 )
-            } else if (isNone){
+            } else if (isNone) {
                 return (
                     <>
                         <Status style={{

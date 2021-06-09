@@ -42,7 +42,6 @@ const PastGames = ({ idChampionship, idJackpot }) => {
 						hasDisabled
 					/>
 				}
-				initialNumToRender={confrontations?.length}
 				showsVerticalScrollIndicator={false}
 				removeClippedSubviews
 				refreshControl={
