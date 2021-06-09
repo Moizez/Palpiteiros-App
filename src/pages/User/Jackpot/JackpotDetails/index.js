@@ -1,12 +1,33 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { DataTable } from 'react-native-paper'
 import styled from 'styled-components/native'
+
+import api_ranking from '../../../../services/api_ranking'
+
 import JackpotRankingList from '../../../../components/JackpotRankingList'
 import Header from '../../../../components/Header'
+import EmptyList from '../../../../components/EmptyList'
 
 const JackpotDetails = ({ route }) => {
 
-    const { data, jackpotName } = route.params
+    const { id, jackpotName } = route.params
+    const [refreshing, setRefreshing] = useState(false)
+    const [jackpotRanking, setJackpotRanking] = useState([])
+
+    const getJackpotRanking = async () => {
+        const response = await api_ranking.getRankingByJackpot(id)
+        setJackpotRanking(response.data)
+    }
+
+    useEffect(() => {
+        getJackpotRanking()
+    }, [id])
+
+    const handleRefresh = async () => {
+        setRefreshing(true)
+        await getJackpotRanking()
+        setRefreshing(false)
+    }
 
     return (
         <Container>
@@ -25,14 +46,26 @@ const JackpotDetails = ({ route }) => {
                     <DataTable.Title><Text>Posição</Text></DataTable.Title>
                     <DataTable.Title><Text>Nome</Text></DataTable.Title>
                     <DataTable.Title numeric><Text>Pontos</Text></DataTable.Title>
+                    <DataTable.Title numeric><Text>Exato</Text></DataTable.Title>
+                    <DataTable.Title numeric><Text>%</Text></DataTable.Title>
                 </DataTable.Header>
             </DataTable>
 
             <FlatList
-                data={data}
+                data={jackpotRanking}
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => <JackpotRankingList data={item} />}
                 showsVerticalScrollIndicator={false}
+                refreshControl={
+                    <RefreshControl
+                        refreshing={refreshing}
+                        onRefresh={handleRefresh}
+                        colors={["gray", "blue"]}
+                    />
+                }
+                ListEmptyComponent={
+                    <EmptyList message='Nenhum participante nesse bolão' />
+                }
             />
 
         </Container>
@@ -67,6 +100,8 @@ const Text = styled.Text`
     text-transform: uppercase;
     color: #000;
 `;
+
+const RefreshControl = styled.RefreshControl``;
 
 
 export default JackpotDetails

@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 
 import api from '../../services/api'
-import api_ranking from '../../services/api_ranking'
 
 import JackpotModal from '../Modals/JackpotModal'
 import Snackbar from '../Snackbar'
@@ -16,20 +15,13 @@ const JackpotList = ({ data }) => {
 
     const navigation = useNavigation()
     const [jackpotModal, setJackpotModal] = useState(false)
-    const [jackpotRanking, setJackpotRanking] = useState([])
     const [showSnack, setShowSnack] = useState(false)
     const [snackColor, setSnackColor] = useState('')
     const [snackTime, setSnackTime] = useState(null)
     const [message, setMessage] = useState('')
 
     const { id, name: jackpotName, championship: { year, name } } = data
-
-    const getJackpotRanking = async () => {
-        const response = await api_ranking.getRankingByJackpot(id)
-        setJackpotRanking(response.data)
-    }
-
-    const totalParticipants = jackpotRanking.length
+    const totalParticipants = data.users?.length
 
     const handleJackpotRegister = async () => {
         const response = await api.onJackpotRegister(id)
@@ -54,17 +46,13 @@ const JackpotList = ({ data }) => {
         const response = await api.hasRegister(id)
         if (response.data) {
             return navigation.navigate('JackpotDetails', {
-                data: jackpotRanking,
+                id: id,
                 jackpotName: jackpotName
             })
         } else {
             return handleOpenJackpotModal()
         }
     }
-
-    useEffect(() => {
-        getJackpotRanking()
-    }, [id])
 
     const handleOpenJackpotModal = () => setJackpotModal(true)
     const handleCloseJackpotModal = () => setJackpotModal(false)

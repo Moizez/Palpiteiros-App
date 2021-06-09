@@ -24,8 +24,6 @@ const GameList = ({ data, idJackpot, isRefresh, hasDisabled }) => {
     const [snackTime, setSnackTime] = useState(null)
     const [message, setMessage] = useState('')
 
-    console.log(data)
-
     const getHunch = async () => {
         const response = await api.getOneByConfrontationAndJackpotAndUser(data.id, idJackpot)
         setHunch(response.data)
@@ -54,7 +52,7 @@ const GameList = ({ data, idJackpot, isRefresh, hasDisabled }) => {
             return
         }
 
-        const response = await api.createHunchs(homeGoals, awayGoals)
+        const response = await api.createHunchs(idJackpot, idConfrontation, homeGoals, awayGoals)
         if (response.data) {
             getHunch()
             setSnackColor('#43aa8b')

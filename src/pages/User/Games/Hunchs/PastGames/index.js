@@ -18,8 +18,6 @@ const PastGames = ({ idChampionship, idJackpot }) => {
 		setLoading(false)
 	}
 
-	console.log(confrontations.length)
-
 	useEffect(() => {
 		loadConfrontationsClosed()
 	}, [])
@@ -44,7 +42,7 @@ const PastGames = ({ idChampionship, idJackpot }) => {
 						hasDisabled
 					/>
 				}
-				initialNumToRender={confrontations.length}
+				initialNumToRender={confrontations?.length}
 				showsVerticalScrollIndicator={false}
 				removeClippedSubviews
 				refreshControl={
