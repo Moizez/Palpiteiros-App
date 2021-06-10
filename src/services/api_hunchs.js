@@ -35,7 +35,9 @@ export default {
                 id: idJackpot
             }
         }
-
+        if (!winner){
+            delete data.resultHunch.classified
+        }
         const request = await api_fetch.post('/hunchs', data)
         return request
     },
@@ -60,7 +62,9 @@ export default {
                 id: idJackpot
             }
         }
-
+        if (!winner){
+            delete data.resultHunch.classified
+        }
         const request = await api_fetch.put(`/hunchs/${idHunch}`, data)
         return request
     },
