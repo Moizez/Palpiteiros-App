@@ -41,10 +41,12 @@ const Profile = () => {
 	const percent = roleOfTree()
 
 	const generateLevel = () => {
-		const hunchEq = hunchs?.length > 0 ? hunchs?.length : 0 / 50
-		const ptsEq = ranking?.totalPoints > 0 ? ranking?.totalPoints : 0 / 50
-		const hitEq = ranking?.totalAccuracy > 0 ? ranking?.totalAccuracy : 0 / 10
-		const jackpotEq = jackpots > 0 ? jackpots : 0 / 10
+		const hunchEq = (hunchs?.length > 0 ? hunchs?.length : 0) / 50
+		const ptsEq = (ranking?.totalPoints > 0 ? ranking?.totalPoints : 0) / 50
+		const hitEq = (ranking?.totalAccuracy > 0 && ranking?.totalAccuracy <= 50)
+			? ranking?.totalAccuracy
+			: ranking?.totalAccuracy > 0 ? ranking?.totalAccuracy / 10 : 0
+		const jackpotEq = (jackpots > 0 ? jackpots : 0) / 10
 		const result = hunchEq + ptsEq + hitEq + jackpotEq
 		return Math.round(result)
 	}

@@ -15,7 +15,6 @@ export default {
 
     createHunchs: async (idJackpot, idConfrontation, homeGoals, awayGoals, winner) => {
 
-        console.log(idJackpot, idConfrontation, homeGoals, awayGoals, winner)
         const user = await JSON.parse(await AsyncStorage.getItem('@palpiteiros:user')) || []
         const data = {
             resultHunch: {
@@ -35,7 +34,7 @@ export default {
                 id: idJackpot
             }
         }
-        if (!winner){
+        if (!winner) {
             delete data.resultHunch.classified
         }
         const request = await api_fetch.post('/hunchs', data)
@@ -62,7 +61,7 @@ export default {
                 id: idJackpot
             }
         }
-        if (!winner){
+        if (!winner) {
             delete data.resultHunch.classified
         }
         const request = await api_fetch.put(`/hunchs/${idHunch}`, data)
