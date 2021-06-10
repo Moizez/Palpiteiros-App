@@ -19,7 +19,6 @@ const ButtonWrapper = ({ ...props }) => {
 const styles = StyleSheet.create({
     style: {
         width: '100%',
-
         marginTop: 10,
         height: 45,
         justifyContent: 'center'

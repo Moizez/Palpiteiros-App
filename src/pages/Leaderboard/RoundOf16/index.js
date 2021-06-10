@@ -75,7 +75,7 @@ const RoundOf16 = ({ data, loading }) => {
                     )}
                 </Container>
             }
-            {loading && <Loading />}
+            {loading && <Loading lottie={require('../../../assets/lotties/soccer-field.json')} />}
         </>
     )
 }

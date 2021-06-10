@@ -51,7 +51,10 @@ const MyJackpot = () => {
                     />
                 }
                 ListEmptyComponent={
-                    <EmptyList message='Nenhum bolão disponível!' />
+                    <EmptyList
+                        message='Nenhum bolão disponível!'
+                        tip='Dica: Participe de um bolão ou crie o seu para vê-lo nesta lista.'
+                    />
                 }
             />
             <CreateJackpot onPress={() => navigation.navigate('CreateJackpot')} activeOpacity={1}>
@@ -60,11 +63,11 @@ const MyJackpot = () => {
                         <Title style={{ fontSize: 22, color: '#FFF' }}>+</Title>
                     </CircleButton>
                     <Label>
-                        Crie seu bolão, junte seus amigos e veja quem tem mais sorte!
+                        Crie seu bolão, junte seus amigos e veja quem entende mais de futebol!
                         </Label>
                 </BoxLabel>
             </CreateJackpot>
-            {loading && !refreshing && <Loading />}
+            {loading && !refreshing && <Loading lottie={require('../../../../assets/lotties/soccer-field.json')} />}
         </Container>
     );
 }

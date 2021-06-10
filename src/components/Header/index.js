@@ -73,7 +73,7 @@ const Title = styled.Text`
 
 const Label = styled.Text`
     color: #FFF;
-    font-size: 15px;
+    font-size: 12px;
 `;
 
 export default Header

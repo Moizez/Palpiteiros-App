@@ -40,11 +40,22 @@ const Profile = () => {
 	}
 	const percent = roleOfTree()
 
+	const generateLevel = () => {
+		const hunchEq = hunchs?.length > 0 ? hunchs?.length : 0 / 50
+		const ptsEq = ranking?.totalPoints > 0 ? ranking?.totalPoints : 0 / 50
+		const hitEq = ranking?.totalAccuracy > 0 ? ranking?.totalAccuracy : 0 / 10
+		const jackpotEq = jackpots > 0 ? jackpots : 0 / 10
+		const result = hunchEq + ptsEq + hitEq + jackpotEq
+		return Math.round(result)
+	}
+	const level = generateLevel()
+
 	useEffect(() => {
 		getHunchs()
 		getRanks()
 		getJackpots()
 		roleOfTree()
+		generateLevel()
 	}, [])
 
 	return (
@@ -59,8 +70,8 @@ const Profile = () => {
 
 			<Box>
 				<ScoreBox>
-					<Title style={{ fontSize: 70, fontWeight: 'bold' }}>15</Title>
-					<Label style={{ color: '#022c6f' }}>LEVEL</Label>
+					<Title style={{ fontSize: 70, fontWeight: 'bold' }}>{level > 0 ? level : 0}</Title>
+					<Label style={{ color: '#022c6f' }}>Lv</Label>
 				</ScoreBox>
 
 				<Line />
@@ -73,7 +84,7 @@ const Profile = () => {
 						</InfoItem>
 
 						<InfoItem>
-							<Text>{ranking?.totalPoints}</Text>
+							<Text>{ranking?.totalPoints > 0 ? ranking?.totalPoints : 0}</Text>
 							<Label>ponto{ranking?.totalPoints > 1 && 's'}</Label>
 						</InfoItem>
 
@@ -81,17 +92,17 @@ const Profile = () => {
 
 					<GroupItem>
 						<InfoItem>
-							<Text>{jackpots}</Text>
+							<Text>{jackpots > 0 ? jackpots : 0}</Text>
 							<Label>{jackpots > 1 ? 'bolões' : 'bolão'}</Label>
 						</InfoItem>
 
 						<InfoItem>
-							<Text>{percent}%</Text>
+							<Text>{percent > 0 ? percent : 0}%</Text>
 							<Label>PRECISÃO</Label>
 						</InfoItem>
 
 						<InfoItem>
-							<Text>{ranking?.totalAccuracy}</Text>
+							<Text>{ranking?.totalAccuracy > 0 ? ranking?.totalAccuracy : 0}</Text>
 							<Label>acerto{ranking?.totalAccuracy > 1 && 's'}</Label>
 						</InfoItem>
 					</GroupItem>

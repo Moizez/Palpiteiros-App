@@ -112,7 +112,7 @@ const Leaderboard = ({ route }) => {
                 initialLayout={initialLayout}
                 renderTabBar={renderTabBar}
             />
-            {loading && <Loading />}
+            {loading && <Loading lottie={require('../../assets/lotties/soccer-field.json')} />}
         </>
     )
 }

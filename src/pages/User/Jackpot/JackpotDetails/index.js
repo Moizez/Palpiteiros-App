@@ -71,7 +71,7 @@ const JackpotDetails = ({ route }) => {
                     <EmptyList message='Nenhum participante nesse bolão' />
                 }
             />
-            {loading && <Loading />}
+            {loading && <Loading lottie={require('../../../../assets/lotties/soccer-field.json')}/>}
         </Container>
     );
 }

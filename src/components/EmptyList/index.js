@@ -3,11 +3,12 @@ import styled from 'styled-components/native';
 
 import logo from '../../assets/images/logo.png'
 
-const EmptyList = ({ message }) => {
+const EmptyList = ({ message, tip }) => {
     return (
         <Container>
             <Text>{message}</Text>
             <Image source={logo} />
+            <Text>{tip}</Text>
         </Container>
     )
 }
@@ -15,7 +16,7 @@ const EmptyList = ({ message }) => {
 const Container = styled.View`
     flex: 1;
     width: 100%;
-    margin-top: 30%;
+    margin-top: 20%;
     align-items: center;
     justify-content: center;
 `;
@@ -24,6 +25,7 @@ const Container = styled.View`
 const Text = styled.Text`
     font-size: 16px;
     font-weight: bold;
+    text-align: center;
     opacity: 0.2;
 `;
 

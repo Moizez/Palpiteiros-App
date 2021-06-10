@@ -2,9 +2,7 @@ import React from 'react'
 import styled from 'styled-components/native'
 import LottieView from 'lottie-react-native'
 
-const Loading = () => {
-
-    const lottie = require('../../assets/lotties/soccer-field.json')
+const Loading = ({lottie}) => {
 
     return (
         <Container>
@@ -21,7 +19,7 @@ const Loading = () => {
 export default Loading
 
 const Container = styled.View`
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0,0,0,0.5);
     position: absolute;
     align-items: center;
     justify-content: center;

@@ -8,7 +8,7 @@ import MyJackpotList from '../../../components/MyJackpotList'
 import EmptyList from '../../../components/EmptyList'
 import Loading from '../../../components/Loading'
 
-const Games = () => {
+const Games = ({ route }) => {
 
     const [jackpots, setJackpots] = useState([])
     const [refreshing, setRefreshing] = useState(false)
@@ -23,7 +23,7 @@ const Games = () => {
 
     useEffect(() => {
         loadJackpots()
-    }, [])
+    }, [route])
 
     const handleRefresh = async () => {
         setRefreshing(true)
@@ -34,7 +34,8 @@ const Games = () => {
     return (
         <>
             <Header
-                title='Lista de Jogos'
+                title='Bolões Disponíveis'
+                label='Selecione um bolão e faça seus palpites!'
             />
             <Container>
 
@@ -51,10 +52,13 @@ const Games = () => {
                         />
                     }
                     ListEmptyComponent={
-                        <EmptyList message='Nenhum bolão disponível!' />
+                        <EmptyList
+                            message='Nenhum bolão disponível!'
+                            tip='Dica: Primeiro é necessário participar de um bolão.'
+                        />
                     }
                 />
-                {loading && !refreshing && <Loading />}
+                {loading && !refreshing && <Loading lottie={require('../../../assets/lotties/soccer-field.json')} />}
             </Container>
         </>
     );

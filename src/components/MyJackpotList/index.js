@@ -22,7 +22,7 @@ const MyJackpotList = ({ data }) => {
         <>
             <Container>
                 <Card
-                    style={{ elevation: 3 }}
+                    style={{ elevation: 5 }}
                     onPress={() => navigation.navigate('Hunchs', {
                         idChampionship: idChampionship,
                         idJackpot: idJackpot

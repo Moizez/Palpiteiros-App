@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react'
+import { useNavigation } from '@react-navigation/native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { View, Text, TouchableOpacity, StyleSheet, Modal } from 'react-native'
 
@@ -10,6 +11,7 @@ import { Container, Header, PageBox } from './styles'
 const Setting = () => {
 
     const { logOut } = useContext(AuthContext)
+    const navigation = useNavigation()
     const [actionModal, setActionModal] = useState(false)
 
     const handleLogout = () => openActioModal()
@@ -43,14 +45,21 @@ const Setting = () => {
 
             <PageBox>
                 <TouchableOpacity style={styles.item}>
-                    <Icon name='bell' color={'#292b2c'} size={35} />
+                    <Icon name='bell-outline' color={'#292b2c'} size={35} />
                     <Text style={styles.text}>Notificações</Text>
                 </TouchableOpacity>
 
                 <View style={{ width: '100%', height: 0.5, backgroundColor: '#adb5bd' }}></View>
 
+                <TouchableOpacity onPress={() => navigation.navigate('Regulation')} style={styles.item}>
+                    <Icon name='clipboard-alert-outline' color={'#292b2c'} size={35} />
+                    <Text style={styles.text}>Regulamento</Text>
+                </TouchableOpacity>
+
+                <View style={{ width: '100%', height: 0.5, backgroundColor: '#adb5bd' }}></View>
+
                 <TouchableOpacity style={styles.item}>
-                    <Icon name='help-circle' color={'#292b2c'} size={35} />
+                    <Icon name='help-circle-outline' color={'#292b2c'} size={35} />
                     <Text style={styles.text}>Perguntas frequentes</Text>
                 </TouchableOpacity>
 
@@ -64,14 +73,14 @@ const Setting = () => {
                 <View style={{ width: '100%', height: 0.5, backgroundColor: '#adb5bd' }}></View>
 
                 <TouchableOpacity style={styles.item}>
-                    <Icon name='shield-lock' color={'#292b2c'} size={35} />
+                    <Icon name='shield-lock-outline' color={'#292b2c'} size={35} />
                     <Text style={styles.text}>Política de privacidade</Text>
                 </TouchableOpacity>
 
                 <View style={{ width: '100%', height: 0.5, backgroundColor: '#adb5bd' }}></View>
 
                 <TouchableOpacity style={styles.item}>
-                    <Icon name='star' color={'#292b2c'} size={35} />
+                    <Icon name='star-outline' color={'#292b2c'} size={35} />
                     <Text style={styles.text}>Avaliar aplicativo</Text>
                 </TouchableOpacity>
 

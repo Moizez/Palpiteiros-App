@@ -134,7 +134,7 @@ const SignUp = () => {
 				loading={loadingAuth}
 			>
 				Cadastrar
-					</Button>
+			</Button>
 
 		</Container>
 	)

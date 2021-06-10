@@ -38,7 +38,7 @@ const Statistic = () => {
 						<EmptyList message='Nenhum bolão disponível!' />
 					}
 				/>
-				{loading && <Loading />}
+				{loading && <Loading lottie={require('../../../assets/lotties/soccer-field.json')}/>}
 			</Container>
 		</>
 	);

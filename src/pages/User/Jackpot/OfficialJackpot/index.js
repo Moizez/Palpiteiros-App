@@ -47,7 +47,7 @@ const OfficialJackpot = () => {
                     <EmptyList message='Nenhum bolão disponível!' />
                 }
             />
-            {loading && !refreshing && <Loading />}
+            {loading && !refreshing && <Loading lottie={require('../../../../assets/lotties/soccer-field.json')}/>}
         </Container>
     );
 }

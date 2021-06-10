@@ -177,7 +177,7 @@ const Finals = ({ dataSemi, dataFinals, loading }) => {
                     )}
                 </Container>
             }
-            {loading && <Loading />}
+            {loading && <Loading lottie={require('../../../assets/lotties/soccer-field.json')} />}
         </>
     )
 }

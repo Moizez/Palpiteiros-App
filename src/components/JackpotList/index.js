@@ -19,6 +19,7 @@ const JackpotList = ({ data }) => {
     const [snackColor, setSnackColor] = useState('')
     const [snackTime, setSnackTime] = useState(null)
     const [message, setMessage] = useState('')
+    const [refresh, setRefresh] = useState(false)
 
     const { id, name: jackpotName, championship: { year, name } } = data
     const totalParticipants = data.users?.length
@@ -31,8 +32,9 @@ const JackpotList = ({ data }) => {
             setSnackColor('#43aa8b')
             setSnackTime(2000)
             handleShowSnack()
+            setRefresh(!refresh)
             setTimeout(() => {
-                handleShowSnack()
+                navigation.navigate('Games', { refresh: refresh })
             }, 1000);
         } else {
             setSnackColor('#ad2e24')
@@ -63,7 +65,7 @@ const JackpotList = ({ data }) => {
         <>
             <Container>
                 <Card
-                    style={{ elevation: 3}}
+                    style={{ elevation: 5 }}
                     onPress={hasRegister}
                     activeOpacity={0.8}
                 >
