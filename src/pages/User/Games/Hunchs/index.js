@@ -26,7 +26,7 @@ const Hunchs = ({ route }) => {
 				</Text>
 			)}
 			indicatorStyle={{ backgroundColor: '#FFF' }}
-			style={{ backgroundColor: '#022c6f' }}
+			style={{ backgroundColor: '#2a628f' }}
 		/>
 	)
 

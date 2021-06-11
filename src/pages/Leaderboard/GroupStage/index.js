@@ -71,7 +71,7 @@ const Container = styled.ScrollView``;
 const TitleBox = styled.View`
     align-items: center;
     justify-content: center;
-    background-color: #1d4e89;
+    background-color: #495057;
     padding: 8px;
 `;
 

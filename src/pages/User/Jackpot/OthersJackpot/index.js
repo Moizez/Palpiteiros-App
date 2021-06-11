@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import OfficialJackpotList from '../../../../components/OfficialJackpotList'
+import JackpotList from '../../../../components/JackpotList'
 import EmptyList from '../../../../components/EmptyList'
 import Loading from '../../../../components/Loading'
 
@@ -22,7 +22,7 @@ const OthersJackpot = () => {
             <FlatList
                 data={null}
                 keyExtractor={(item) => item.id}
-                renderItem={({ item }) => <OfficialJackpotList data={item} />}
+                renderItem={({ item }) => <JackpotList data={item} />}
                 showsVerticalScrollIndicator={false}
                 refreshControl={
                     <RefreshControl

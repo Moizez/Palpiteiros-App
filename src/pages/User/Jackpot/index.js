@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import { Dimensions, Text } from 'react-native'
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view'
+import styled from 'styled-components/native'
 
 import MyJackpot from '../Jackpot/MyJackpot'
 import OfficialJackpot from '../Jackpot/OfficialJackpot'
 import OthersJackpot from '../Jackpot/OthersJackpot'
-
-import { Header, Title, Label } from './styles'
 
 const initialLayout = { width: Dimensions.get('window').width }
 
@@ -27,7 +26,7 @@ const Jackpot = () => {
 				</Text>
 			)}
 			indicatorStyle={{ backgroundColor: '#FFF' }}
-			style={{ backgroundColor: '#022c6f' }}
+			style={{ backgroundColor: '#2a628f' }}
 		/>
 	)
 
@@ -54,5 +53,23 @@ const Jackpot = () => {
 		</>
 	)
 }
+
+const Header = styled.View`
+flex: 0.15;
+width: 100%;
+background-color: #022c6f;
+align-items: center;
+justify-content: center;
+`;
+
+const Title = styled.Text`
+font-size: 22px;
+color: #FFF;
+`;
+
+const Label = styled.Text`
+color: #FFF;
+font-size: 15px;
+`;
 
 export default Jackpot

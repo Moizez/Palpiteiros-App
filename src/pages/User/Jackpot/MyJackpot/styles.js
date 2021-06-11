@@ -55,4 +55,6 @@ justify-content: center;
 
 export const RefreshControl = styled.RefreshControl``;
 
+export const Modal = styled.Modal``;
+
 
