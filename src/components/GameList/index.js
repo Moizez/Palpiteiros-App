@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import { format, parseISO } from 'date-fns'
+import { addHours, format, parseISO } from 'date-fns'
 import pt from 'date-fns/locale/pt'
 
 import api from '../../services/api_hunchs'
@@ -71,7 +71,9 @@ const GameList = ({ data, idJackpot, isRefresh, hasDisabled }) => {
     const handleCloseSnack = () => setShowSnack(false)
 
     const dateFormat = (date) => {
-        return format(parseISO(date), "d 'de' LLL 'às' hh:mm", { locale: pt })
+        const res = parseISO(date)
+        const result = addHours(res, 3)
+        return format(result, "d 'de' LLL 'às' H:mm", { locale: pt })
     }
 
     const getStatus = () => {

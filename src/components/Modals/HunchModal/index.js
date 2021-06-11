@@ -13,7 +13,11 @@ import {
     ErrorText, Input, Flag, PenaltyBox, Divider
 } from './styles'
 
-const HunchModal = ({ data, closeModal, handleHunch, golsHome, golsAway, idWinner }) => {
+const HunchModal = ({
+    data, closeModal, handleHunch, golsHome, golsAway, idWinner
+}) => {
+
+    const [hasOnButton, setHasOnButton] = useState(false)
 
     const validationSchema = yup.object().shape({
         home: yup.string()
@@ -29,6 +33,7 @@ const HunchModal = ({ data, closeModal, handleHunch, golsHome, golsAway, idWinne
         initialValues: { home: '', away: '', winner: '' },
         validationSchema: validationSchema,
         onSubmit: async (values, actions) => {
+            setHasOnButton(true)
             await handleHunch(data.id, values.home, values.away, values.winner)
             actions.resetForm()
             closeModal()
@@ -141,7 +146,7 @@ const HunchModal = ({ data, closeModal, handleHunch, golsHome, golsAway, idWinne
                     </>
                 }
 
-                <HunchButton onPress={formik.handleSubmit}>
+                <HunchButton onPress={formik.handleSubmit} disabled={hasOnButton} activeOpacity={0.8}>
                     <Text>Salvar</Text>
                 </HunchButton>
 

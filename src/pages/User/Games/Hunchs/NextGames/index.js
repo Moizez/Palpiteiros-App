@@ -14,7 +14,6 @@ const NextGames = ({ idChampionship, idJackpot }) => {
 
 	const loadConfrontations = async () => {
 		const response = await api.getAllConfrontationByChampionships(idChampionship)
-
 		setConfrontations(response.data)
 		setLoading(false)
 	}

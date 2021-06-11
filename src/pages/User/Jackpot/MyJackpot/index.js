@@ -52,7 +52,7 @@ const MyJackpot = () => {
                 }
                 ListEmptyComponent={
                     <EmptyList
-                        message='Nenhum bolão disponível!'
+                        message='Você ainda não participa de nenhum bolão!'
                         tip='Dica: Participe de um bolão ou crie o seu para vê-lo nesta lista.'
                     />
                 }

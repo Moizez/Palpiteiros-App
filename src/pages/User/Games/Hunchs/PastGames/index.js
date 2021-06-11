@@ -52,7 +52,7 @@ const PastGames = ({ idChampionship, idJackpot }) => {
 					/>
 				}
 				ListEmptyComponent={
-					<EmptyList message='Nenhum jogo disponível!' />
+					<EmptyList message='Não há jogos encerrados!' />
 				}
 			/>
 			{loading && <Loading lottie={require('../../../../../assets/lotties/soccer-field.json')}/>}
