@@ -7,13 +7,13 @@ export default {
         return response
     },
 
-    getAllConfrontationByChampionships: async (id) => {
+    getConfrontationByChampionships: async (id) => {
         const response = await api_fetch.get(`/confrontations/findManyByBeforeOfGameChampionshipContainsId/${id}`)
         return response
     },
 
 
-    getAllConfrontationClosed: async (id) => {
+    getConfrontationClosedByChampionships: async (id) => {
         const response = await api_fetch.get(`/confrontations/findManyByEnd`)
         return response
     },
