@@ -13,7 +13,7 @@ const Snackbar = (props) => {
             <Snack
                 hasColor={props.hasColor}
                 hasBottom={props.hasBottom}
-                style={{ elevation: 5 }}
+                style={{ elevation: 3 }}
             >
                 <Message>{props.message}</Message>
             </Snack>

@@ -109,7 +109,7 @@ export const ErrorText = styled.Text`
 export const Input = styled.TextInput`
     height: 100%;
     width: 100%;
-    font-size: 30px;
+    font-size: 28px;
     color: #FFF;
     text-align: center;
 `;

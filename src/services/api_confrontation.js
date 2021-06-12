@@ -7,14 +7,18 @@ export default {
         return response
     },
 
-    getConfrontationByChampionships: async (id) => {
+    getAllConfrontationsClosed: async () => {
+        const response = await api_fetch.get(`/confrontations/findManyByEnd`)
+        return response
+    },
+
+    getConfrontationsByChampionships: async (id) => {
         const response = await api_fetch.get(`/confrontations/findManyByBeforeOfGameChampionshipContainsId/${id}`)
         return response
     },
 
-
-    getConfrontationClosedByChampionships: async (id) => {
-        const response = await api_fetch.get(`/confrontations/findManyByEnd`)
+    getConfrontationsClosedByChampionships: async (id, limit) => {
+        const response = await api_fetch.get(`/confrontations/findManyByAfterOfGameChampionshipContainsIdAndLimit/${id}/${limit}`)
         return response
     },
 

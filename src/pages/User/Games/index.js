@@ -4,7 +4,7 @@ import styled from 'styled-components/native'
 import api from '../../../services/api_jackpots'
 
 import Header from '../../../components/Header'
-import MyJackpotList from '../../../components/MyJackpotList'
+import MySweepstakesList from '../../../components/MySweepstakesList'
 import EmptyList from '../../../components/EmptyList'
 import Loading from '../../../components/Loading'
 
@@ -42,7 +42,7 @@ const Games = ({ route }) => {
                 <FlatList
                     data={jackpots}
                     keyExtractor={(item) => item.id}
-                    renderItem={({ item }) => <MyJackpotList data={item} />}
+                    renderItem={({ item }) => <MySweepstakesList data={item} />}
                     showsVerticalScrollIndicator={false}
                     refreshControl={
                         <RefreshControl

@@ -42,7 +42,7 @@ const Regulation = () => {
                 renderItem={({ item }) => (
                     <Item>
                         <Card
-                            style={{ elevation: 5 }}
+                            style={{ elevation: 3 }}
                             onPress={openRegulationModal}
                             activeOpacity={0.8}
                         >

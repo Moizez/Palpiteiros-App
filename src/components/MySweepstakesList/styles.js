@@ -3,12 +3,12 @@ import LinearGradient from 'react-native-linear-gradient'
 
 export const Container = styled.TouchableOpacity`
     flex: 1;
-`;
+`
 
 export const Card = styled(LinearGradient)`
+    flex: 1;
     flex-direction: row;
     justify-content: space-around;
-    align-items: center;
     border-radius: 10px;
     padding: 10px;
     margin: 10px 0;
@@ -20,8 +20,8 @@ export const ImageBox = styled.View`
 `;
 
 export const Image = styled.Image`
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
 `;
 
 export const CardHeader = styled.View``;
@@ -50,6 +50,7 @@ export const UserBox = styled.View`
     flex-direction: row;
     align-items: flex-end;
 `;
+
 
 
 

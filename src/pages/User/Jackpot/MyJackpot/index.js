@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import api from '../../../../services/api_jackpots'
 
-import JackpotList from '../../../../components/JackpotList'
+import MyJackpotList from '../../../../components/MyJackpotList'
 import EmptyList from '../../../../components/EmptyList'
 import Loading from '../../../../components/Loading'
 import Snackbar from '../../../../components/Snackbar'
@@ -44,7 +44,7 @@ const MyJackpot = () => {
             <FlatList
                 data={jackpots}
                 keyExtractor={(item) => item.id}
-                renderItem={({ item }) => <JackpotList data={item} />}
+                renderItem={({ item }) => <MyJackpotList data={item} />}
                 showsVerticalScrollIndicator={false}
                 refreshControl={
                     <RefreshControl

@@ -123,7 +123,7 @@ const GameList = ({ data, idJackpot, isRefresh, hasDisabled }) => {
         <>
             <Container>
                 <Card
-                    style={{ elevation: 5 }}
+                    style={{ elevation: 3 }}
                     onPress={handleOpenHunchModal}
                     activeOpacity={0.8}
                     disabled={hasDisabled}

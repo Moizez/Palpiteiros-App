@@ -28,7 +28,7 @@ background-color: #FFF;
 export const CreateJackpot = styled.TouchableOpacity`
 flex: 0.4;
 background-color: #FFF;
-border-radius: 5px;
+border-radius: 10px;
 margin-top: 10px;
 width: 100%;
 `;
