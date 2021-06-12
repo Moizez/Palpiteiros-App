@@ -184,12 +184,6 @@ const GameList = ({ data, idJackpot, isRefresh, hasDisabled }) => {
                             }
                         </Score>
 
-                        {data.scoreBoard &&
-                            <>
-                                {getStatus()}
-                            </>
-                        }
-
                     </CardHunch>
 
                 </Card>
