@@ -1,15 +1,15 @@
-import styled from 'styled-components/native';
+import styled from 'styled-components/native'
+import LinearGradient from 'react-native-linear-gradient'
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity`
     flex: 1;
 `;
 
-export const Card = styled.TouchableOpacity`
+export const Card = styled(LinearGradient)`
 flex: 1;
 justify-content: space-between;
 width: 100%;
 border-radius: 8px;
-background-color: #ebebeb;
 padding: 10px;
 margin: 8px 0;
 `;

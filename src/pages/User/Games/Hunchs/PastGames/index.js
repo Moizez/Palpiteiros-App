@@ -4,7 +4,7 @@ import styled from 'styled-components/native'
 import api from '../../../../../services/api_confrontation'
 import EmptyList from '../../../../../components/EmptyList'
 import Loading from '../../../../../components/Loading'
-import GameList from '../../../../../components/GameList'
+import FinishedGamesList from '../../../../../components/FinishedGamesList'
 
 const PastGames = ({ idChampionship, idJackpot }) => {
 
@@ -13,7 +13,7 @@ const PastGames = ({ idChampionship, idJackpot }) => {
 	const [confrontations, setConfrontations] = useState([])
 
 	const loadConfrontationsClosed = async () => {
-		const response = await api.getConfrontationsClosedByChampionships(idChampionship, 10)
+		const response = await api.getConfrontationsClosedByChampionships(idChampionship, 5)
 		setConfrontations(response.data)
 		setLoading(false)
 	}
@@ -35,11 +35,10 @@ const PastGames = ({ idChampionship, idJackpot }) => {
 				data={confrontations}
 				keyExtractor={(item) => item.id}
 				renderItem={({ item }) =>
-					<GameList
+					<FinishedGamesList
 						isRefresh={refreshing}
 						data={item}
 						idJackpot={idJackpot}
-						hasDisabled
 					/>
 				}
 				showsVerticalScrollIndicator={false}

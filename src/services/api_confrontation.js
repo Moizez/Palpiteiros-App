@@ -12,8 +12,8 @@ export default {
         return response
     },
 
-    getConfrontationsByChampionships: async (id) => {
-        const response = await api_fetch.get(`/confrontations/findManyByBeforeOfGameChampionshipContainsId/${id}`)
+    getConfrontationsByChampionships: async (id, limit) => {
+        const response = await api_fetch.get(`/confrontations/findManyByBeforeOfGameChampionshipContainsId/${id}/${limit}`)
         return response
     },
 

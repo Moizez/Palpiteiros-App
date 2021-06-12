@@ -4,7 +4,7 @@ import styled from 'styled-components/native'
 import api from '../../../../../services/api_confrontation'
 import EmptyList from '../../../../../components/EmptyList'
 import Loading from '../../../../../components/Loading'
-import GameList from '../../../../../components/GameList'
+import NextGamesList from '../../../../../components/NextGamesList'
 
 const NextGames = ({ idChampionship, idJackpot }) => {
 
@@ -13,7 +13,7 @@ const NextGames = ({ idChampionship, idJackpot }) => {
 	const [confrontations, setConfrontations] = useState([])
 
 	const loadConfrontations = async () => {
-		const response = await api.getConfrontationsByChampionships(idChampionship)
+		const response = await api.getConfrontationsByChampionships(idChampionship, 5)
 		setConfrontations(response.data)
 		setLoading(false)
 	}
@@ -35,7 +35,7 @@ const NextGames = ({ idChampionship, idJackpot }) => {
 				data={confrontations}
 				keyExtractor={(item) => item.id}
 				renderItem={({ item }) =>
-					<GameList
+					<NextGamesList
 						isRefresh={refreshing}
 						data={item}
 						idJackpot={idJackpot}

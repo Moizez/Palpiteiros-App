@@ -15,7 +15,7 @@ import {
     ScoreText, Text, Label, Divider, Modal, Flag
 } from './styles'
 
-const GameList = ({ data, idJackpot, isRefresh, hasDisabled }) => {
+const NextGamesList = ({ data, idJackpot, isRefresh }) => {
 
     const [hunch, setHunch] = useState([])
     const [hunchModal, setHunchModal] = useState(false)
@@ -121,12 +121,13 @@ const GameList = ({ data, idJackpot, isRefresh, hasDisabled }) => {
 
     return (
         <>
-            <Container>
+            <Container
+                onPress={handleOpenHunchModal}
+                activeOpacity={0.9}
+            >
                 <Card
                     style={{ elevation: 3 }}
-                    onPress={handleOpenHunchModal}
-                    activeOpacity={0.8}
-                    disabled={hasDisabled}
+                    colors={['#ddd', '#f5f3f4']}
                 >
                     <CardHeader>
                         <InfoHeader>
@@ -220,4 +221,4 @@ const GameList = ({ data, idJackpot, isRefresh, hasDisabled }) => {
     );
 }
 
-export default GameList
+export default NextGamesList
