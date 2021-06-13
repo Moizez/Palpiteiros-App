@@ -34,7 +34,7 @@ const FinishedGamesList = ({ data, idJackpot, isRefresh }) => {
     const getStatus = () => {
         if (hunch?.resultHunch) {
             const isAccuracy = hunch?.resultHunch?.registerHunch?.accuracy
-            const isHit = hunch?.resultHunch?.registerHunch?.accuracy
+            const isHit = hunch?.resultHunch?.registerHunch?.hit
 
             if (isAccuracy) return '#43aa8b'
             else if (isHit) return '#48cae4'
