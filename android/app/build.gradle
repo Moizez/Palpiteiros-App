@@ -134,8 +134,8 @@ android {
         applicationId "com.palpiteiros"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 10
-        versionName "v2021.06.12"
+        versionCode 11
+        versionName "v2021.06.13"
     }
     signingConfigs {
         release {

@@ -47,6 +47,9 @@ const Container = styled.View`
 
 const Close = styled.TouchableOpacity`
     justify-content: center;
+    position: absolute;
+    top: 25px;
+    left: 15px;
 `;
 
 const Info = styled.View`
