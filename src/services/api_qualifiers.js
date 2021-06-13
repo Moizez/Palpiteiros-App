@@ -1,23 +1,24 @@
 import api_fetch from './api_fetch'
 
 export default {
-    getAllOctaves: async () => {
-        const response = await api_fetch.get('/eliminatories/findOctaves')
+
+    getAllOctaves: async (id) => {
+        const response = await api_fetch.get(`/eliminatories/findOctaves/${id}`)
         return response
     },
 
-    getAllQuarterfinals: async () => {
-        const response = await api_fetch.get('/eliminatories/findWednesdays')
+    getAllQuarterfinals: async (id) => {
+        const response = await api_fetch.get(`/eliminatories/findQuarterfinals/${id}`)
         return response
     },
 
-    getAllSemis: async () => {
-        const response = await api_fetch.get('/eliminatories/findSemi')
+    getAllSemis: async (id) => {
+        const response = await api_fetch.get(`/eliminatories/findSemi/${id}`)
         return response
     },
 
-    getAllFinals: async () => {
-        const response = await api_fetch.get('/eliminatories/findEnd')
+    getAllFinals: async (id) => {
+        const response = await api_fetch.get(`/eliminatories/findEnd/${id}`)
         return response
     },
 }

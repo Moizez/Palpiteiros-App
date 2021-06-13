@@ -86,8 +86,7 @@ const JackpotList = ({ data }) => {
                         <Title>{data.name}</Title>
                         <Label>Edição: {year}</Label>
                         <Label>Início: 11/06/21</Label>
-                        <Label>Nº de Seleções: 24</Label>
-                        <Label>Nº de Confrontos: {confrontations?.length}</Label>
+                        <Label>Nº de confrontos: {confrontations?.length}</Label>
                         <Label>Criado por: Palpiteiros</Label>
                     </CardHeader>
                     <UserBox>

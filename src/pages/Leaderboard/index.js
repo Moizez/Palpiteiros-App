@@ -39,25 +39,25 @@ const Leaderboard = ({ route }) => {
     }
 
     const loadRoundOf16 = async () => {
-        const response = await api_qualifiers.getAllOctaves()
+        const response = await api_qualifiers.getAllOctaves(id)
         setRoundOf16(response.data)
         setLoading(false)
     }
 
     const loadQuarterfinals = async () => {
-        const response = await api_qualifiers.getAllQuarterfinals()
+        const response = await api_qualifiers.getAllQuarterfinals(id)
         setQuarterfinals(response.data)
         setLoading(false)
     }
 
     const loadSemifinals = async () => {
-        const response = await api_qualifiers.getAllSemis()
+        const response = await api_qualifiers.getAllSemis(id)
         setSemifinals(response.data)
         setLoading(false)
     }
 
     const loadFinals = async () => {
-        const response = await api_qualifiers.getAllFinals()
+        const response = await api_qualifiers.getAllFinals(id)
         setFinals(response.data)
         setLoading(false)
     }

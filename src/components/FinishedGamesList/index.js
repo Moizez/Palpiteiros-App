@@ -7,19 +7,14 @@ import api from '../../services/api_hunchs'
 import { changeFlags } from '../../helpers/data'
 
 import {
-    Container, Card, CardHeader, InfoHeader,
-    CardHunch, Score, HunchInfo, HunchScoreBox,
-    Team, HunchScore, TeamName, Status, HunchText,
-    ScoreText, Text, Label, Divider, Flag
+    Container, Card, CardHeader, InfoHeader, CardHunch, Score,
+    HunchInfo, HunchScoreBox, Team, HunchScore, TeamName,
+    HunchText, ScoreText, Status, Label, Divider, Flag
 } from './styles'
 
 const FinishedGamesList = ({ data, idJackpot, isRefresh }) => {
 
     const [hunch, setHunch] = useState([])
-    const [status, setStatus] = useState({
-        text: '',
-        color: ''
-    })
 
     const getHunch = async () => {
         const response = await api.getOneByConfrontationAndJackpotAndUser(data.id, idJackpot)
@@ -28,7 +23,6 @@ const FinishedGamesList = ({ data, idJackpot, isRefresh }) => {
 
     useEffect(() => {
         getHunch()
-        getStatus()
     }, [isRefresh])
 
     const dateFormat = (date) => {
@@ -42,9 +36,12 @@ const FinishedGamesList = ({ data, idJackpot, isRefresh }) => {
             const isAccuracy = hunch?.resultHunch?.registerHunch?.accuracy
             const isHit = hunch?.resultHunch?.registerHunch?.accuracy
 
-            if (isAccuracy) return setStatus({ text: 'Placar Exato', color: '#43aa8b' })
-            else if (isHit) return setStatus({ text: 'Vencedor', color: '#219ebc' })
-            else return setStatus({ text: 'Errou', color: '#da1e37' })
+            if (isAccuracy) return '#43aa8b'
+            else if (isHit) return '#48cae4'
+            else return '#da1e37'
+
+        } else {
+            return null
         }
     }
 
@@ -71,6 +68,15 @@ const FinishedGamesList = ({ data, idJackpot, isRefresh }) => {
                     <Divider />
 
                     <CardHunch>
+
+                        {data.scoreBoard &&
+                            <Score>
+                                <ScoreText>{data?.teamHome?.initials} {data.scoreBoard?.golsHome}</ScoreText>
+                                <ScoreText> x </ScoreText>
+                                <ScoreText>{data.scoreBoard?.golsVisiting} {data?.teamVisiting?.initials}</ScoreText>
+                            </Score>
+                        }
+
                         <HunchInfo>
                             <Team>
                                 <Flag source={changeFlags(data?.teamHome?.initials)} />
@@ -101,24 +107,11 @@ const FinishedGamesList = ({ data, idJackpot, isRefresh }) => {
                                 <TeamName>{data?.teamVisiting?.initials}</TeamName>
                             </Team>
                         </HunchInfo>
-                        <Score>
-                            {data.scoreBoard &&
-                                <>
-                                    <ScoreText>{data.scoreBoard?.golsHome}</ScoreText>
-                                    <Icon name='alpha-x' size={25} color='#da1e37' />
-                                    <ScoreText>{data.scoreBoard?.golsVisiting}</ScoreText>
-                                </>
-                            }
-                        </Score>
 
-                        {data.scoreBoard && hunch?.resultHunch &&
-                            <Status style={{
-                                backgroundColor: status.color,
-                                borderRadius: 5,
-                            }}>
-                                <Text>{status.text}</Text>
-                            </Status>
-                        }
+                        <Status>
+                            <Icon name='soccer' size={18} color={getStatus()} />
+                        </Status>
+
 
                     </CardHunch>
 

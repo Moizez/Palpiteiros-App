@@ -33,7 +33,7 @@ const MySweepstakesList = ({ data }) => {
             >
                 <Card
                     style={{ elevation: 3 }}
-                    colors={['#59b2ee', '#7fc29b']}
+                    colors={['#52b788', '#95d5b2']}
                 >
                     <ImageBox>
                         <Image
@@ -48,8 +48,7 @@ const MySweepstakesList = ({ data }) => {
                         <Title>{jackpotName}</Title>
                         <Label>Edição: {year}</Label>
                         <Label>Início: 11/06/21</Label>
-                        <Label>Nº de Seleções: 24</Label>
-                        <Label>Nº de Confrontos: {confrontations?.length}</Label>
+                        <Label>Nº de confrontos: {confrontations?.length}</Label>
                         <Label>Criado por: Palpiteiros</Label>
                     </CardHeader>
                     <UserBox>

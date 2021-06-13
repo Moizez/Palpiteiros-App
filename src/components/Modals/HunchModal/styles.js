@@ -93,6 +93,7 @@ export const HunchButton = styled.TouchableOpacity`
     align-items: center;
     justify-content: center;
     margin: 10px 0;
+    flex-direction: row;
 `;
 
 export const ErrorBox = styled.View`

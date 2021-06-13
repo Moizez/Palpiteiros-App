@@ -147,7 +147,8 @@ const HunchModal = ({
                 }
 
                 <HunchButton onPress={formik.handleSubmit} disabled={hasOnButton} activeOpacity={0.8}>
-                    <Text>Salvar</Text>
+                    <Icon name='dice-multiple' color='#fff' size={25} />
+                    <Text style={{ marginLeft: 5 }}>Salvar</Text>
                 </HunchButton>
 
             </ModalBox>

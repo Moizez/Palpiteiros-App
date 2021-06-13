@@ -36,7 +36,7 @@ const Profile = () => {
 	const roleOfTree = () => {
 		const totalHunchs = hunchs?.length
 		const x = (ranking?.totalAccuracy * 100) / totalHunchs
-		if (x > 0) return x.toFixed(0)
+		if (x >= 0) return x.toFixed(0)
 	}
 	const percent = roleOfTree()
 

@@ -32,6 +32,7 @@ export const Score = styled.View`
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    margin-top: 5px;
 `;
 
 export const HunchInfo = styled.View`
@@ -50,6 +51,10 @@ export const HunchScore = styled.View`
     justify-content: center;
 `;
 
+export const Status = styled.View`
+    align-items: flex-end;
+`;
+
 export const HunchScoreBox = styled.View`
     flex-direction: row;
 `;
@@ -64,17 +69,11 @@ export const Flag = styled.Image`
     height: 35px;
 `;
 
-export const Status = styled.View`
-    margin: 0 30%;
-    margin-top: 5px;
-    align-items: center;
-    justify-content: center;
-`;
-
 export const ScoreText = styled.Text`
-    color: #da1e37;
-    margin: 5px 2px; 
-    font-size: 15px;
+    color: #000;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: italic;
 `;
 
 export const Image = styled.Image`
