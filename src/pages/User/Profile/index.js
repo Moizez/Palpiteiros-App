@@ -42,7 +42,7 @@ const Profile = () => {
 
 	const generateLevel = () => {
 		const hunchEq = (hunchs?.length > 0 ? hunchs?.length : 0) / 50
-		const ptsEq = (ranking?.totalPoints > 0 ? ranking?.totalPoints : 0) / 50
+		const ptsEq = (ranking?.totalPoints > 0 ? ranking?.totalPoints : 0) / 5
 		const hitEq = (ranking?.totalAccuracy > 0 && ranking?.totalAccuracy <= 50)
 			? ranking?.totalAccuracy
 			: ranking?.totalAccuracy > 0 ? ranking?.totalAccuracy / 10 : 0

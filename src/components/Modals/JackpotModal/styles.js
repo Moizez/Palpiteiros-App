@@ -1,18 +1,19 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
+export const Container = styled.ScrollView`
     flex: 1;
-    background-color: #022c6f;
+    height: 100%;
 `;
 
 export const CloseButton = styled.TouchableOpacity`
     width: 100%;
     align-items: flex-end;
-    padding: 10px;
+    padding: 20px 10px;
 `;
 
 export const ModalHeader = styled.View`
-    height: 50px;
+    height: 70px;
+    background-color: #022c6f;
 `;
 
 export const TopHeader = styled.View`
@@ -59,7 +60,12 @@ export const Info = styled.View`
 
 export const Description = styled.View`
     margin-top: 40px;
+    margin-bottom: 20px;
     align-items: center;
+`;
+
+export const ButtonBox = styled.View`
+    padding: 0 10px;
 `;
 
 export const TextButton = styled.Text`
