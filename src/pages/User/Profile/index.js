@@ -1,118 +1,156 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react'
+import { View, TouchableOpacity, StyleSheet } from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import ProgressCircle from 'react-native-progress-circle'
 
 import { AuthContext } from '../../../contexts/auth'
-import api_hunchs from '../../../services/api_hunchs'
-import api_ranking from '../../../services/api_ranking'
-import api_jackpots from '../../../services/api_jackpots'
+import api from '../../../services/api_profile'
 import avatar from '../../../assets/images/avatar.jpg'
 
 import {
-	Container, Header, Image, InfoBox, GroupItem, InfoItem,
-	Title, Line, ScoreBox, Label, Box, UserName, Text
+	Container, Header, Image, InfoBox, EditButton,
+	Divider, LvBox, Label, Box, UserName, Text,
+	AttributeBox, Attribute
+
 } from './styles'
 
 const Profile = () => {
 
-	const [hunchs, setHunchs] = useState([])
-	const [ranking, setRanking] = useState([])
-	const [jackpots, setJackpots] = useState([])
 	const { user } = useContext(AuthContext)
-
-	const getHunchs = async () => {
-		const data = await api_hunchs.getAllHunchsById(user.id)
-		setHunchs(data)
-	}
-
-	const getRanks = async () => {
-		const data = await api_ranking.getRankingByUser(user.id)
-		setRanking(data)
-	}
-
-	const getJackpots = async () => {
-		const data = await api_jackpots.getJackpotsByUserIdOfLength(user.id)
-		setJackpots(data)
-	}
-
-	const roleOfTree = () => {
-		const totalHunchs = hunchs?.length
-		const x = (ranking?.totalAccuracy * 100) / totalHunchs
-		if (x >= 0) return x.toFixed(0)
-	}
-	const percent = roleOfTree()
-
-	const generateLevel = () => {
-		const hunchEq = (hunchs?.length > 0 ? hunchs?.length : 0) / 50
-		const ptsEq = (ranking?.totalPoints > 0 ? ranking?.totalPoints : 0) / 5
-		const hitEq = (ranking?.totalAccuracy > 0 && ranking?.totalAccuracy <= 50)
-			? ranking?.totalAccuracy
-			: ranking?.totalAccuracy > 0 ? ranking?.totalAccuracy / 10 : 0
-		const jackpotEq = (jackpots > 0 ? jackpots : 0) / 10
-		const result = hunchEq + ptsEq + hitEq + jackpotEq
-		return Math.round(result)
-	}
-	const level = generateLevel()
+	const [profile, setProfile] = useState([])
 
 	useEffect(() => {
-		getHunchs()
-		getRanks()
-		getJackpots()
-		roleOfTree()
-		generateLevel()
+		const getProfile = async () => {
+			const response = await api.getProfileByID(user.id)
+			setProfile(response.data)
+		}
+		getProfile()
 	}, [])
+
+	const colors = ['#ddd', '#f5f3f4']
 
 	return (
 		<Container>
-			<Header>
-				<Image
-					source={avatar}
-					resizeMode='cover'
-				/>
-				<UserName>{user?.name}</UserName>
-			</Header>
 
-			<Box>
-				<ScoreBox>
-					<Title style={{ fontSize: 70, fontWeight: 'bold' }}>{level > 0 ? level : 0}</Title>
-					<Label style={{ color: '#022c6f' }}>Lv</Label>
-				</ScoreBox>
+			<Box style={{ elevation: 3 }}>
+				<Header>
+					<View style={{ alignItems: 'center' }}>
+						<Image
+							source={avatar}
+							resizeMode='cover'
+						/>
+					</View>
+					<EditButton>
+						<Icon name='account-edit' size={25} color='#022c6f' />
+					</EditButton>
+					<View style={{ alignItems: 'center', marginTop: 25 }}>
+						<UserName>{user?.name}</UserName>
+						<TouchableOpacity>
+							<Text>Aprendiz de palpiteiro</Text>
+						</TouchableOpacity>
+					</View>
+				</Header>
 
-				<Line />
+				<Divider />
 
 				<InfoBox>
-					<GroupItem>
-						<InfoItem>
-							<Text>{hunchs?.length > 0 ? hunchs?.length : 0}</Text>
-							<Label>palpite{hunchs?.length > 1 && 's'}</Label>
-						</InfoItem>
+					<LvBox>
 
-						<InfoItem>
-							<Text>{ranking?.totalPoints > 0 ? ranking?.totalPoints : 0}</Text>
-							<Label>ponto{ranking?.totalPoints > 1 && 's'}</Label>
-						</InfoItem>
+					</LvBox>
 
-					</GroupItem>
+					<AttributeBox>
+						<Attribute style={styles.attribute} colors={colors}>
 
-					<GroupItem>
-						<InfoItem>
-							<Text>{jackpots > 0 ? jackpots : 0}</Text>
-							<Label>{jackpots > 1 ? 'bolões' : 'bolão'}</Label>
-						</InfoItem>
+						</Attribute>
 
-						<InfoItem>
-							<Text>{percent > 0 ? percent : 0}%</Text>
-							<Label>PRECISÃO</Label>
-						</InfoItem>
+						<Attribute style={styles.attribute} colors={colors}>
 
-						<InfoItem>
-							<Text>{ranking?.totalAccuracy > 0 ? ranking?.totalAccuracy : 0}</Text>
-							<Label>acerto{ranking?.totalAccuracy > 1 && 's'}</Label>
-						</InfoItem>
-					</GroupItem>
+						</Attribute>
+
+						<Attribute style={styles.attribute} colors={colors}>
+
+						</Attribute>
+
+						<Attribute style={styles.attribute} colors={colors}>
+
+						</Attribute>
+
+						<Attribute style={styles.attribute} colors={colors}>
+
+						</Attribute>
+
+						<Attribute style={styles.attribute} colors={colors}>
+
+						</Attribute>
+
+					</AttributeBox>
 				</InfoBox>
-
 			</Box>
 		</Container>
 	)
 }
 
+const styles = StyleSheet.create({
+	attribute: {
+		elevation: 3
+	}
+})
+
+
 export default Profile
+
+/*
+
+	{profile?.rankings?.map(rank =>
+					<InfoBox key={rank.id}>
+						<GroupItem>
+							<InfoItem>
+								<Text>{profile.hunches?.length}</Text>
+								<Label>palpite{profile.hunches?.length > 1 && 's'}</Label>
+							</InfoItem>
+
+							<InfoItem>
+								<Text>{rank?.totalPoints}</Text>
+								<Label>ponto{rank?.totalPoints > 1 && 's'}</Label>
+							</InfoItem>
+
+							<InfoItem>
+								<Text>{rank?.totalHits}</Text>
+								<Label>VITORIOSO</Label>
+							</InfoItem>
+
+						</GroupItem>
+
+						<GroupItem>
+							<InfoItem>
+								<Text>{profile.totalJackpots}</Text>
+								<Label>{profile.totalJackpots > 1 ? 'bolões' : 'bolão'}</Label>
+							</InfoItem>
+
+							<InfoItem>
+								<Text>{profile.percent}%</Text>
+								<Label>PRECISÃO</Label>
+							</InfoItem>
+
+							<InfoItem>
+								<Text>{rank?.totalAccuracy}</Text>
+								<Label>acerto{rank?.totalAccuracy > 1 && 's'}</Label>
+							</InfoItem>
+						</GroupItem>
+					</InfoBox>
+				)}
+
+
+<ProgressCircle
+					percent={30}
+					radius={50}
+					borderWidth={8}
+					color="#3399FF"
+					shadowColor="#999"
+					bgColor="#fff"
+				>
+					<Text style={{ fontSize: 18 }}>{'30%'}</Text>
+				</ProgressCircle>
+
+
+*/

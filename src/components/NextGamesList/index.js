@@ -37,11 +37,17 @@ const NextGamesList = ({ data, idJackpot, isRefresh }) => {
 
         if (hunch) {
             const response = await api.updateHunchs(hunch.id, idJackpot, idConfrontation, homeGoals, awayGoals, winner)
+            console.log(response)
             if (response.data) {
                 getHunch()
                 setSnackColor('#43aa8b')
                 setSnackTime(1500)
                 setMessage('Palpite atualizado com sucesso!')
+                handleShowSnack()
+            } else if (response.status === 400) {
+                setSnackColor('#ad2e24')
+                setSnackTime(5000)
+                setMessage(response.message)
                 handleShowSnack()
             } else {
                 setSnackColor('#ad2e24')
@@ -58,8 +64,14 @@ const NextGamesList = ({ data, idJackpot, isRefresh }) => {
             setSnackColor('#43aa8b')
             setMessage('Palpite criado com sucesso!')
             handleShowSnack()
+        } else if (response.status === 400) {
+            setSnackColor('#ad2e24')
+            setSnackTime(5000)
+            setMessage(response.message)
+            handleShowSnack()
         } else {
             setSnackColor('#ad2e24')
+            setSnackTime(5000)
             setMessage(`Falha inesperada! Erro: ${response.status}`)
             handleShowSnack()
         }

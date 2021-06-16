@@ -16,8 +16,6 @@ const FinishedGamesList = ({ data, idJackpot, isRefresh }) => {
 
     const [hunch, setHunch] = useState([])
     
-    console.log(hunch)
-
     const getHunch = async () => {
         const response = await api.getOneByConfrontationAndJackpotAndUser(data.id, idJackpot)
         setHunch(response.data)
@@ -38,8 +36,8 @@ const FinishedGamesList = ({ data, idJackpot, isRefresh }) => {
             const isAccuracy = hunch?.resultHunch?.registerHunch?.accuracy
             const isHit = hunch?.resultHunch?.registerHunch?.hit
 
-            if (isAccuracy) return '#00b4d8'
-            if (isHit) return '#38b000'
+            if (isAccuracy) return '#38b000'
+            if (isHit) return '#00b4d8'
             else return '#da1e37'
 
         } else {

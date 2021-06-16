@@ -29,6 +29,14 @@ export default {
                     status: response.status
                 }
             }
+        } else if (response.status === 400) {
+            const json = await response.json()
+            if (json)
+                return {
+                    data: null,
+                    status: response.status,
+                    message: json.message
+                }
         } else {
             return {
                 data: null,
@@ -86,6 +94,14 @@ export default {
                     status: response.status
                 }
             }
+        } else if (response.status === 400) {
+            const json = await response.json()
+            if (json)
+                return {
+                    data: null,
+                    status: response.status,
+                    message: json.message
+                }
         } else {
             return {
                 data: null,

@@ -1,20 +1,50 @@
-import styled from 'styled-components/native';
+import styled from 'styled-components/native'
+import LinearGradient from 'react-native-linear-gradient'
 
 export const Container = styled.View`
 flex:1;
 background-color: #022c6f;
+padding: 20px 25px;
+`;
+
+export const Box = styled.View`
+flex: 1;
+margin-top: 50px;
+background-color: #FFF;
+border-radius: 10px;
+padding: 5px 10px;
+`;
+
+export const HeaderBox = styled.View`
+`;
+
+export const EditButton = styled.TouchableOpacity`
+    align-items: flex-end;
+    margin-top: -60px;
 `;
 
 export const Header = styled.View`
-flex: 1;
-width: 100%;
-align-items: center;
+margin-top: -50px;
 justify-content: center;
+`;
+
+export const InfoBox = styled.View`
+flex: 1;
 `;
 
 export const UserName = styled.Text`
 font-size: 22px;
-color: #FFF;
+font-weight: bold;
+color: #022c6f;
+`;
+
+export const Text = styled.Text`
+font-size: 12px;
+color: #022c6f;
+border-width: 1px;
+border-radius: 5px;
+padding: 0 5px;
+margin: 5px 0 10px 0;
 `;
 
 export const Image = styled.Image`
@@ -26,64 +56,27 @@ border-color: #FFF;
 margin-bottom: 20px;
 `;
 
-export const GroupItem = styled.View`
-flex: 1;
-flex-direction: row;
-align-items: center;
-`;
-
-
-
-export const Box = styled.View`
-flex: 2;
-background-color: #fff;
-border-top-left-radius: 20px;
-border-top-right-radius: 20px;
-padding: 0 10px;
-`;
-
-export const InfoBox = styled.View`
-flex: 1;
-`;
-
-export const InfoItem = styled.View(() => ({
-    flex: 1,
-    height: 100,
-    backgroundColor: '#ddd',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 5,
-    marginRight: 5,
-    marginLeft: 5,
-}));
-
-export const Line = styled.View`
+export const Divider = styled.View`
 width: 100%;
-height: 1px;
+height: 0.5px;
+margin: 10px 0;
 background-color: #022c6f;
 `;
+export const LvBox = styled.View`
+    flex: 0.5;
+`;
 
-export const ScoreBox = styled.View`
-height: 140px;
+export const AttributeBox = styled.View`
+flex: 1;
 flex-direction: row;
-align-items: center;
-justify-content: center;
 `;
 
-export const Title = styled.Text`
-font-size: 22px;
-color: #022c6f;
+export const Attribute = styled(LinearGradient)`
+flex: 1;
+height: 80px;
+width: 80px;
+border-radius: 10px;
+margin: 5px;
 `;
 
-export const Text = styled.Text`
-font-size: 25px;
-font-weight: bold;
-color: #022c6f;
-`;
-
-export const Label = styled.Text`
-font-size: 15px;
-color: #022c6f;
-text-transform: uppercase;
-`;
 

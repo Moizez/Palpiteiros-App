@@ -36,7 +36,7 @@ width: 100%;
 export const BoxLabel = styled.View`
 padding: 5px 10px;
 align-items: center;
-background-color: #022c6f;
+background-color: #2a628f;
 border-radius: 10px;
 margin-top: 15px;
 `;
@@ -44,7 +44,7 @@ margin-top: 15px;
 export const CircleButton = styled.View`
 width: 40px;
 height: 40px;
-background-color: #022c6f;
+background-color: #2a628f;
 border-width: 2px;
 border-radius: 20px;
 border-color: #FFF;
