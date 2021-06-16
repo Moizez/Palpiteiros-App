@@ -13,6 +13,7 @@ import Leaderboard from '../pages/Leaderboard'
 import Hunchs from '../pages/User/Games/Hunchs'
 import OtherProfiles from '../pages/User/Profile/OtherProfiles'
 import Regulation from '../pages/User/Setting/Regulation'
+import EditProfile from '../pages/User/Profile/EditProfile'
 
 const Stack = createStackNavigator()
 
@@ -28,6 +29,7 @@ const AppRoutes = () => {
             <Stack.Screen name='Hunchs' component={Hunchs} />
             <Stack.Screen name='OtherProfiles' component={OtherProfiles} />
             <Stack.Screen name='Regulation' component={Regulation} />
+            <Stack.Screen name='EditProfile' component={EditProfile} />
         </Stack.Navigator>
     )
 

@@ -11,7 +11,7 @@ export const Box = styled.View`
 flex: 1;
 margin-top: 50px;
 background-color: #FFF;
-border-radius: 10px;
+border-radius: 5px;
 padding: 5px 10px;
 `;
 
@@ -43,6 +43,7 @@ font-size: 12px;
 color: #022c6f;
 border-width: 1px;
 border-radius: 5px;
+border-color: #022c6f;
 padding: 0 5px;
 margin: 5px 0 10px 0;
 `;
@@ -63,20 +64,54 @@ margin: 10px 0;
 background-color: #022c6f;
 `;
 export const LvBox = styled.View`
-    flex: 0.5;
+    height: 150px;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+`;
+
+export const LvInfo = styled.View`
+    flex-direction: row;
+`;
+
+export const Lv = styled.Text`
+    font-size: ${(props) => props.size >= 100 ? 50 : 70}px;
+    font-weight: bold;
+    text-transform: uppercase;
+`;
+
+export const Label = styled.Text`
+    font-size: 10px;
+    margin-bottom: 5px;
 `;
 
 export const AttributeBox = styled.View`
 flex: 1;
 flex-direction: row;
+flex-wrap: wrap;
+align-items: center;
+justify-content: center;
+margin-top: 20px;
 `;
 
 export const Attribute = styled(LinearGradient)`
-flex: 1;
-height: 80px;
-width: 80px;
-border-radius: 10px;
-margin: 5px;
+    height: 80px;
+    width: 80px;
+    border-radius: 10px;
+    margin: 5px;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
 `;
 
+export const AttributeText = styled.Text`
+    font-weight: bold;
+    font-size: 22px;
+`;
+
+export const AttributeLabel = styled.Text`
+    text-transform: uppercase;
+    font-size: 11px;
+    text-align: center;
+`;
 

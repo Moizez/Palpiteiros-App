@@ -37,7 +37,6 @@ const NextGamesList = ({ data, idJackpot, isRefresh }) => {
 
         if (hunch) {
             const response = await api.updateHunchs(hunch.id, idJackpot, idConfrontation, homeGoals, awayGoals, winner)
-            console.log(response)
             if (response.data) {
                 getHunch()
                 setSnackColor('#43aa8b')

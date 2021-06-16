@@ -17,9 +17,6 @@ const SignUp = () => {
 
 	const validationSchema = yup.object().shape({
 		name: yup.string().required('O nome é obrigatório!'),
-		/*cpf: yup.string()
-			.required('O CPF é obrigatório!')
-			.test('cpf', 'CPF inválido!', async value => await validate.cpf(value)),*/
 		phone: yup.string().required('O telefone é obrigatório!'),
 		email: yup.string().email('Digite um e-mail válido!').required('O e-mail é obrigatório!'),
 		password: yup.string().required('A senha é obrigatória!'),
@@ -27,7 +24,6 @@ const SignUp = () => {
 
 	const initialFormState = {
 		name: '',
-		cpf: '',
 		phone: '',
 		email: '',
 		password: ''
@@ -58,22 +54,6 @@ const SignUp = () => {
 				<ErrorBox>
 					{formik.touched.name && formik.errors.name &&
 						<ErrorText>{formik.errors.name}</ErrorText>
-					}
-				</ErrorBox>
-			</InputContainer>
-
-			<InputContainer>
-				<Input
-					label='CPF'
-					keyboardType='phone-pad'
-					value={formik.values.cpf}
-					onChangeText={async (text) => formik.setFieldValue('cpf', await validate.cpfMask(text))}
-					onBlur={formik.handleBlur('cpf')}
-					error={formik.touched.cpf && formik.errors.cpf}
-				/>
-				<ErrorBox>
-					{formik.touched.cpf && formik.errors.cpf &&
-						<ErrorText>{formik.errors.cpf}</ErrorText>
 					}
 				</ErrorBox>
 			</InputContainer>

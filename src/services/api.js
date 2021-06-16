@@ -12,7 +12,6 @@ export default {
     onSignUp: async (values) => {
         const data = {
             name: values.name,
-            cpf: values.cpf,
             phone: values.phone,
             email: values.email,
             password: values.password
@@ -39,6 +38,27 @@ export default {
         const user = await JSON.parse(await AsyncStorage.getItem('@palpiteiros:user')) || []
         const response = await api_fetch.get(`/jackpots/isByUserContainsIdAndJackpotContainsId/${user.id}/${jackpotId}`)
         return response
+    },
+
+    onGetUserById: async () => {
+        const user = await JSON.parse(await AsyncStorage.getItem('@palpiteiros:user')) || []
+        const response = await api_fetch.get(`/users/${user.id}`)
+        return response
+    },
+
+    onUpdateUser: async (values) => {
+        const user = await JSON.parse(await AsyncStorage.getItem('@palpiteiros:user')) || []
+
+        console.log(values)
+
+        const data = {
+            name: values.name,
+            phone: values.phone,
+            email: values.email,
+            password: values.password
+        }
+        const request = await api_fetch.put(`/users/${user.id}`, data)
+        return request
     },
 
 }

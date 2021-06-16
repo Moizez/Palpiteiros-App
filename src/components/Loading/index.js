@@ -19,7 +19,7 @@ const Loading = ({lottie}) => {
 export default Loading
 
 const Container = styled.View`
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.7);
     position: absolute;
     align-items: center;
     justify-content: center;

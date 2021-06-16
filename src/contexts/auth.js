@@ -14,6 +14,16 @@ const AuthProvider = ({ children }) => {
     const [showSnack, setShowSnack] = useState(false)
     const [message, setMessage] = useState('')
     const [user, setUser] = useState(null)
+    const [userProfile, setUserProfile] = useState([])
+
+    const loadUser = async () => {
+        const response = await api.onGetUserById()
+        setUserProfile(response.data)
+    }
+
+    useEffect(() => {
+        loadUser()
+    }, [])
 
     useEffect(() => {
         const loadStorage = async () => {
@@ -105,7 +115,9 @@ const AuthProvider = ({ children }) => {
             <AuthContext.Provider value={{
                 signed: !!user, user,
                 loading, loadingAuth,
-                handleSignIn, handleSignUp, logOut
+                userProfile,
+                handleSignIn, handleSignUp,
+                logOut, loadUser
             }}>
                 {children}
             </AuthContext.Provider>
