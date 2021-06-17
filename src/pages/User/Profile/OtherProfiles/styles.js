@@ -115,3 +115,5 @@ export const AttributeLabel = styled.Text`
     text-align: center;
 `;
 
+export const Modal = styled.Modal``;
+

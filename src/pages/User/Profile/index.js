@@ -24,7 +24,7 @@ const Profile = () => {
 	const [profile, setProfile] = useState([])
 	const navigation = useNavigation()
 	const [loading, setLoading] = useState(true)
-	const [hierarchyModal, setHierarchyModal] = useState(true)
+	const [hierarchyModal, setHierarchyModal] = useState(false)
 
 	useEffect(() => {
 		const getProfile = async () => {
@@ -59,7 +59,7 @@ const Profile = () => {
 						<View style={{ alignItems: 'center', marginTop: 25 }}>
 							<UserName>{userProfile?.name}</UserName>
 							<TouchableOpacity onPress={openHierarchyModal}>
-								<Text>Aprendiz de palpiteiro</Text>
+								<Text>Palpiteiro de várzea</Text>
 							</TouchableOpacity>
 						</View>
 					</Header>

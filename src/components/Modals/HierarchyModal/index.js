@@ -61,7 +61,7 @@ const CloseButton = styled.TouchableOpacity``;
 
 const ModalInfo = styled.View`
     flex-direction: row;
-    padding: 10px;
+    padding: 10px 8px;
     align-items: center;
 `;
 
