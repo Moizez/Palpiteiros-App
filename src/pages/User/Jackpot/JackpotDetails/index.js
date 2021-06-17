@@ -51,7 +51,7 @@ const JackpotDetails = ({ route }) => {
                     <DataTable.Title numeric><Text></Text></DataTable.Title>
                     <DataTable.Title numeric><Text>Pt</Text></DataTable.Title>
                     <DataTable.Title numeric><Text>Ex</Text></DataTable.Title>
-                    <DataTable.Title numeric><Text>Vt</Text></DataTable.Title>
+                    <DataTable.Title numeric><Text>VE</Text></DataTable.Title>
                 </DataTable.Header>
             </DataTable>
 

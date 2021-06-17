@@ -52,7 +52,9 @@ export const HunchScore = styled.View`
 `;
 
 export const Status = styled.View`
-    align-items: flex-end;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
 `;
 
 export const HunchScoreBox = styled.View`
@@ -94,7 +96,10 @@ margin-left: 2px;
 `;
 
 export const Text = styled.Text`
-    color: #FFF;
+    color: #000;
+    font-style: italic;
+    font-size: 12px;
+    margin-right: 2px;
 `;
 
 export const HunchText = styled.Text`

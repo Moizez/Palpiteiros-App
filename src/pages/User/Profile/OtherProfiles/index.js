@@ -36,6 +36,8 @@ const OtherProfiles = ({ route }) => {
 
 	const colors = ['#ddd', '#f5f3f4']
 	const percent = profile?.entryLevel?.level?.percent
+		? profile?.entryLevel?.level?.percent
+		: true
 
 	const openHierarchyModal = () => setHierarchyModal(true)
 	const closeHierarchyModal = () => setHierarchyModal(false)
@@ -58,7 +60,7 @@ const OtherProfiles = ({ route }) => {
 						<View style={{ alignItems: 'center', marginTop: 25 }}>
 							<UserName>{name}</UserName>
 							<TouchableOpacity onPress={openHierarchyModal}>
-								<Text>Palpiteiro de várzea</Text>
+								<Text>{profile?.entryLevel?.nameLV}</Text>
 							</TouchableOpacity>
 						</View>
 					</Header>

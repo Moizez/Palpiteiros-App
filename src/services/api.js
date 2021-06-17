@@ -49,8 +49,6 @@ export default {
     onUpdateUser: async (values) => {
         const user = await JSON.parse(await AsyncStorage.getItem('@palpiteiros:user')) || []
 
-        console.log(values)
-
         const data = {
             name: values.name,
             phone: values.phone,

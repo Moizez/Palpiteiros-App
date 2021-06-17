@@ -59,7 +59,7 @@ const Profile = () => {
 						<View style={{ alignItems: 'center', marginTop: 25 }}>
 							<UserName>{userProfile?.name}</UserName>
 							<TouchableOpacity onPress={openHierarchyModal}>
-								<Text>Palpiteiro de várzea</Text>
+								<Text>{profile?.entryLevel?.nameLV}</Text>
 							</TouchableOpacity>
 						</View>
 					</Header>

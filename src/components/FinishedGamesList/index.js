@@ -9,13 +9,13 @@ import { changeFlags } from '../../helpers/data'
 import {
     Container, Card, CardHeader, InfoHeader, CardHunch, Score,
     HunchInfo, HunchScoreBox, Team, HunchScore, TeamName,
-    HunchText, ScoreText, Status, Label, Divider, Flag
+    HunchText, ScoreText, Status, Label, Divider, Flag, Text
 } from './styles'
 
 const FinishedGamesList = ({ data, idJackpot, isRefresh }) => {
 
     const [hunch, setHunch] = useState([])
-    
+
     const getHunch = async () => {
         const response = await api.getOneByConfrontationAndJackpotAndUser(data.id, idJackpot)
         setHunch(response.data)
@@ -109,6 +109,14 @@ const FinishedGamesList = ({ data, idJackpot, isRefresh }) => {
                         </HunchInfo>
 
                         <Status>
+                            <Text>
+                                {getStatus() === '#38b000'
+                                    ? '+3'
+                                    : getStatus() === '#00b4d8'
+                                        ? '+1'
+                                        : null
+                                }
+                            </Text>
                             <Icon name='soccer' size={18} color={getStatus()} />
                         </Status>
 

@@ -224,7 +224,7 @@ export const classes = [
     },
     {
         id: uuid.v4(),
-        title: 'O Baixinho ta na área',
+        title: 'O baixinho ta na área',
         iconName:  'star',
         iconColor: '#022c6f',
         info: 'Level 41 ao 50',
