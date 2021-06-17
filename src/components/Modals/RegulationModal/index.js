@@ -50,6 +50,7 @@ const ButtonBox = styled.View`
     align-items: center;
     justify-content: center;
     padding: 0 10px;
+    margin-bottom: 25px;
 `;
 
 const Text = styled.Text`

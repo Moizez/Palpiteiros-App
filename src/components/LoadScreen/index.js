@@ -16,7 +16,7 @@ export default function LoadScreen({ loadMessage }) {
 }
 
 const styles = StyleSheet.create({
-    container: { width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center', position: 'absolute' },
+    container: {backgroundColor: '#FFF', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center', position: 'absolute' },
     image: { height: 225, width: 225, marginBottom: 20 },
     text: {
         fontSize: 12,

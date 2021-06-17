@@ -8,12 +8,13 @@ import { AuthContext } from '../../../contexts/auth'
 import api from '../../../services/api_profile'
 import avatar from '../../../assets/images/avatar.jpg'
 import Loading from '../../../components/Loading'
+import HierarchyModal from '../../../components/Modals/HierarchyModal'
 
 import {
 	Container, Header, Image, InfoBox, EditButton,
 	Divider, LvBox, Label, Box, UserName, Text,
 	AttributeBox, Attribute, LvInfo, Lv, AttributeText,
-	AttributeLabel
+	AttributeLabel, Modal
 
 } from './styles'
 
@@ -23,6 +24,7 @@ const Profile = () => {
 	const [profile, setProfile] = useState([])
 	const navigation = useNavigation()
 	const [loading, setLoading] = useState(true)
+	const [hierarchyModal, setHierarchyModal] = useState(true)
 
 	useEffect(() => {
 		const getProfile = async () => {
@@ -35,6 +37,9 @@ const Profile = () => {
 
 	const colors = ['#ddd', '#f5f3f4']
 	const percent = profile?.entryLevel?.level?.percent
+
+	const openHierarchyModal = () => setHierarchyModal(true)
+	const closeHierarchyModal = () => setHierarchyModal(false)
 
 	return (
 		<>
@@ -53,7 +58,7 @@ const Profile = () => {
 						</EditButton>
 						<View style={{ alignItems: 'center', marginTop: 25 }}>
 							<UserName>{userProfile?.name}</UserName>
-							<TouchableOpacity>
+							<TouchableOpacity onPress={openHierarchyModal}>
 								<Text>Aprendiz de palpiteiro</Text>
 							</TouchableOpacity>
 						</View>
@@ -144,6 +149,17 @@ const Profile = () => {
 						)}
 					</InfoBox>
 				</Box>
+				<Modal
+					visible={hierarchyModal}
+					animationType='slide'
+					transparent={true}
+					onRequestClose={closeHierarchyModal}
+				>
+					<HierarchyModal
+						bgColor
+						closeModal={closeHierarchyModal}
+					/>
+				</Modal>
 			</Container>
 			{loading && <Loading lottie={require('../../../assets/lotties/soccer-field.json')} />}
 		</>

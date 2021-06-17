@@ -94,7 +94,7 @@ const Setting = () => {
 
             <View style={styles.versionContainer}>
                 <Text>Palpiteiros</Text>
-                <Text style={{ color: '#adb5bd', marginBottom: 12 }}>Beta v2021.06.12</Text>
+                <Text style={{ color: '#adb5bd', marginBottom: 25 }}>v2021.06.17</Text>
             </View>
         </Container >
     )

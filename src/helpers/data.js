@@ -1,5 +1,6 @@
 import uuid from 'react-native-uuid'
 
+
 export const championships = [
     {
         key: String(Math.random()),
@@ -184,4 +185,70 @@ export const changeFlags = (flag) => {
     else if (flag === 'TUR') return require(`${url}/TUR.png`)
     else return require(`${url}/UCR.png`)
 }
+
+export const classes = [
+    {
+        id: uuid.v4(),
+        title: 'Palpiteiro de várzea',
+        iconName:  'star',
+        iconColor: '#022c6f',
+        info: 'Level 1 ao 5',
+    },
+    {
+        id: uuid.v4(),
+        title: 'Palpiteiro raiz',
+        iconName:  'star',
+        iconColor: '#022c6f',
+        info: 'Level 6 ao 10',
+    },
+    {
+        id: uuid.v4(),
+        title: 'Mestre palpiteiro',
+        iconName:  'star',
+        iconColor: '#022c6f',
+        info: 'Level 11 ao 20',
+    },
+    {
+        id: uuid.v4(),
+        title: 'Palpiteiro animal',
+        iconName:  'star',
+        iconColor: '#022c6f',
+        info: 'Level 21 ao 30',
+    },
+    {
+        id: uuid.v4(),
+        title: 'Um fenômeno!',
+        iconName:  'star',
+        iconColor: '#022c6f',
+        info: 'Level 31 ao 40',
+    },
+    {
+        id: uuid.v4(),
+        title: 'O Baixinho ta na área',
+        iconName:  'star',
+        iconColor: '#022c6f',
+        info: 'Level 41 ao 50',
+    },
+    {
+        id: uuid.v4(),
+        title: 'A canhotinha do Messi',
+        iconName:  'star',
+        iconColor: '#022c6f',
+        info: 'Level 51 ao 70',
+    },
+    {
+        id: uuid.v4(),
+        title: 'La mano de dios',
+        iconName:  'star',
+        iconColor: '#022c6f',
+        info: 'Level 71 ao 100',
+    },
+    {
+        id: uuid.v4(),
+        title: 'Rei Pelé dos palpites',
+        iconName:  'star',
+        iconColor: '#022c6f',
+        info: 'Level 101 ao 150',
+    },
+]
 

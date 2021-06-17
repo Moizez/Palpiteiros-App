@@ -20,9 +20,23 @@ const JackpotRankingList = ({ data, index }) => {
                     <DataTable.Cell style={{ flex: 3 }}>{data.user?.name}</DataTable.Cell>
                     <DataTable.Cell numeric>
                         <Icon
-                            name={index === 0 ? 'trophy' : index === 1 ? 'trophy-award' : null}
-                            size={20}
-                            color={index === 0 ? '#43aa8b': index === 1 ? '#1d4e89' : null}
+                            name={index === 0
+                                ? 'trophy'
+                                : index === 1
+                                    ? 'trophy-award'
+                                    : index === 2
+                                        ? 'medal'
+                                        : null
+                            }
+                            size={index === 2 ? 16 : 20}
+                            color={index === 0
+                                ? '#f4a261'
+                                : index === 1
+                                    ? '#43aa8b'
+                                    : index === 2
+                                        ? '#1d4e89'
+                                        : null
+                            }
                         />
                     </DataTable.Cell>
                     <DataTable.Cell numeric>{data?.totalPoints}</DataTable.Cell>

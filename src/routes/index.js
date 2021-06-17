@@ -14,7 +14,7 @@ const Routes = () => {
     }, 2500)
 
     if (time) {
-        return <LoadScreen loadMessage={'Prove que vocẽ realmente\n entende de futebol!'}/>
+        return <LoadScreen loadMessage={'Prove que você realmente\n entende de futebol!'}/>
     }
 
     return (
