@@ -95,7 +95,7 @@ const EditProfile = () => {
 
                 <Divider />
 
-                <InfoBox>
+                <InfoBox showsVerticalScrollIndicator={false}>
 
                     <InputContainer>
                         <Input
