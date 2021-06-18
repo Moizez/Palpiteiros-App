@@ -9,16 +9,6 @@ import { changeFlags } from '../../../helpers/data'
 
 const Finals = ({ dataSemi, dataFinals, loading }) => {
 
-    const [champion, setChampion] = useState(null)
-
-    const getChampion = (homeGoals, awayGoals, home, away) => {
-        if (homeGoals > awayGoals) {
-            setChampion(home)
-        } else {
-            setChampion(away)
-        }
-    }
-
     return (
         <>
             {dataSemi ?

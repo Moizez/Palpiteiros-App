@@ -28,7 +28,7 @@ margin-top: -50px;
 justify-content: center;
 `;
 
-export const InfoBox = styled.View`
+export const InfoBox = styled.ScrollView`
 flex: 1;
 `;
 

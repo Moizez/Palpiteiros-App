@@ -22,10 +22,6 @@ const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        loadUser()
-    }, [])
-
-    useEffect(() => {
         const loadStorage = async () => {
             const storageUser = await AsyncStorage.getItem('@palpiteiros:user')
             if (storageUser) {
@@ -35,6 +31,7 @@ const AuthProvider = ({ children }) => {
             setLoading(false)
         }
         loadStorage()
+        loadUser()
     }, [])
 
 

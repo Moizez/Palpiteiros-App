@@ -66,7 +66,7 @@ const Profile = () => {
 
 					<Divider />
 
-					<InfoBox>
+					<InfoBox showsVerticalScrollIndicator={false}>
 						<LvBox>
 							<LvInfo>
 								{percent >= 0 ?
