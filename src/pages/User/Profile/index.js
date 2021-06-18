@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import ProgressCircle from 'react-native-progress-circle'
 
 import { AuthContext } from '../../../contexts/auth'
-import api from '../../../services/api_profile'
+import api_profile from '../../../services/api_profile'
 import avatar from '../../../assets/images/avatar.jpg'
 import Loading from '../../../components/Loading'
 import HierarchyModal from '../../../components/Modals/HierarchyModal'
@@ -18,22 +18,23 @@ import {
 
 } from './styles'
 
-const Profile = () => {
+const Profile = ({ route }) => {
 
-	const { userProfile } = useContext(AuthContext)
+	const { user } = useContext(AuthContext)
 	const [profile, setProfile] = useState([])
 	const navigation = useNavigation()
 	const [loading, setLoading] = useState(true)
 	const [hierarchyModal, setHierarchyModal] = useState(false)
 
+	const getProfile = async () => {
+		const response = await api_profile.getProfileByID(user?.id)
+		setProfile(response.data)
+		setLoading(false)
+	}
+
 	useEffect(() => {
-		const getProfile = async () => {
-			const response = await api.getProfileByID(userProfile?.id)
-			setProfile(response.data)
-			setLoading(false)
-		}
 		getProfile()
-	}, [])
+	}, [route?.params])
 
 	const colors = ['#ddd', '#f5f3f4']
 	const percent = profile?.entryLevel?.level?.percent
@@ -53,11 +54,12 @@ const Profile = () => {
 								resizeMode='cover'
 							/>
 						</View>
-						<EditButton onPress={() => navigation.navigate('EditProfile')}>
+						<EditButton onPress={() => navigation.navigate('EditProfile', { data: profile.user })}
+						>
 							<Icon name='account-edit' size={25} color='#022c6f' />
 						</EditButton>
 						<View style={{ alignItems: 'center', marginTop: 25 }}>
-							<UserName>{userProfile?.name}</UserName>
+							<UserName>{profile?.user?.name}</UserName>
 							<LvTitle onPress={openHierarchyModal}>
 								<Text>{profile?.entryLevel?.nameLV}</Text>
 							</LvTitle>

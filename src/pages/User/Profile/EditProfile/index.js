@@ -1,11 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { useNavigation } from '@react-navigation/native'
+import React, { useEffect, useState } from 'react'
 import { View } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 
-import { AuthContext } from '../../../../contexts/auth'
 import api from '../../../../services/api'
 import avatar from '../../../../assets/images/avatar.jpg'
 import Input from '../../../../components/Paper/Input'
@@ -19,10 +17,9 @@ import {
     ErrorText, Modal
 } from './styles'
 
-const EditProfile = () => {
+const EditProfile = ({ route, navigation }) => {
 
-    const { userProfile, loadUser, loadingAuth } = useContext(AuthContext)
-    const navigation = useNavigation()
+    const { name, phone, email } = route.params?.data
 
     const [showSnack, setShowSnack] = useState(false)
     const [snackColor, setSnackColor] = useState('')
@@ -48,13 +45,12 @@ const EditProfile = () => {
         onSubmit: async (values) => {
             const response = await api.onUpdateUser(values)
             if (response.data) {
-                await loadUser()
                 setMessage('Palpiteiro atualizado com sucesso!')
                 setSnackColor('#43aa8b')
                 setSnackTime(2000)
                 handleShowSnack()
                 setTimeout(() => {
-                    navigation.goBack()
+                    navigation.navigate('Profile', { name: values.name })
                 }, 1000);
             } else {
                 setSnackColor('#ad2e24')
@@ -66,9 +62,9 @@ const EditProfile = () => {
     })
 
     useEffect(() => {
-        formik.setFieldValue('name', userProfile.name?.toString())
-        formik.setFieldValue('phone', userProfile.phone?.toString())
-        formik.setFieldValue('email', userProfile.email?.toString())
+        formik.setFieldValue('name', name)
+        formik.setFieldValue('phone', phone)
+        formik.setFieldValue('email', email)
     }, [])
 
     const handleShowSnack = () => setShowSnack(true)
@@ -89,7 +85,7 @@ const EditProfile = () => {
                         <Icon name='chevron-down' size={30} color='#022c6f' />
                     </EditButton>
                     <View style={{ alignItems: 'center', marginTop: 25 }}>
-                        <UserName>{userProfile?.name}</UserName>
+                        <UserName>Editar Dados</UserName>
                     </View>
                 </Header>
 
@@ -163,7 +159,6 @@ const EditProfile = () => {
                 <View style={{ marginBottom: 20 }}>
                     <Button
                         onPress={formik.handleSubmit}
-                        loading={loadingAuth}
                     >
                         Salvar
                     </Button>

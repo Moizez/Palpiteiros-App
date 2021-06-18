@@ -60,7 +60,6 @@ const JackpotModal = (props) => {
             <ButtonBox>
                 <Button
                     onPress={props.confirmModal}
-                    loading={null}
                 >
                     Participar
                 </Button>
