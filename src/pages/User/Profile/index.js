@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
-import { View, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import ProgressCircle from 'react-native-progress-circle'
 
@@ -14,7 +14,7 @@ import {
 	Container, Header, Image, InfoBox, EditButton,
 	Divider, LvBox, Label, Box, UserName, Text,
 	AttributeBox, Attribute, LvInfo, Lv, AttributeText,
-	AttributeLabel, Modal
+	AttributeLabel, LvTitle, Modal
 
 } from './styles'
 
@@ -58,9 +58,9 @@ const Profile = () => {
 						</EditButton>
 						<View style={{ alignItems: 'center', marginTop: 25 }}>
 							<UserName>{userProfile?.name}</UserName>
-							<TouchableOpacity onPress={openHierarchyModal}>
+							<LvTitle onPress={openHierarchyModal}>
 								<Text>{profile?.entryLevel?.nameLV}</Text>
-							</TouchableOpacity>
+							</LvTitle>
 						</View>
 					</Header>
 
@@ -69,7 +69,7 @@ const Profile = () => {
 					<InfoBox>
 						<LvBox>
 							<LvInfo>
-								{percent ?
+								{percent >= 0 ?
 									<ProgressCircle
 										percent={percent}
 										radius={70}

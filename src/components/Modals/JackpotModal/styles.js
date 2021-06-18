@@ -66,6 +66,7 @@ export const Description = styled.View`
 
 export const ButtonBox = styled.View`
     padding: 0 10px;
+    margin-bottom: 25px;
 `;
 
 export const TextButton = styled.Text`

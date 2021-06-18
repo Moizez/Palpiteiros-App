@@ -11,6 +11,7 @@ import avatar from '../../../../assets/images/avatar.jpg'
 import Input from '../../../../components/Paper/Input'
 import Button from '../../../../components/Paper/Button'
 import Snackbar from '../../../../components/Snackbar'
+import validate from '../../../../helpers/validations'
 
 import {
     Container, Header, Image, InfoBox, EditButton,

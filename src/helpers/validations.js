@@ -41,6 +41,6 @@ export default {
 			?.replace(/(\d{5})(\d)/, '$1-$2') // captura 2 grupos de numero o primeiro de 5 e o segundo de 1, e adiciona um traço
 			?.replace(/(-\d{4})\d+?$/, '$1') // captura 4 numeros seguidos de um traço e não deixa ser digitado mais nada
 		return phonevalido
-	}
+	},
 
 };

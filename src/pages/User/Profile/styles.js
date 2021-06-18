@@ -38,16 +38,6 @@ font-weight: bold;
 color: #022c6f;
 `;
 
-export const Text = styled.Text`
-font-size: 12px;
-color: #022c6f;
-border-width: 1px;
-border-radius: 5px;
-border-color: #022c6f;
-padding: 0 5px;
-margin: 5px 0 10px 0;
-`;
-
 export const Image = styled.Image`
 width: 90px;
 height: 90px;
@@ -113,6 +103,20 @@ export const AttributeLabel = styled.Text`
     text-transform: uppercase;
     font-size: 11px;
     text-align: center;
+`;
+
+export const LvTitle = styled.TouchableOpacity`
+
+`;
+
+export const Text = styled.Text`
+font-size: 12px;
+color: #022c6f;
+border-width: 1px;
+border-radius: 5px;
+border-color: #022c6f;
+padding: 0 5px;
+margin: 5px 0 10px 0;
 `;
 
 export const Modal = styled.Modal``;

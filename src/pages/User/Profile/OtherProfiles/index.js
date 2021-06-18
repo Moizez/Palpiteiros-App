@@ -36,8 +36,6 @@ const OtherProfiles = ({ route }) => {
 
 	const colors = ['#ddd', '#f5f3f4']
 	const percent = profile?.entryLevel?.level?.percent
-		? profile?.entryLevel?.level?.percent
-		: true
 
 	const openHierarchyModal = () => setHierarchyModal(true)
 	const closeHierarchyModal = () => setHierarchyModal(false)
@@ -70,7 +68,7 @@ const OtherProfiles = ({ route }) => {
 					<InfoBox>
 						<LvBox>
 							<LvInfo>
-								{percent ?
+								{percent >= 0 ?
 									<ProgressCircle
 										percent={percent}
 										radius={70}
