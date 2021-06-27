@@ -67,7 +67,7 @@ const HunchModal = ({
 
                         <HunchScore>
                             <Input
-                                placeholder='__'
+                                placeholder='_'
                                 placeholderTextColor='#FFF'
                                 keyboardType='phone-pad'
                                 value={formik.values?.home}
@@ -81,7 +81,7 @@ const HunchModal = ({
 
                         <HunchScore>
                             <Input
-                                placeholder='__'
+                                placeholder='_'
                                 placeholderTextColor='#FFF'
                                 keyboardType='phone-pad'
                                 value={formik.values?.away}

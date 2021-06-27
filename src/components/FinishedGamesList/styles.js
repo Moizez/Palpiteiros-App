@@ -8,10 +8,9 @@ export const Container = styled.View`
 export const Card = styled(LinearGradient)`
 flex: 1;
 justify-content: space-between;
-width: 100%;
 border-radius: 8px;
 padding: 10px;
-margin: 8px 0;
+margin: 10px 10px;
 `;
 
 export const CardHeader = styled.View`
@@ -74,8 +73,8 @@ export const Flag = styled.Image`
 export const ScoreText = styled.Text`
     color: #000;
     font-size: 12px;
-    font-weight: bold;
-    font-style: italic;
+    font-family: Quantico-Italic;
+    
 `;
 
 export const Image = styled.Image`
@@ -86,8 +85,8 @@ export const Image = styled.Image`
 export const TeamName = styled.Text`
     font-size: 12px;
     color: #000;
+    font-weight: bold;
 `;
-
 
 export const Label = styled.Text`
 font-size: 11px;
@@ -104,6 +103,7 @@ export const Text = styled.Text`
 
 export const HunchText = styled.Text`
     font-size: 35px;
+    font-family: Quantico-Regular;
     color: #000;
 `;
 

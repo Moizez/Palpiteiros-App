@@ -1,13 +1,21 @@
-import React, { useState } from 'react'
-import { Image, View } from 'react-native'
+import React from 'react'
 import { DataTable } from 'react-native-paper'
+import { addHours, format, parseISO } from 'date-fns'
+import pt from 'date-fns/locale/pt'
 import styled from 'styled-components/native'
+import LinearGradient from 'react-native-linear-gradient'
 
 import Loading from '../../../components/Loading'
 import { semifinal, final } from '../../../helpers/data'
 import { changeFlags } from '../../../helpers/data'
 
 const Finals = ({ dataSemi, dataFinals, loading }) => {
+
+    const dateFormat = (date) => {
+        const res = parseISO(date)
+        const result = addHours(res, 3)
+        return format(result, "E dd LLL'\n'H:mm", { locale: pt })
+    }
 
     return (
         <>
@@ -18,27 +26,43 @@ const Finals = ({ dataSemi, dataFinals, loading }) => {
                     </TitleBox>
 
                     {dataSemi?.map(match =>
-                        <DataTable key={match.id}>
-                            <DataTable.Row>
-                                <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                        <Card
+                            key={match.id}
+                            style={{ elevation: 3 }}
+                            colors={['#ddd', '#f5f3f4']}
+                        >
+                            <CardContent>
+                                <FlagBox>
                                     <Image
-                                        style={{ height: 30, width: 20 }}
-                                        source={changeFlags(match.teamHome.initials)}
+                                        source={changeFlags(match.teamHome?.initials)}
                                         resizeMode='contain'
                                     />
-                                </View>
-                                <DataTable.Cell style={{ flex: 2, justifyContent: 'space-around' }}>{match.teamHome.name}</DataTable.Cell>
-                                <DataTable.Cell style={{ flex: 1, justifyContent: 'space-around' }}>{match.scoreBoard?.golsHome} X {match.scoreBoard?.golsVisiting}</DataTable.Cell>
-                                <DataTable.Cell style={{ flex: 2, justifyContent: 'space-around' }}>{match.teamVisiting.name}</DataTable.Cell>
-                                <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                                    <FlagText>{match.teamHome?.initials}</FlagText>
+                                </FlagBox>
+                                <InfoBox>
+                                    {match.scoreBoard
+                                        ? <Text style={{ fontSize: 35 }}>
+                                            {match.scoreBoard?.golsHome}
+                                            <Text> X </Text>
+                                            {match.scoreBoard?.golsVisiting}
+                                        </Text>
+                                        : <Text>{dateFormat(match.confrontationLocation?.date)}</Text>
+                                    }
+                                    {(match.scoreBoard && match.scoreBoard?.penalty) &&
+                                        <Text style={{ fontSize: 12 }}>
+                                            ({match.scoreBoard?.penalty?.golsHome} x {match.scoreBoard?.penalty?.golsVisiting})
+                                        </Text>
+                                    }
+                                </InfoBox>
+                                <FlagBox>
                                     <Image
-                                        style={{ height: 30, width: 20 }}
-                                        source={changeFlags(match.teamVisiting.initials)}
+                                        source={changeFlags(match.teamVisiting?.initials)}
                                         resizeMode='contain'
                                     />
-                                </View>
-                            </DataTable.Row>
-                        </DataTable>
+                                    <FlagText>{match.teamVisiting?.initials}</FlagText>
+                                </FlagBox>
+                            </CardContent>
+                        </Card>
                     )}
                 </Container>
                 :
@@ -84,53 +108,43 @@ const Finals = ({ dataSemi, dataFinals, loading }) => {
                     </TitleBox>
 
                     {dataFinals?.map(match =>
-                        <Container key={match.id}>
-                            <DataTable>
-                                <DataTable.Row>
-                                    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                                        <Image
-                                            style={{ height: 30, width: 20 }}
-                                            source={changeFlags(match.teamHome.initials)}
-                                            resizeMode='contain'
-                                        />
-                                    </View>
-                                    <DataTable.Cell style={{ flex: 2, justifyContent: 'space-around' }}>{match.teamHome.name}</DataTable.Cell>
-                                    <DataTable.Cell style={{ flex: 1, justifyContent: 'space-around' }}>{match.scoreBoard?.golsHome} X {match.scoreBoard?.golsVisiting}</DataTable.Cell>
-                                    <DataTable.Cell style={{ flex: 2, justifyContent: 'space-around' }}>{match.teamVisiting.name}</DataTable.Cell>
-                                    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                                        <Image
-                                            style={{ height: 30, width: 20 }}
-                                            source={changeFlags(match.teamVisiting.initials)}
-                                            resizeMode='contain'
-                                        />
-                                    </View>
-                                </DataTable.Row>
-                            </DataTable>
-                            {match.scoreBoard.golsHome &&
-                                <>
-                                    <TitleBox style={{ marginTop: 30 }}>
-                                        <Title>campeão da eurocopa 2020</Title>
-                                    </TitleBox>
-                                    <DataTable>
-                                        <DataTable.Header style={{ backgroundColor: '#ccc' }}>
-                                            <DataTable.Title
-                                                style={{
-                                                    flex: 1,
-                                                    alignItems: 'center',
-                                                    justifyContent: 'center'
-                                                }}>
-                                                <Text>
-                                                    {match.scoreBoard?.golsHome > match.scoreBoard?.golsVisiting
-                                                        ? match.teamHome.name
-                                                        : match.teamVisiting.name
-                                                    }
-                                                </Text>
-                                            </DataTable.Title>
-                                        </DataTable.Header>
-                                    </DataTable>
-                                </>
-                            }
-                        </Container>
+                        <Card
+                            key={match.id}
+                            style={{ elevation: 3 }}
+                            colors={['#ddd', '#f5f3f4']}
+                        >
+                            <CardContent>
+                                <FlagBox>
+                                    <Image
+                                        source={changeFlags(match.teamHome?.initials)}
+                                        resizeMode='contain'
+                                    />
+                                    <FlagText>{match.teamHome?.initials}</FlagText>
+                                </FlagBox>
+                                <InfoBox>
+                                    {match.scoreBoard
+                                        ? <Text style={{ fontSize: 35 }}>
+                                            {match.scoreBoard?.golsHome}
+                                            <Text> X </Text>
+                                            {match.scoreBoard?.golsVisiting}
+                                        </Text>
+                                        : <Text>{dateFormat(match.confrontationLocation?.date)}</Text>
+                                    }
+                                    {(match.scoreBoard && match.scoreBoard?.penalty) &&
+                                        <Text style={{ fontSize: 12 }}>
+                                            ({match.scoreBoard?.penalty?.golsHome} x {match.scoreBoard?.penalty?.golsVisiting})
+                                        </Text>
+                                    }
+                                </InfoBox>
+                                <FlagBox>
+                                    <Image
+                                        source={changeFlags(match.teamVisiting?.initials)}
+                                        resizeMode='contain'
+                                    />
+                                    <FlagText>{match.teamVisiting?.initials}</FlagText>
+                                </FlagBox>
+                            </CardContent>
+                        </Card>
                     )}
                 </Container>
                 :
@@ -181,18 +195,99 @@ const TitleBox = styled.View`
     padding: 8px;
 `;
 
+const Card = styled(LinearGradient)`
+    flex: 1;
+    padding: 10px;
+    margin: 10px 20px;
+    border-radius: 8px;
+`;
+
+const CardContent = styled.View`
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+`;
+
+const FlagBox = styled.View`
+    flex: 1;
+    align-items: center;
+`;
+
+const InfoBox = styled.View`
+    flex: 1;
+`;
+
+const Text = styled.Text`
+    font-family: Quantico-Regular;
+    font-size: 17px;
+    text-align: center;
+`;
+
+const FlagText = styled.Text`
+    font-weight: bold;
+`;
+
 const Title = styled.Text`
     font-weight: bold;
     text-transform: uppercase;
     color: #fff;
 `;
 
-const Text = styled.Text`
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 18px;
-    color: #000;
+const Image = styled.Image`
+    height: 60px;
+    width: 50px;
 `;
 
-
 export default Finals
+
+/*
+
+ <Container key={match.id}>
+                            <DataTable>
+                                <DataTable.Row>
+                                    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                                        <Image
+                                            style={{ height: 30, width: 20 }}
+                                            source={changeFlags(match.teamHome.initials)}
+                                            resizeMode='contain'
+                                        />
+                                    </View>
+                                    <DataTable.Cell style={{ flex: 2, justifyContent: 'space-around' }}>{match.teamHome.name}</DataTable.Cell>
+                                    <DataTable.Cell style={{ flex: 1, justifyContent: 'space-around' }}>{match.scoreBoard?.golsHome} X {match.scoreBoard?.golsVisiting}</DataTable.Cell>
+                                    <DataTable.Cell style={{ flex: 2, justifyContent: 'space-around' }}>{match.teamVisiting.name}</DataTable.Cell>
+                                    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                                        <Image
+                                            style={{ height: 30, width: 20 }}
+                                            source={changeFlags(match.teamVisiting.initials)}
+                                            resizeMode='contain'
+                                        />
+                                    </View>
+                                </DataTable.Row>
+                            </DataTable>
+                            {match.scoreBoard.golsHome &&
+                                <>
+                                    <TitleBox style={{ marginTop: 30 }}>
+                                        <Title>campeão da eurocopa 2020</Title>
+                                    </TitleBox>
+                                    <DataTable>
+                                        <DataTable.Header style={{ backgroundColor: '#ccc' }}>
+                                            <DataTable.Title
+                                                style={{
+                                                    flex: 1,
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center'
+                                                }}>
+                                                <Text>
+                                                    {match.scoreBoard?.golsHome > match.scoreBoard?.golsVisiting
+                                                        ? match.teamHome.name
+                                                        : match.teamVisiting.name
+                                                    }
+                                                </Text>
+                                            </DataTable.Title>
+                                        </DataTable.Header>
+                                    </DataTable>
+                                </>
+                            }
+                        </Container>
+
+*/

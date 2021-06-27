@@ -61,6 +61,9 @@ const Info = styled.View`
 const ImageBox = styled.View`
     align-items: center;
     justify-content: center;
+    position: absolute;
+    top: 25px;
+    right: 15px;
 `;
 
 

@@ -6,11 +6,12 @@ export const Container = styled.TouchableOpacity`
 `;
 
 export const Card = styled(LinearGradient)`
+    flex: 1;
     flex-direction: row;
     justify-content: space-around;
-    border-radius: 10px;
+    border-radius: 8px;
     padding: 10px;
-    margin: 10px 0;
+    margin: 10px 2px;
 `;
 
 export const ImageBox = styled.View`
@@ -19,8 +20,8 @@ export const ImageBox = styled.View`
 `;
 
 export const Image = styled.Image`
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
 `;
 
 export const CardHeader = styled.View``;

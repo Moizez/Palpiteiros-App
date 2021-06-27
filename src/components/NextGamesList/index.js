@@ -167,7 +167,7 @@ const NextGamesList = ({ data, idJackpot, isRefresh }) => {
                                     <HunchText>
                                         {(hunch?.resultHunch?.golsHome || hunch?.resultHunch?.golsHome === 0)
                                             ? hunch?.resultHunch?.golsHome
-                                            : '__'
+                                            : '_'
                                         }
                                     </HunchText>
                                 </HunchScore>
@@ -176,7 +176,7 @@ const NextGamesList = ({ data, idJackpot, isRefresh }) => {
                                     <HunchText>
                                         {(hunch?.resultHunch?.golsVisiting || hunch?.resultHunch?.golsVisiting === 0)
                                             ? hunch?.resultHunch?.golsVisiting
-                                            : '__'
+                                            : '_'
                                         }
                                     </HunchText>
                                 </HunchScore>

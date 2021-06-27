@@ -48,7 +48,7 @@ export const HunchInfo = styled.View`
 
 export const HunchScore = styled.View`
     width: 45px;
-    height: 55px;
+    height: 60px;
     border-width: 0.5px;
     border-color: #FFF;
     align-items: center;
@@ -65,6 +65,7 @@ export const Team = styled.View`
 
 export const TeamName = styled.Text`
     font-size: 12px;
+    font-weight: bold;
     color: #FFF;
 `;
 
@@ -108,11 +109,11 @@ export const ErrorText = styled.Text`
 `;
 
 export const Input = styled.TextInput`
-    height: 100%;
-    width: 100%;
-    font-size: 28px;
+    flex: 1;
+    font-size: 30px;
     color: #FFF;
     text-align: center;
+    font-family: Quantico-Regular;
 `;
 
 export const PenaltyBox = styled.View`
