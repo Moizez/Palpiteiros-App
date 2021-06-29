@@ -16,7 +16,7 @@ const initialLayout = { width: Dimensions.get('window').width }
 
 const Leaderboard = ({ route }) => {
 
-    const { id, name, year } = route.params
+    const { id, name, year, champion, viceChampion } = route.params
     const [index, setIndex] = useState(0)
     const [routes] = useState([
         { key: 'first', title: 'Fase de Grupos' },
@@ -91,7 +91,12 @@ const Leaderboard = ({ route }) => {
             case 'third':
                 return <Quarterfinals data={quarterfinals} />
             case 'fourth':
-                return <Finals dataSemi={semifinals} dataFinals={finals} />
+                return <Finals
+                    dataSemi={semifinals}
+                    dataFinals={finals}
+                    champion={champion}
+                    viceChampion={viceChampion}
+                />
             default:
                 return null;
         }

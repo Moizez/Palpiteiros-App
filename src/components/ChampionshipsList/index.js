@@ -7,13 +7,13 @@ import {
 } from './styles'
 
 const ChampionshipsList = ({ data }) => {
-    const { id, name, year } = data
+    const { id, name, year, champion, viceChampion } = data
     const navigation = useNavigation()
 
     return (
         <Container
             activeOpacity={0.9}
-            onPress={() => navigation.navigate('Leaderboard', { id, name, year })}
+            onPress={() => navigation.navigate('Leaderboard', { id, name, year, champion, viceChampion })}
         >
             <Card
                 style={{ elevation: 3 }}
