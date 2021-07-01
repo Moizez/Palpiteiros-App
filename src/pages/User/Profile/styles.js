@@ -65,7 +65,7 @@ export const LvInfo = styled.View`
 `;
 
 export const Lv = styled.Text`
-    font-size: ${(props) => props.size >= 100 ? 50 : 70}px;
+    font-size: ${props => props.size >= 100 ? 50 : 70}px;
     font-weight: bold;
     text-transform: uppercase;
 `;

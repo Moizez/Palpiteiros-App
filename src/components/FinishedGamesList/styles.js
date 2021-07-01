@@ -44,8 +44,6 @@ export const HunchInfo = styled.View`
 export const HunchScore = styled.View`
     width: 45px;
     height: 55px;
-    border-width: 0.5px;
-    border-color: #000;
     align-items: center;
     justify-content: center;
 `;

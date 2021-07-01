@@ -88,16 +88,16 @@ const FinishedGamesList = ({ data, idJackpot, isRefresh }) => {
                                     <HunchText>
                                         {(hunch?.resultHunch?.golsHome || hunch?.resultHunch?.golsHome === 0)
                                             ? hunch?.resultHunch?.golsHome
-                                            : '__'
+                                            : '_'
                                         }
                                     </HunchText>
                                 </HunchScore>
-                                <Icon name='alpha-x' size={50} color='#000' />
+                                <HunchText>x</HunchText>
                                 <HunchScore>
                                     <HunchText>
                                         {(hunch?.resultHunch?.golsVisiting || hunch?.resultHunch?.golsVisiting === 0)
                                             ? hunch?.resultHunch?.golsVisiting
-                                            : '__'
+                                            : '_'
                                         }
                                     </HunchText>
                                 </HunchScore>

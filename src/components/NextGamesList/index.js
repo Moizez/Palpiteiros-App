@@ -171,7 +171,7 @@ const NextGamesList = ({ data, idJackpot, isRefresh }) => {
                                         }
                                     </HunchText>
                                 </HunchScore>
-                                <Icon name='alpha-x' size={50} color='#000' />
+                                <HunchText>x</HunchText>
                                 <HunchScore>
                                     <HunchText>
                                         {(hunch?.resultHunch?.golsVisiting || hunch?.resultHunch?.golsVisiting === 0)
@@ -203,6 +203,7 @@ const NextGamesList = ({ data, idJackpot, isRefresh }) => {
                     visible={hunchModal}
                     animationType='slide'
                     transparent={true}
+                    onRequestClose={handleCloseHunchModal}
                 >
                     <HunchModal
                         closeModal={handleCloseHunchModal}

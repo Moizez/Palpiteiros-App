@@ -39,26 +39,6 @@ export const Flag = styled.Image`
     height: 35px;
 `;
 
-export const HunchInfo = styled.View`
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    margin: 10px 0;
-`;
-
-export const HunchScore = styled.View`
-    width: 45px;
-    height: 60px;
-    border-width: 0.5px;
-    border-color: #FFF;
-    align-items: center;
-    justify-content: center;
-`;
-
-export const HunchScoreBox = styled.View`
-    flex-direction: row;
-`;
-
 export const Team = styled.View`
     align-items: center;
 `;
@@ -81,11 +61,6 @@ export const Text = styled.Text`
     font-weight: bold;
 `;
 
-export const HunchText = styled.Text`
-    font-size: 35px;
-    color: #FFF;
-`;
-
 export const HunchButton = styled.TouchableOpacity`
     height: 45px;
     width: 100%;
@@ -106,6 +81,29 @@ export const ErrorText = styled.Text`
     font-size: 11px;
     color: #c1121f;
     margin: 0 5px;
+`;
+
+export const HunchInfo = styled.View`
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin: 10px 0;
+`;
+
+export const HunchScore = styled.View`
+    width: 52px;
+    height: 62px;
+    border-width: 0.2px;
+    border-radius: 3px;
+    border-color: #fff;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const HunchScoreBox = styled.View`
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 `;
 
 export const Input = styled.TextInput`
