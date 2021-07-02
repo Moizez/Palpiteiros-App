@@ -74,7 +74,6 @@ const HunchModal = ({
                                 returnKeyType='next'
                                 autoFocus={true}
                                 blurOnSubmit={false}
-                                clearTextOnFocus={true}
                                 value={formik.values?.home}
                                 onSubmitEditing={() => inputRef.current.focus()}
                                 onChangeText={formik.handleChange('home')}
