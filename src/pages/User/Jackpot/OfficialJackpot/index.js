@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components/native'
 
 import api from '../../../../services/api_jackpots'
-import JackpotList from '../../../../components/JackpotList'
-import EmptyList from '../../../../components/EmptyList'
+import JackpotList from '../../../../components/Lists/JackpotList'
+import EmptyList from '../../../../components/Lists/EmptyList'
 import Loading from '../../../../components/Loading'
 
 const OfficialJackpot = () => {

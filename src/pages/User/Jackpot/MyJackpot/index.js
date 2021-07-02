@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 
 import api from '../../../../services/api_jackpots'
 
-import MyJackpotList from '../../../../components/MyJackpotList'
-import EmptyList from '../../../../components/EmptyList'
+import MyJackpotList from '../../../../components/Lists/MyJackpotList'
+import EmptyList from '../../../../components/Lists/EmptyList'
 import Loading from '../../../../components/Loading'
 import Snackbar from '../../../../components/Snackbar'
 

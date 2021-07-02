@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/native';
 
-import logo from '../../assets/images/logo.png'
+import logo from '../../../assets/images/logo.png'
 
 const EmptyList = ({ message, tip }) => {
     return (

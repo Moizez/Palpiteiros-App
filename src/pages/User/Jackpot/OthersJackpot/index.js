@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
-import JackpotList from '../../../../components/JackpotList'
-import EmptyList from '../../../../components/EmptyList'
+import JackpotList from '../../../../components/Lists/JackpotList'
+import EmptyList from '../../../../components/Lists/EmptyList'
 import Loading from '../../../../components/Loading'
 
 import { Container, FlatList, RefreshControl } from './styles'

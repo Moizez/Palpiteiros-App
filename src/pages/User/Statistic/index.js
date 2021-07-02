@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components/native';
 
 import api from '../../../services/api_championships'
-import EmptyList from '../../../components/EmptyList'
-import ChampionshipsList from '../../../components/ChampionshipsList'
+import EmptyList from '../../../components/Lists/EmptyList'
+import ChampionshipsList from '../../../components/Lists/ChampionshipsList'
 import Header from '../../../components/Header'
 import Loading from '../../../components/Loading'
 

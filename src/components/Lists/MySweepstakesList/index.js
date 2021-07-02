@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-import logo from '../../assets/images/logo_euro.png'
+import logo from '../../../assets/images/logo_euro.png'
 
 import {
     Container, Title, Label, Card, CardHeader, Image,

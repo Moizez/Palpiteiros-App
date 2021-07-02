@@ -2,18 +2,18 @@ import React, { useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-import api from '../../services/api'
+import api from '../../../services/api'
 
-import JackpotModal from '../Modals/JackpotModal'
-import Snackbar from '../Snackbar'
-import logo from '../../assets/images/logo_euro.png'
+import JackpotModal from '../../Modals/JackpotModal'
+import Snackbar from '../../Snackbar'
+import logo from '../../../assets/images/logo_euro.png'
 
 import {
     Container, Title, Label, Card, CardHeader, Image,
     Modal, VerticalDivider, UserBox, ImageBox
 } from './styles'
 
-const JackpotList = ({ data }) => {
+const MyJackpotList = ({ data }) => {
 
     const navigation = useNavigation()
     const [jackpotModal, setJackpotModal] = useState(false)
@@ -85,8 +85,6 @@ const JackpotList = ({ data }) => {
                     <CardHeader>
                         <Title>{data.name}</Title>
                         <Label>Edição: {year}</Label>
-                        <Label>Início: 11/06/21</Label>
-                        <Label>Nº de confrontos: {confrontations?.length}</Label>
                         <Label>Criado por: Palpiteiros</Label>
                     </CardHeader>
                     <UserBox>
@@ -130,4 +128,4 @@ const JackpotList = ({ data }) => {
     );
 }
 
-export default JackpotList
+export default MyJackpotList

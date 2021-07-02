@@ -3,8 +3,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { addHours, format, parseISO } from 'date-fns'
 import pt from 'date-fns/locale/pt'
 
-import api from '../../services/api_hunchs'
-import { changeFlags } from '../../helpers/data'
+import api from '../../../services/api_hunchs'
+import { changeFlags } from '../../../helpers/data'
 
 import {
     Container, Card, CardHeader, InfoHeader, CardHunch, Score,

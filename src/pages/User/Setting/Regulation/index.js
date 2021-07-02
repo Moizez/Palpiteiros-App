@@ -6,7 +6,7 @@ import api from '../../../../services/api_jackpots'
 import { regulations } from '../../../../helpers/regulations'
 
 import Header from '../../../../components/Header'
-import EmptyList from '../../../../components/EmptyList'
+import EmptyList from '../../../../components/Lists/EmptyList'
 import RegulationModal from '../../../../components/Modals/RegulationModal'
 import Loading from '../../../../components/Loading'
 

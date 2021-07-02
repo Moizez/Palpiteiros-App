@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { RadioButton } from 'react-native-paper'
 import { useFormik } from 'formik'
@@ -18,6 +18,7 @@ const HunchModal = ({
 }) => {
 
     const [hasOnButton, setHasOnButton] = useState(false)
+    const inputRef = useRef();
 
     const validationSchema = yup.object().shape({
         home: yup.string()
@@ -70,7 +71,12 @@ const HunchModal = ({
                                 placeholder='_'
                                 placeholderTextColor='#FFF'
                                 keyboardType='phone-pad'
+                                returnKeyType='next'
+                                autoFocus={true}
+                                blurOnSubmit={false}
+                                clearTextOnFocus={true}
                                 value={formik.values?.home}
+                                onSubmitEditing={() => inputRef.current.focus()}
                                 onChangeText={formik.handleChange('home')}
                                 onBlur={formik.handleBlur('home')}
                                 error={formik.touched.home && formik.errors.home}
@@ -84,6 +90,7 @@ const HunchModal = ({
                                 placeholder='_'
                                 placeholderTextColor='#FFF'
                                 keyboardType='phone-pad'
+                                ref={inputRef}
                                 value={formik.values?.away}
                                 onChangeText={formik.handleChange('away')}
                                 onBlur={formik.handleBlur('away')}

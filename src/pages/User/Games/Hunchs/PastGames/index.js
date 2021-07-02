@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components/native'
 
 import api from '../../../../../services/api_confrontation'
-import EmptyList from '../../../../../components/EmptyList'
+import EmptyList from '../../../../../components/Lists/EmptyList'
 import Loading from '../../../../../components/Loading'
-import FinishedGamesList from '../../../../../components/FinishedGamesList'
+import FinishedGamesList from '../../../../../components/Lists/FinishedGamesList'
 
 const PastGames = ({ idChampionship, idJackpot }) => {
 

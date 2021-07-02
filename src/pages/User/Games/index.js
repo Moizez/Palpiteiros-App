@@ -4,8 +4,8 @@ import styled from 'styled-components/native'
 import api from '../../../services/api_jackpots'
 
 import Header from '../../../components/Header'
-import MySweepstakesList from '../../../components/MySweepstakesList'
-import EmptyList from '../../../components/EmptyList'
+import MySweepstakesList from '../../../components/Lists/MySweepstakesList'
+import EmptyList from '../../../components/Lists/EmptyList'
 import Loading from '../../../components/Loading'
 
 const Games = ({ route }) => {

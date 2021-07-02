@@ -3,16 +3,16 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { addHours, format, parseISO } from 'date-fns'
 import pt from 'date-fns/locale/pt'
 
-import api from '../../services/api_hunchs'
-import HunchModal from '../Modals/HunchModal'
-import Snackbar from '../Snackbar'
-import { changeFlags } from '../../helpers/data'
+import api from '../../../services/api_hunchs'
+import HunchModal from '../../Modals/HunchModal'
+import Snackbar from '../../Snackbar'
+import { changeFlags } from '../../../helpers/data'
 
 import {
     Container, Card, CardHeader, InfoHeader,
     CardHunch, Score, HunchInfo, HunchScoreBox,
-    Team, HunchScore, TeamName, Status, HunchText,
-    ScoreText, Text, Label, Divider, Modal, Flag
+    Team, HunchScore, TeamName, HunchText,
+    ScoreText, Label, Divider, Modal, Flag
 } from './styles'
 
 const NextGamesList = ({ data, idJackpot, isRefresh }) => {
@@ -85,49 +85,6 @@ const NextGamesList = ({ data, idJackpot, isRefresh }) => {
         const res = parseISO(date)
         const result = addHours(res, 3)
         return format(result, "d 'de' LLL 'às' H:mm", { locale: pt })
-    }
-
-    const getStatus = () => {
-        if (hunch?.resultHunch) {
-            const isAccuracy = hunch?.resultHunch?.registerHunch?.accuracy;
-            const isHit = hunch?.resultHunch?.registerHunch?.accuracy;
-            const isNone = !isAccuracy && !isHit;
-
-            if (isAccuracy) {
-                return (
-                    <>
-                        <Status style={{
-                            backgroundColor: '#43aa8b',
-                            borderRadius: 5,
-                        }}>
-                            <Text>{'Placar Exato'}</Text>
-                        </Status>
-                    </>
-                )
-            } else if (isHit) {
-                return (
-                    <>
-                        <Status style={{
-                            backgroundColor: '#1d4e89',
-                            borderRadius: 5,
-                        }}>
-                            <Text>{'Vencedor'}</Text>
-                        </Status>
-                    </>
-                )
-            } else if (isNone) {
-                return (
-                    <>
-                        <Status style={{
-                            backgroundColor: '#da1e37',
-                            borderRadius: 5,
-                        }}>
-                            <Text>{'Errou'}</Text>
-                        </Status>
-                    </>
-                )
-            }
-        }
     }
 
     return (

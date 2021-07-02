@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-import ChampionshipsList from '../../../../../../components/ChampionshipsList'
+import ChampionshipsList from '../../../../../../components/Lists/ChampionshipsList'
 import { championships } from '../../../../../../helpers/data'
 
 import {

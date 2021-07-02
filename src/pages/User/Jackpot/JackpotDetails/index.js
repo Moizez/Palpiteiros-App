@@ -4,9 +4,9 @@ import styled from 'styled-components/native'
 
 import api_ranking from '../../../../services/api_ranking'
 
-import JackpotRankingList from '../../../../components/JackpotRankingList'
+import JackpotRankingList from '../../../../components/Lists/JackpotRankingList'
 import Header from '../../../../components/Header'
-import EmptyList from '../../../../components/EmptyList'
+import EmptyList from '../../../../components/Lists/EmptyList'
 import Loading from '../../../../components/Loading'
 
 const JackpotDetails = ({ route }) => {

@@ -20,7 +20,7 @@ const ChampionshipsList = ({ data }) => {
                 colors={['#ddd', '#fff']}
             >
                 <Image
-                    source={require('../../assets/images/logo_euro.png')}
+                    source={require('../../../assets/images/logo_euro.png')}
                     resizeMode='contain'
                 />
 
