@@ -41,6 +41,7 @@ const NextGames = ({ idChampionship, idJackpot }) => {
 						idJackpot={idJackpot}
 					/>
 				}
+				keyboardShouldPersistTaps='always'
 				showsVerticalScrollIndicator={false}
 				removeClippedSubviews
 				refreshControl={
