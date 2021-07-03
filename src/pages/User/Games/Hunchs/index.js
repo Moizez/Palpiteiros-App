@@ -20,7 +20,7 @@ const Hunchs = ({ route }) => {
 
 	const renderTabBar = props => (
 		<TabBar {...props}
-			renderLabel={({ route, focused }) => (
+			renderLabel={({ route }) => (
 				<Text style={{
 					color: '#FFF',
 					fontSize: 16,
