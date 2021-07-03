@@ -106,17 +106,19 @@ export const AttributeLabel = styled.Text`
 `;
 
 export const LvTitle = styled.TouchableOpacity`
-
+    background-color: ${props => props.color};
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    margin: 5px;
 `;
 
 export const Text = styled.Text`
-font-size: 12px;
-color: #022c6f;
-border-width: 1px;
-border-radius: 5px;
-border-color: #022c6f;
-padding: 0 5px;
-margin: 5px 0 10px 0;
+    font-size: 10px;
+    color: #FFF;
+    text-transform: uppercase;
+    font-weight: bold;
 `;
 
 export const Modal = styled.Modal``;

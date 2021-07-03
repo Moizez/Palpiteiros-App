@@ -9,6 +9,7 @@ import api_profile from '../../../services/api_profile'
 import avatar from '../../../assets/images/avatar.jpg'
 import Loading from '../../../components/Loading'
 import HierarchyModal from '../../../components/Modals/HierarchyModal'
+import { changeLvColor } from '../../../helpers/data'
 
 import {
 	Container, Header, Image, InfoBox, EditButton,
@@ -38,6 +39,7 @@ const Profile = ({ route }) => {
 
 	const colors = ['#ddd', '#f5f3f4']
 	const percent = profile?.entryLevel?.level?.percent
+	const color = changeLvColor(profile?.entryLevel?.level?.valuelevel)
 
 	const openHierarchyModal = () => setHierarchyModal(true)
 	const closeHierarchyModal = () => setHierarchyModal(false)
@@ -60,9 +62,11 @@ const Profile = ({ route }) => {
 						</EditButton>
 						<View style={{ alignItems: 'center', marginTop: 25 }}>
 							<UserName>{profile?.user?.name}</UserName>
-							<LvTitle onPress={openHierarchyModal}>
-								<Text>{profile?.entryLevel?.nameLV}</Text>
-							</LvTitle>
+							{!loading &&
+								<LvTitle color={color} onPress={openHierarchyModal}>
+									<Text>{profile?.entryLevel?.nameLV}</Text>
+								</LvTitle>
+							}
 						</View>
 					</Header>
 

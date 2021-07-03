@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
-import { View, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import ProgressCircle from 'react-native-progress-circle'
 
@@ -8,12 +8,13 @@ import api from '../../../../services/api_profile'
 import avatar from '../../../../assets/images/avatar.jpg'
 import Loading from '../../../../components/Loading'
 import HierarchyModal from '../../../../components/Modals/HierarchyModal'
+import { changeLvColor } from '../../../../helpers/data'
 
 import {
 	Container, Header, Image, InfoBox, EditButton,
 	Divider, LvBox, Label, Box, UserName, Text,
 	AttributeBox, Attribute, LvInfo, Lv, AttributeText,
-	AttributeLabel, Modal
+	AttributeLabel, Modal, LvTitle
 } from './styles'
 
 const OtherProfiles = ({ route }) => {
@@ -36,6 +37,7 @@ const OtherProfiles = ({ route }) => {
 
 	const colors = ['#ddd', '#f5f3f4']
 	const percent = profile?.entryLevel?.level?.percent
+	const color = changeLvColor(profile?.entryLevel?.level?.valuelevel)
 
 	const openHierarchyModal = () => setHierarchyModal(true)
 	const closeHierarchyModal = () => setHierarchyModal(false)
@@ -57,9 +59,11 @@ const OtherProfiles = ({ route }) => {
 						</EditButton>
 						<View style={{ alignItems: 'center', marginTop: 25 }}>
 							<UserName>{name}</UserName>
-							<TouchableOpacity onPress={openHierarchyModal}>
-								<Text>{profile?.entryLevel?.nameLV}</Text>
-							</TouchableOpacity>
+								{!loading &&
+								<LvTitle color={color} onPress={openHierarchyModal}>
+									<Text>{profile?.entryLevel?.nameLV}</Text>
+								</LvTitle>
+							}
 						</View>
 					</Header>
 
