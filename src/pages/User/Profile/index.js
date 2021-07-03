@@ -80,7 +80,7 @@ const Profile = ({ route }) => {
 										percent={percent}
 										radius={70}
 										borderWidth={3}
-										color="#3399FF"
+										color={color}
 										shadowColor="#ddd"
 										bgColor="#fff"
 										containerStyle={{ alignItems: 'center', justifyContent: 'center' }}
