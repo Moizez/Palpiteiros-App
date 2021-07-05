@@ -10,7 +10,7 @@ import { semifinal, final } from '../../../helpers/data'
 import { changeFlags } from '../../../helpers/data'
 import logo from '../../../assets/images/logo_euro.png'
 
-const Finals = ({ dataFinals, champion, viceChampion, loading }) => {
+const Semifinals = ({ dataSemi, loading }) => {
 
     const dateFormat = (date) => {
         const res = parseISO(date)
@@ -21,13 +21,13 @@ const Finals = ({ dataFinals, champion, viceChampion, loading }) => {
     return (
         <>
             <Container showsVerticalScrollIndicator={false}>
-                {dataFinals ?
+                {dataSemi ?
                     <>
                         <TitleBox>
-                            <Title>Final</Title>
+                            <Title>Semifinal</Title>
                         </TitleBox>
 
-                        {dataFinals?.map(match =>
+                        {dataSemi?.map(match =>
                             <Card
                                 key={match.id}
                                 style={{ elevation: 3 }}
@@ -70,9 +70,9 @@ const Finals = ({ dataFinals, champion, viceChampion, loading }) => {
                     :
                     <>
                         <TitleBox>
-                            <Title>Confronto da Final</Title>
+                            <Title>Confrontos das Semifinais</Title>
                         </TitleBox>
-                        {final.map(i =>
+                        {semifinal.map(i =>
                             <DataTable key={i.id}>
                                 <DataTable.Header style={{ backgroundColor: '#ccc' }}>
                                     <DataTable.Title
@@ -99,49 +99,9 @@ const Finals = ({ dataFinals, champion, viceChampion, loading }) => {
                                 </DataTable.Row>
                             </DataTable>
                         )}
+
                     </>
                 }
-
-                {champion &&
-                    <Card
-                        style={{ elevation: 3, alignItems: 'center', justifyContent: 'center' }}
-                        colors={['#fdc500', '#ffea00']}
-                    >
-                        <Image
-                            style={{ height: 50, width: 50 }}
-                            source={logo}
-                            resizeMode='contain'
-                        />
-
-                        <CardChampion>
-                            <Image
-                                style={{ height: 40, width: 30 }}
-                                source={changeFlags(champion?.initials)}
-                                resizeMode='contain'
-                            />
-                            <TitleChampion>{champion?.name}</TitleChampion>
-                        </CardChampion>
-                        <TextChampion>campeã da eurocopa 2020</TextChampion>
-                    </Card>
-                }
-
-                {(champion && viceChampion) &&
-                    <Card
-                        style={{ elevation: 3, alignItems: 'center', justifyContent: 'center' }}
-                        colors={['#ddd', '#f5f3f4']}
-                    >
-                        <CardChampion>
-                            <TextChampion style={{ fontSize: 13 }}>Vice-campeã: </TextChampion>
-                            <Image
-                                style={{ height: 30, width: 20 }}
-                                source={changeFlags(viceChampion?.initials)}
-                                resizeMode='contain'
-                            />
-                            <TitleChampion style={{ fontSize: 16 }}>{viceChampion?.name}</TitleChampion>
-                        </CardChampion>
-                    </Card>
-                }
-
             </Container>
             {loading && <Loading lottie={require('../../../assets/lotties/soccer-field.json')} />}
         </>
@@ -219,5 +179,5 @@ const TitleChampion = styled.Text`
     margin-left: 10px;
 `;
 
-export default Finals
+export default Semifinals
 

@@ -20,18 +20,22 @@ const Hunchs = ({ route }) => {
 
 	const renderTabBar = props => (
 		<TabBar {...props}
-			renderLabel={({ route }) => (
+			renderLabel={({ route, color }) => (
 				<Text style={{
-					color: '#FFF',
+					color,
 					fontSize: 16,
 					fontFamily: 'Quantico-Italic'
 				}}>
 					{route.title}
 				</Text>
 			)}
-			ren
-			indicatorStyle={{ backgroundColor: '#FFF' }}
-			style={{ backgroundColor: props?.navigationState?.index === 0 ? '#da1e37' : '#548c2f' }}
+			indicatorStyle={{
+				backgroundColor: props?.navigationState?.index === 0 ? '#da1e37' : '#2dc653',
+				borderTopLeftRadius: props?.navigationState?.index === 0 ? 0 : 5,
+				borderTopRightRadius: props?.navigationState?.index === 0 ? 5 : 0,
+				height: 4
+			}}
+			style={{ backgroundColor: '#2a628f' }}
 		/>
 	)
 

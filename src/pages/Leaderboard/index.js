@@ -9,6 +9,7 @@ import Header from '../../components/Header'
 import GroupStage from './GroupStage'
 import RoundOf16 from './RoundOf16'
 import Quarterfinals from './Quarterfinals'
+import Semifinals from './Semifinals'
 import Finals from './Finals'
 import Loading from '../../components/Loading'
 
@@ -19,10 +20,11 @@ const Leaderboard = ({ route }) => {
     const { id, name, year, champion, viceChampion } = route.params
     const [index, setIndex] = useState(0)
     const [routes] = useState([
-        { key: 'first', title: 'Fase de Grupos' },
-        { key: 'second', title: 'Oitavas  de Final' },
-        { key: 'third', title: 'Quartas de Final' },
-        { key: 'fourth', title: 'Semifinal e Final' }
+        { key: 0, title: 'Grupos' },
+        { key: 1, title: 'Oitavas' },
+        { key: 2, title: 'Quartas' },
+        { key: 3, title: 'Semi' },
+        { key: 4, title: 'Final' },
     ])
 
     const [groups, setGroups] = useState([])
@@ -73,7 +75,7 @@ const Leaderboard = ({ route }) => {
     const renderTabBar = props => (
         <TabBar {...props}
             renderLabel={({ route, color }) => (
-                <Text style={{ color, fontSize: 15 }}>
+                <Text style={{ color, fontSize: 14 }}>
                     {route.title}
                 </Text>
             )}
@@ -84,13 +86,20 @@ const Leaderboard = ({ route }) => {
 
     const renderScene = ({ route }) => {
         switch (route.key) {
-            case 'first':
+            case 0:
                 return <GroupStage data={groups} />
-            case 'second':
+            case 1:
                 return <RoundOf16 data={roundOf16} />
-            case 'third':
+            case 2:
                 return <Quarterfinals data={quarterfinals} />
-            case 'fourth':
+            case 3:
+                return <Semifinals
+                    dataSemi={semifinals}
+                    dataFinals={finals}
+                    champion={champion}
+                    viceChampion={viceChampion}
+                />
+            case 4:
                 return <Finals
                     dataSemi={semifinals}
                     dataFinals={finals}
