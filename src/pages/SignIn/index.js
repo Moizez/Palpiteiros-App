@@ -177,9 +177,9 @@ const SignIn = () => {
 						<Link onPress={() => navigation.navigate('SignUp')}>
 							<LinkText>Criar uma conta</LinkText>
 						</Link>
-						<LinkText> ou </LinkText>
-						<Link onPress={() => { }}>
-							<LinkText>recupere sua senha</LinkText>
+						<LinkText style={{fontWeight: 'normal'}}> ou </LinkText>
+						<Link onPress={() => navigation.navigate('ForgotPassword')}>
+							<LinkText>recuperar sua senha?</LinkText>
 						</Link>
 					</BoxLink>
 

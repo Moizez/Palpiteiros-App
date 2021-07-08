@@ -2,17 +2,12 @@ import styled from 'styled-components/native'
 import LinearGradient from 'react-native-linear-gradient'
 
 export const Container = styled.View`
-flex:1;
-background-color: #022c6f;
-padding: 20px 25px;
+    flex:1;
 `;
 
 export const Box = styled.View`
-flex: 1;
-margin-top: 50px;
-background-color: #FFF;
-border-radius: 5px;
-padding: 5px 10px;
+    flex: 1;
+    padding: 0 10px;
 `;
 
 export const HeaderBox = styled.View`
@@ -47,7 +42,7 @@ export const LvTitle = styled.TouchableOpacity`
     margin: 5px;
 `;
 
-export const NameAchievement = styled.Text`
+export const Text = styled.Text`
     font-size: 10px;
     color: #FFF;
     text-transform: uppercase;

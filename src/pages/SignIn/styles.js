@@ -23,11 +23,14 @@ export const Link = styled.TouchableOpacity`
 export const BoxLink = styled.View`
     flex-direction: row;
     align-items: center;
-    margin-top: 15px;
+    margin-top: 25px;
 `;
 
 export const LinkText = styled.Text`
     color: #022c6f;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
 `;
 
 export const InputContainer = styled.View`

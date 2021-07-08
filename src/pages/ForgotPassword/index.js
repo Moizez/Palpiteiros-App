@@ -10,7 +10,7 @@ import validate from '../../helpers/validations'
 import Input from '../../components/Paper/Input'
 import Button from '../../components/Paper/Button'
 
-const SignUp = () => {
+const ForgotPassword = () => {
 
 	const navigation = useNavigation()
 	const { handleSignUp, loadingAuth } = useContext(AuthContext)
@@ -44,7 +44,7 @@ const SignUp = () => {
 				<Icon name='chevron-down' size={40} color='#022c6f' />
 			</BackButton>
 
-			<Title>Realize o seu cadastro</Title>
+			<Title>Recupere sua senha</Title>
 			<InputContainer>
 				<Input
 					label='Nome*'
@@ -117,7 +117,7 @@ const SignUp = () => {
 				onPress={formik.handleSubmit}
 				loading={loadingAuth}
 			>
-				Cadastrar
+				Recuperar
 			</Button>
 
 		</Container>
@@ -160,4 +160,4 @@ const ErrorText = styled.Text`
 `;
 
 
-export default SignUp
+export default ForgotPassword

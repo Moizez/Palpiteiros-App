@@ -10,7 +10,7 @@ export default function LoadScreen({ loadMessage }) {
                 style={styles.image}
             />
             <Text style={styles.text}>{loadMessage}</Text>
-            <LottieView style={{ height: 100,  }} source={require('../../assets/lotties/loading.json')} autoPlay loop />
+            <LottieView style={{ height: 100 }} source={require('../../assets/lotties/loading.json')} autoPlay loop />
         </View>
     );
 }

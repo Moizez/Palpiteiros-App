@@ -59,4 +59,17 @@ export default {
         return request
     },
 
+    onRecoverPassword: async (values) => {
+        const user = await JSON.parse(await AsyncStorage.getItem('@palpiteiros:user')) || []
+
+        const data = {
+            name: values.name,
+            phone: values.phone,
+            email: values.email,
+            password: values.password
+        }
+        const request = await api_fetch.put(`/users/${user.id}`, data)
+        return request
+    },
+
 }

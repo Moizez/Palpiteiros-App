@@ -2,10 +2,10 @@ import React from 'react'
 import styled from 'styled-components/native'
 import LottieView from 'lottie-react-native'
 
-const Loading = ({lottie}) => {
+const Loading = ({ lottie, bgColor }) => {
 
     return (
-        <Container>
+        <Container bgColor={bgColor}>
             <Load>
                 <LottieView
                     source={lottie}
@@ -19,7 +19,7 @@ const Loading = ({lottie}) => {
 export default Loading
 
 const Container = styled.View`
-    background-color: rgba(0,0,0,0.7);
+    background-color: ${props => props.bgColor ? props.bgColor : 'rgba(0, 0, 0, 0.7)'};
     position: absolute;
     align-items: center;
     justify-content: center;
