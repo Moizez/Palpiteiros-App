@@ -1,41 +1,51 @@
-import React, { useContext } from 'react'
+import React, { useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import styled from 'styled-components/native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 
-import { AuthContext } from '../../contexts/auth'
-import validate from '../../helpers/validations'
+import api from '../../services/api'
+
 import Input from '../../components/Paper/Input'
 import Button from '../../components/Paper/Button'
+import Snackbar from '../../components/Snackbar'
 
 const ForgotPassword = () => {
 
 	const navigation = useNavigation()
-	const { handleSignUp, loadingAuth } = useContext(AuthContext)
+	const [showSnack, setShowSnack] = useState(false)
+	const [message, setMessage] = useState('')
+	const [snackColor, setSnackColor] = useState('')
+	const [snackTime, setSnackTime] = useState(null)
 
 	const validationSchema = yup.object().shape({
-		name: yup.string().required('O nome é obrigatório!'),
-		phone: yup.string().required('O telefone é obrigatório!'),
 		email: yup.string().email('Digite um e-mail válido!').required('O e-mail é obrigatório!'),
-		password: yup.string().required('A senha é obrigatória!'),
 	})
-
-	const initialFormState = {
-		name: '',
-		phone: '',
-		email: '',
-		password: ''
-	}
 
 	const formik = useFormik({
-		initialValues: initialFormState,
+		initialValues: { email: '' },
 		validationSchema: validationSchema,
 		onSubmit: async (values) => {
-			await handleSignUp(values)
+			const response = await api.onForgotPassword(values.email)
+			console.log(response.status)
+
+			if (response.status >= 200 && response.status <= 299) {
+				setMessage('Deu certo!')
+				setSnackColor('#43aa8b')
+				setSnackTime(2000)
+				handleShowSnack()
+			} else {
+				setMessage(response.message)
+				setSnackColor('#ad2e24')
+				setSnackTime(5000)
+				handleShowSnack()
+			}
 		}
 	})
+
+	const handleShowSnack = () => setShowSnack(true)
+	const handleCloseSnack = () => setShowSnack(false)
 
 	return (
 		<Container behavior='padding'>
@@ -45,38 +55,6 @@ const ForgotPassword = () => {
 			</BackButton>
 
 			<Title>Recupere sua senha</Title>
-			<InputContainer>
-				<Input
-					label='Nome*'
-					autoCapitalize='sentences'
-					keyboardType='name-phone-pad'
-					value={formik.values.name}
-					onChangeText={formik.handleChange('name')}
-					onBlur={formik.handleBlur('name')}
-					error={formik.touched.name && formik.errors.name}
-				/>
-				<ErrorBox>
-					{formik.touched.name && formik.errors.name &&
-						<ErrorText>{formik.errors.name}</ErrorText>
-					}
-				</ErrorBox>
-			</InputContainer>
-
-			<InputContainer>
-				<Input
-					label='Telefone*'
-					keyboardType='phone-pad'
-					value={formik.values.phone}
-					onChangeText={async (text) => formik.setFieldValue('phone', await validate.phoneMask(text))}
-					onBlur={formik.handleBlur('phone')}
-					error={formik.touched.phone && formik.errors.phone}
-				/>
-				<ErrorBox>
-					{formik.touched.phone && formik.errors.phone &&
-						<ErrorText>{formik.errors.phone}</ErrorText>
-					}
-				</ErrorBox>
-			</InputContainer>
 
 			<InputContainer>
 				<Input
@@ -96,29 +74,25 @@ const ForgotPassword = () => {
 				</ErrorBox>
 			</InputContainer>
 
-			<InputContainer>
-				<Input
-					label='Senha*'
-					autoCorrect={false}
-					autoCapitalize='none'
-					value={formik.values.password}
-					onChangeText={formik.handleChange('password')}
-					onBlur={formik.handleBlur('password')}
-					error={formik.touched.password && formik.errors.password}
-				/>
-				<ErrorBox>
-					{formik.touched.password && formik.errors.password &&
-						<ErrorText>{formik.errors.password}</ErrorText>
-					}
-				</ErrorBox>
-			</InputContainer>
-
 			<Button
 				onPress={formik.handleSubmit}
-				loading={loadingAuth}
 			>
 				Recuperar
 			</Button>
+
+			<Modal
+				visible={showSnack}
+				animationType='fade'
+				transparent={true}
+			>
+				<Snackbar
+					message={message}
+					onDismiss={handleCloseSnack}
+					hasBgColor
+					hasColor={snackColor}
+					time={snackTime}
+				/>
+			</Modal>
 
 		</Container>
 	)
@@ -158,6 +132,8 @@ const ErrorText = styled.Text`
     margin-top: -8px;
     margin-bottom: 3px;
 `;
+
+const Modal = styled.Modal``;
 
 
 export default ForgotPassword

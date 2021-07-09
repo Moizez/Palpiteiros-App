@@ -120,8 +120,8 @@ const MyJackpotList = ({ data }) => {
                     onDismiss={handleCloseSnack}
                     hasBgColor
                     hasColor={snackColor}
-                    hasBottom='-40%'
                     time={snackTime}
+                    hasBottom='-40%'
                 />
             </Modal>
         </>

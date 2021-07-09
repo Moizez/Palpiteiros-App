@@ -18,7 +18,7 @@ const UserRanking = ({ data, loading }) => {
 
 	return (
 		<>
-			<Container>
+			<Container showsVerticalScrollIndicator={false}>
 				<Box>
 					<InfoBox>
 						<LvBox>
@@ -33,9 +33,9 @@ const UserRanking = ({ data, loading }) => {
 										bgColor="#fff"
 										containerStyle={{ alignItems: 'center', justifyContent: 'center' }}
 									>
-										<Lv size={data?.entryLevel?.level?.valuelevel}>
+										<Lv color={color} size={data?.entryLevel?.level?.valuelevel}>
 											{data?.entryLevel?.level?.valuelevel}
-											<Lv style={{ fontSize: 20 }}>lv</Lv></Lv>
+											<Lv color={color} style={{ fontSize: 20 }}>lv</Lv></Lv>
 										<Label>
 											{data?.entryLevel?.level?.valueCurrent}/
 											{data?.entryLevel?.level?.valueLimit}

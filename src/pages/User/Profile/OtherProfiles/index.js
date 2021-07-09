@@ -10,7 +10,7 @@ import HierarchyModal from '../../../../components/Modals/HierarchyModal'
 import { changeLvColor } from '../../../../helpers/data'
 
 import UserRanking from './UserRanking'
-import UserGuesses from './UserGuesses'
+import UserHunches from './UserHunches'
 import UserJackpot from './UserJackpot'
 
 const initialLayout = { width: Dimensions.get('window').width }
@@ -69,7 +69,7 @@ const OtherProfiles = ({ route }) => {
 					loading={loading}
 				/>
 			case 1:
-				return <UserGuesses
+				return <UserHunches
 					data={profile}
 				/>
 			case 2:

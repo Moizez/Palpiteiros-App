@@ -1,12 +1,16 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import styled from 'styled-components/native'
 
 const UserJackpot = () => {
     return (
-        <View>
+        <Container showsVerticalScrollIndicator={false}>
             <Text>BOLÃO DO USUÁRIO</Text>
-        </View>
+        </Container>
     )
 }
+
+const Container = styled.ScrollView``;
+
+const Text = styled.Text``;
 
 export default UserJackpot

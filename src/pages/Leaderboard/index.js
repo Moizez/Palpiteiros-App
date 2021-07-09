@@ -20,10 +20,10 @@ const Leaderboard = ({ route }) => {
     const { id, name, year, champion, viceChampion } = route.params
     const [index, setIndex] = useState(0)
     const [routes] = useState([
-        { key: 0, title: 'Grupos' },
-        { key: 1, title: 'Oitavas' },
-        { key: 2, title: 'Quartas' },
-        { key: 3, title: 'Semi' },
+        { key: 0, title: 'Fase de Grupos' },
+        { key: 1, title: 'Oitavas de final' },
+        { key: 2, title: 'Quartas de final' },
+        { key: 3, title: 'Semifinal' },
         { key: 4, title: 'Final' },
     ])
 
@@ -75,7 +75,7 @@ const Leaderboard = ({ route }) => {
     const renderTabBar = props => (
         <TabBar {...props}
             renderLabel={({ route, color }) => (
-                <Text style={{ color, fontSize: 14 }}>
+                <Text style={{ color, fontSize: 12, textAlign: 'center' }}>
                     {route.title}
                 </Text>
             )}

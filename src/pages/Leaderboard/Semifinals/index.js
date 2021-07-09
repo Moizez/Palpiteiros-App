@@ -140,7 +140,7 @@ const InfoBox = styled.View`
 `;
 
 const Text = styled.Text`
-    font-family: Quantico-Regular;
+    font-family: ${props=>props.theme.fontQRegular};
     font-size: 17px;
     text-align: center;
 `;

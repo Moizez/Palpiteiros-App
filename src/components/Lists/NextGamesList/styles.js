@@ -98,7 +98,7 @@ export const Text = styled.Text`
 
 export const HunchText = styled.Text`
     font-size: 35px;
-    font-family: Quantico-Regular;
+    font-family: ${props=>props.theme.fontQRegular};
     color: #000;
 `;
 

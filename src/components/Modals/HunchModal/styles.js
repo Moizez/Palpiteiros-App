@@ -111,7 +111,7 @@ export const Input = styled.TextInput`
     font-size: 30px;
     color: #FFF;
     text-align: center;
-    font-family: Quantico-Regular;
+    font-family: ${props=>props.theme.fontQRegular};
 `;
 
 export const PenaltyBox = styled.View`

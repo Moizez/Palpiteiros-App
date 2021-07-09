@@ -1,7 +1,7 @@
 import styled from 'styled-components/native'
 import LinearGradient from 'react-native-linear-gradient'
 
-export const Container = styled.View`
+export const Container = styled.ScrollView`
     flex:1;
 `;
 
@@ -79,6 +79,7 @@ export const Lv = styled.Text`
     font-size: ${(props) => props.size >= 100 ? 50 : 70}px;
     font-weight: bold;
     text-transform: uppercase;
+    color: ${props => props.color ? props.color : '#000'};
 `;
 
 export const Label = styled.Text`

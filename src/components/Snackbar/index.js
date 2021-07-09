@@ -44,6 +44,7 @@ const Snack = styled.View(({ hasColor, hasBottom }) => ({
 const Message = styled.Text`
     font-size: 16px;
     color: #FFF;
+    text-align: center;
 `;
 
 

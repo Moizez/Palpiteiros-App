@@ -71,7 +71,7 @@ export const Flag = styled.Image`
 export const ScoreText = styled.Text`
     color: #000;
     font-size: 12px;
-    font-family: Quantico-Italic;
+    font-family: ${props=>props.theme.fontQItalic};
     
 `;
 
@@ -101,7 +101,7 @@ export const Text = styled.Text`
 
 export const HunchText = styled.Text`
     font-size: 35px;
-    font-family: Quantico-Regular;
+    font-family: ${props=>props.theme.fontQRegular};
     color: #000;
 `;
 
