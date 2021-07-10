@@ -68,6 +68,7 @@ export const Lv = styled.Text`
     font-size: ${props => props.size >= 100 ? 50 : 70}px;
     font-weight: bold;
     text-transform: uppercase;
+    color: ${props => props.color ? props.color : '#000'};
 `;
 
 export const Label = styled.Text`
@@ -97,12 +98,14 @@ export const Attribute = styled(LinearGradient)`
 export const AttributeText = styled.Text`
     font-weight: bold;
     font-size: 22px;
+    color: ${props=>props.theme.mainColor};
 `;
 
 export const AttributeLabel = styled.Text`
     text-transform: uppercase;
     font-size: 11px;
     text-align: center;
+    color: ${props=>props.theme.mainColor};
 `;
 
 export const LvTitle = styled.TouchableOpacity`

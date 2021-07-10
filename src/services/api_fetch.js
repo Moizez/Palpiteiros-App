@@ -29,7 +29,7 @@ export default {
                     status: response.status
                 }
             }
-        } else if (response.status === 400) {
+        } else if (response.status >= 400 && response.status <= 451) {
             const json = await response.json()
             if (json)
                 return {
@@ -94,7 +94,7 @@ export default {
                     status: response.status
                 }
             }
-        } else if (response.status === 400) {
+        } else if (response.status >= 400 && response.status <= 451) {
             const json = await response.json()
             if (json)
                 return {

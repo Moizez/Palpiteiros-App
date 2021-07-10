@@ -108,7 +108,8 @@ const UserRanking = ({ data, loading }) => {
 				<Loading
 					lottie={require('../../../../../assets/lotties/loading.json')}
 					bgColor='#FFF'
-				/>}
+				/>
+			}
 		</>
 	)
 }

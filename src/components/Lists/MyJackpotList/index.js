@@ -23,7 +23,7 @@ const MyJackpotList = ({ data }) => {
     const [message, setMessage] = useState('')
     const [refresh, setRefresh] = useState(false)
 
-    const { id, name: jackpotName, championship: { confrontations, year, name } } = data
+    const { id, name: jackpotName, championship: { year, name } } = data
     const totalParticipants = data.users?.length
 
     const handleJackpotRegister = async () => {
@@ -104,7 +104,6 @@ const MyJackpotList = ({ data }) => {
                     closeModal={handleCloseJackpotModal}
                     confirmModal={handleJackpotRegister}
                     totalParticipants={totalParticipants}
-                    jackpotName={jackpotName}
                     championship={name}
                     year={year}
                     id={id}

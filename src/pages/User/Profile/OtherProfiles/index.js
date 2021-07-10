@@ -57,7 +57,7 @@ const OtherProfiles = ({ route }) => {
 				</Text>
 			)}
 			indicatorStyle={{ backgroundColor: '#022c6f' }}
-			style={{ backgroundColor: '#fff' }}
+			style={{ backgroundColor: '#fff', marginBottom: 5 }}
 		/>
 	)
 
@@ -71,9 +71,13 @@ const OtherProfiles = ({ route }) => {
 			case 1:
 				return <UserHunches
 					data={profile}
+					loading={loading}
 				/>
 			case 2:
-				return <UserJackpot />
+				return <UserJackpot
+					data={profile}
+					loading={loading}
+				/>
 			default:
 				return null;
 		}

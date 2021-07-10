@@ -109,12 +109,14 @@ export const Attribute = styled(LinearGradient)`
 export const AttributeText = styled.Text`
     font-weight: bold;
     font-size: 22px;
+    color: ${props=>props.theme.mainColor};
 `;
 
 export const AttributeLabel = styled.Text`
     text-transform: uppercase;
     font-size: 11px;
     text-align: center;
+    color: ${props=>props.theme.mainColor};
 `;
 
 export const Modal = styled.Modal``;

@@ -85,9 +85,9 @@ const Profile = ({ route }) => {
 										bgColor="#fff"
 										containerStyle={{ alignItems: 'center', justifyContent: 'center' }}
 									>
-										<Lv size={profile?.entryLevel?.level?.valuelevel}>
+										<Lv color={color} size={profile?.entryLevel?.level?.valuelevel}>
 											{profile?.entryLevel?.level?.valuelevel}
-											<Lv style={{ fontSize: 20 }}>lv</Lv></Lv>
+											<Lv color={color} style={{ fontSize: 20 }}>lv</Lv></Lv>
 										<Label>
 											{profile?.entryLevel?.level?.valueCurrent}/
 											{profile?.entryLevel?.level?.valueLimit}
