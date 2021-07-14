@@ -23,7 +23,17 @@ const MyJackpotList = ({ data }) => {
     const [message, setMessage] = useState('')
     const [refresh, setRefresh] = useState(false)
 
-    const { id, name: jackpotName, championship: { year, name } } = data
+    const {
+        id,
+        finished,
+        name: jackpotName,
+        championship: {
+            confrontations,
+            year,
+            name
+        }
+    } = data
+
     const totalParticipants = data.users?.length
 
     const handleJackpotRegister = async () => {
@@ -49,10 +59,8 @@ const MyJackpotList = ({ data }) => {
     const hasRegister = async () => {
         const response = await api.hasRegister(id)
         if (response.data) {
-            return navigation.navigate('JackpotDetails', {
-                id: id,
-                jackpotName: jackpotName
-            })
+            const dataDetail = { id: id, finished: finished, jackpotName: jackpotName }
+            return navigation.navigate('JackpotDetails', dataDetail)
         } else {
             return handleOpenJackpotModal()
         }

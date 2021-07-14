@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { DataTable } from 'react-native-paper'
 import styled from 'styled-components/native'
 
@@ -12,10 +13,10 @@ import Loading from '../../../../components/Loading'
 
 const JackpotDetails = ({ route }) => {
 
-    const { id, jackpotName } = route.params
+    const { id, jackpotName, finished } = route.params
     const [refreshing, setRefreshing] = useState(false)
     const [jackpotRanking, setJackpotRanking] = useState([])
-    const [podium, setPodium] = useState(true)
+    const [podium, setPodium] = useState(false)
 
     const [loading, setLoading] = useState(true)
 
@@ -28,6 +29,17 @@ const JackpotDetails = ({ route }) => {
     useEffect(() => {
         getJackpotRanking()
     }, [id])
+
+    useEffect(() => {
+        const checkFireworks = async () => {
+            const value = await AsyncStorage.getItem('@palpiteiros:fireworks')
+            if (finished && !value) {
+                await AsyncStorage.setItem('@palpiteiros:fireworks', 'fireworks')
+                showPodium()
+            }
+        }
+        checkFireworks()
+    }, [])
 
     const handleRefresh = async () => {
         setRefreshing(true)
@@ -44,6 +56,7 @@ const JackpotDetails = ({ route }) => {
             <Header
                 title={jackpotName}
                 showPodium={showPodium}
+                finished={finished}
                 hasIcon
                 hasIcon2
             />
@@ -81,18 +94,16 @@ const JackpotDetails = ({ route }) => {
             />
 
             {!loading &&
-
                 <Modal
                     visible={podium}
                     animationType='fade'
                     transparent={true}
                     onRequestClose={closePodium}
                 >
-
                     <PodiumModal
                         closeModal={closePodium}
+                        data={jackpotRanking}
                     />
-
                 </Modal>
             }
 

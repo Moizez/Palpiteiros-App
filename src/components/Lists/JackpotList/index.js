@@ -23,7 +23,17 @@ const JackpotList = ({ data }) => {
     const [message, setMessage] = useState('')
     const [refresh, setRefresh] = useState(false)
 
-    const { id, name: jackpotName, championship: { confrontations, year, name } } = data
+    const {
+        id,
+        finished,
+        name: jackpotName,
+        championship: {
+            confrontations,
+            year,
+            name
+        }
+    } = data
+
     const totalParticipants = data.users?.length
 
     const handleJackpotRegister = async () => {
@@ -49,10 +59,8 @@ const JackpotList = ({ data }) => {
     const hasRegister = async () => {
         const response = await api.hasRegister(id)
         if (response.data) {
-            return navigation.navigate('JackpotDetails', {
-                id: id,
-                jackpotName: jackpotName
-            })
+            const dataDetail = { id: id, finished: finished, jackpotName: jackpotName }
+            return navigation.navigate('JackpotDetails', dataDetail)
         } else {
             return handleOpenJackpotModal()
         }
@@ -66,12 +74,12 @@ const JackpotList = ({ data }) => {
     return (
         <>
             <Container
-            activeOpacity={0.9}
-            onPress={hasRegister}
+                activeOpacity={0.9}
+                onPress={hasRegister}
             >
                 <Card
-                   style={{ elevation: 3 }}
-                   colors={['#ddd', '#fff']}
+                    style={{ elevation: 3 }}
+                    colors={['#ddd', '#fff']}
                 >
                     <ImageBox>
                         <Image

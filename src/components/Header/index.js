@@ -33,9 +33,9 @@ const Header = (props) => {
                 </ImageBox>
             }
 
-            {(!props.hasImage && props.hasIcon2) &&
+            {(props.finished && !props.hasImage && props.hasIcon2) &&
                 <Podium onPress={() => props.showPodium()}>
-                    <Icon name='podium' color='#FFF' size={25} />
+                    <Icon name='podium' color='#FFF' size={23} />
                 </Podium>
             }
 

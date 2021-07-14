@@ -8,11 +8,17 @@ import podium_gb from '../../../assets/images/podium/bg1.jpg'
 import profile_picture from '../../../assets/images/avatar.jpg'
 import fireworks from '../../../assets/lotties/fireworks.json'
 
-const PodiumModal = ({ closeModal }) => {
+const PodiumModal = ({ data, closeModal }) => {
 
     const first_color = ['#ffc300', '#ffd000']
     const second_color = ['#adb5bd', '#ced4da']
     const third_color = ['#974716', '#a15019']
+
+    const getPosition = (position) => {
+        const result = data.filter(i => i.position === position)
+        const [{ user: { name } }] = result
+        return name
+    }
 
     return (
         <Container>
@@ -22,10 +28,14 @@ const PodiumModal = ({ closeModal }) => {
 
                 <BackgroundCard source={podium_gb} resizeMode="cover">
 
-                    <Title>pódio palpiteiros</Title>
+                    <CardHeader>
+                        <Title>pódio palpiteiros</Title>
+                        <CloseButton onPress={closeModal}>
+                            <Icon name='chevron-down' size={40} color='#fff' />
+                        </CloseButton>
+                    </CardHeader>
 
                     <Card>
-
 
                         <Second>
                             <SecondInfo>
@@ -33,7 +43,7 @@ const PodiumModal = ({ closeModal }) => {
                                     source={profile_picture}
                                     resizeMode='cover'
                                 />
-                                <Text>Antonio</Text>
+                                <Text>{getPosition(2)}</Text>
                             </SecondInfo>
 
                             <SecondPodium colors={second_color}>
@@ -48,7 +58,7 @@ const PodiumModal = ({ closeModal }) => {
                                     source={profile_picture}
                                     resizeMode='cover'
                                 />
-                                <Text>Moisés</Text>
+                                <Text>{getPosition(1)}</Text>
                             </FirstInfo>
 
                             <FirstPodium colors={first_color}>
@@ -63,7 +73,7 @@ const PodiumModal = ({ closeModal }) => {
                                     source={profile_picture}
                                     resizeMode='cover'
                                 />
-                                <Text>Robson</Text>
+                                <Text>{getPosition(3)}</Text>
                             </ThirdInfo>
 
                             <ThirdPodium colors={third_color}>
@@ -72,15 +82,15 @@ const PodiumModal = ({ closeModal }) => {
 
                         </Third>
 
+                        <LottieView
+                            source={fireworks}
+                            autoPlay
+                            loop={false}
+                        />
+
                     </Card>
 
                 </BackgroundCard>
-
-                <LottieView
-                    source={fireworks}
-                    autoPlay
-                    loop={false}
-                />
 
             </Box>
 
@@ -89,7 +99,6 @@ const PodiumModal = ({ closeModal }) => {
         </Container>
     )
 }
-
 
 const Container = styled.View`
     flex: 1;
@@ -112,14 +121,24 @@ const BackgroundCard = styled.ImageBackground`
     flex: 1;
 `;
 
+const CardHeader = styled.View`
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+`;
+
+const CloseButton = styled.TouchableOpacity`
+    margin-top: 10px;
+`;
+
 const Card = styled.View`
     flex: 1;
     flex-direction: row;
 `;
 
 export const Image = styled.Image`
-    width: 70px;
-    height: 70px;
+    width: 65px;
+    height: 65px;
     border-radius: 40px;
     border-color: #fff;
     border-width: 1px;
@@ -177,6 +196,7 @@ const Text = styled.Text`
     color: #fff;
     font-family:  ${props => props.theme.fontQRegular};
     font-size: 18px;
+    text-align: center;
 `;
 
 const Title = styled.Text`
@@ -187,6 +207,5 @@ const Title = styled.Text`
     margin-top: 15px;
     text-transform: uppercase;
 `;
-
 
 export default PodiumModal

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, createContext } from 'react'
-import { Modal } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { Modal } from 'react-native'
 
 import api from '../services/api'
 import Snackbar from '../components/Snackbar'
