@@ -7,6 +7,7 @@ import {
 } from './styles'
 
 const ChampionshipsList = ({ data }) => {
+    
     const { id, name, year, champion, viceChampion } = data
     const navigation = useNavigation()
 

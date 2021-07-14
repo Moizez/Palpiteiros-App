@@ -33,6 +33,12 @@ const Header = (props) => {
                 </ImageBox>
             }
 
+            {(!props.hasImage && props.hasIcon2) &&
+                <Podium onPress={() => props.showPodium()}>
+                    <Icon name='podium' color='#FFF' size={25} />
+                </Podium>
+            }
+
         </Container>
     )
 }
@@ -50,6 +56,13 @@ const Close = styled.TouchableOpacity`
     position: absolute;
     top: 25px;
     left: 15px;
+`;
+
+const Podium = styled.TouchableOpacity`
+    justify-content: center;
+    position: absolute;
+    top: 25px;
+    right: 15px;
 `;
 
 const Info = styled.View`

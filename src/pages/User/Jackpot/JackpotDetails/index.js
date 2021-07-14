@@ -7,6 +7,7 @@ import api_ranking from '../../../../services/api_ranking'
 import JackpotRankingList from '../../../../components/Lists/JackpotRankingList'
 import Header from '../../../../components/Header'
 import EmptyList from '../../../../components/Lists/EmptyList'
+import PodiumModal from '../../../../components/Modals/PodiumModal'
 import Loading from '../../../../components/Loading'
 
 const JackpotDetails = ({ route }) => {
@@ -14,6 +15,8 @@ const JackpotDetails = ({ route }) => {
     const { id, jackpotName } = route.params
     const [refreshing, setRefreshing] = useState(false)
     const [jackpotRanking, setJackpotRanking] = useState([])
+    const [podium, setPodium] = useState(true)
+
     const [loading, setLoading] = useState(true)
 
     const getJackpotRanking = async () => {
@@ -32,12 +35,17 @@ const JackpotDetails = ({ route }) => {
         setRefreshing(false)
     }
 
+    const showPodium = () => setPodium(true)
+    const closePodium = () => setPodium(false)
+
     return (
         <Container>
 
             <Header
                 title={jackpotName}
+                showPodium={showPodium}
                 hasIcon
+                hasIcon2
             />
 
             <TitleBox>
@@ -71,7 +79,24 @@ const JackpotDetails = ({ route }) => {
                     <EmptyList message='Nenhum participante nesse bolão' />
                 }
             />
-            {loading && <Loading lottie={require('../../../../assets/lotties/soccer-field.json')}/>}
+
+            {!loading &&
+
+                <Modal
+                    visible={podium}
+                    animationType='fade'
+                    transparent={true}
+                    onRequestClose={closePodium}
+                >
+
+                    <PodiumModal
+                        closeModal={closePodium}
+                    />
+
+                </Modal>
+            }
+
+            {loading && <Loading lottie={require('../../../../assets/lotties/soccer-field.json')} />}
         </Container>
     );
 }
@@ -106,6 +131,6 @@ const Text = styled.Text`
 `;
 
 const RefreshControl = styled.RefreshControl``;
-
+const Modal = styled.Modal``;
 
 export default JackpotDetails

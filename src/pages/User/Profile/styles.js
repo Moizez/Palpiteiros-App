@@ -53,6 +53,7 @@ height: 0.5px;
 margin: 10px 0;
 background-color: #022c6f;
 `;
+
 export const LvBox = styled.View`
     height: 150px;
     justify-content: center;
