@@ -72,15 +72,17 @@ const AuthProvider = ({ children }) => {
         }
     }
 
-    //Função para deslogar o usuário
-    const logOut = async () => {
-        await AsyncStorage.clear()
-            .then(() => setUser(null))
-    }
-
-    //Função para adicionar o usuário no Async Storage
     const storageUser = async (data) => {
         await AsyncStorage.setItem('@palpiteiros:user', JSON.stringify(data))
+    }
+
+    const logOut = async () => {
+        try {
+            await AsyncStorage.removeItem('@palpiteiros:user', () => setUser(null))
+        } catch (error) {
+            setMessage(`Falha inesperada! Erro: ${error}`)
+            handleShowSnack()
+        }
     }
 
     const handleShowSnack = () => setShowSnack(true)

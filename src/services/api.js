@@ -60,21 +60,8 @@ export default {
     },
 
     onForgotPassword: async (email) => {
-        console.log(email)
-        const request = await api_fetch.post(`/users/forgotPassword`, { email: email })
-        return request
-    },
-
-    onCheckToken: async (token) => {
-        const response = await api_fetch.get(`users/checkLink/${token}`)
-        return response
-    },
-
-    onRecoverPassword: async (password) => {
-        const user = await JSON.parse(await AsyncStorage.getItem('@palpiteiros:user')) || []
-
-        const data = { password: password }
-        const request = await api_fetch.put(`/users/${user.id}`, data)
+        const data = { email: email }
+        const request = await api_fetch.post(`/users/forgotPassword`, data)
         return request
     },
 

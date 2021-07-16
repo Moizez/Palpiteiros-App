@@ -28,15 +28,18 @@ const ForgotPassword = () => {
 		validationSchema: validationSchema,
 		onSubmit: async (values) => {
 			const response = await api.onForgotPassword(values.email)
-			console.log(response.status)
 
 			if (response.status >= 200 && response.status <= 299) {
-				setMessage('Deu certo!')
+				setMessage('E-mail de recuperação enviado com sucesso!')
 				setSnackColor('#43aa8b')
-				setSnackTime(2000)
+				setSnackTime(3000)
 				handleShowSnack()
 			} else {
-				setMessage(response.message)
+				setMessage(
+					response.message
+						? response.message
+						: `Falha inesperada! Erro: ${response.status}`
+				)
 				setSnackColor('#ad2e24')
 				setSnackTime(5000)
 				handleShowSnack()
