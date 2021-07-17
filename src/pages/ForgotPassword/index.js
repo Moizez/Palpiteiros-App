@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Keyboard } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import styled from 'styled-components/native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -18,6 +19,7 @@ const ForgotPassword = () => {
 	const [message, setMessage] = useState('')
 	const [snackColor, setSnackColor] = useState('')
 	const [snackTime, setSnackTime] = useState(null)
+	const [loading, setLoading] = useState(false)
 
 	const validationSchema = yup.object().shape({
 		email: yup.string().email('Digite um e-mail válido!').required('O e-mail é obrigatório!'),
@@ -27,14 +29,18 @@ const ForgotPassword = () => {
 		initialValues: { email: '' },
 		validationSchema: validationSchema,
 		onSubmit: async (values) => {
+			Keyboard.dismiss()
+			setLoading(true)
 			const response = await api.onForgotPassword(values.email)
 
 			if (response.status >= 200 && response.status <= 299) {
+				setLoading(false)
 				setMessage('E-mail de recuperação enviado com sucesso!')
 				setSnackColor('#43aa8b')
 				setSnackTime(3000)
 				handleShowSnack()
 			} else {
+				setLoading(false)
 				setMessage(
 					response.message
 						? response.message
@@ -79,6 +85,7 @@ const ForgotPassword = () => {
 
 			<Button
 				onPress={formik.handleSubmit}
+				loading={loading}
 			>
 				Recuperar
 			</Button>
@@ -137,6 +144,5 @@ const ErrorText = styled.Text`
 `;
 
 const Modal = styled.Modal``;
-
 
 export default ForgotPassword
