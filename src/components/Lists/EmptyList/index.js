@@ -16,7 +16,7 @@ const EmptyList = ({ message, tip }) => {
 const Container = styled.View`
     flex: 1;
     width: 100%;
-    margin-top: 20%;
+    margin-top: 20px;
     align-items: center;
     justify-content: center;
 `;
@@ -24,7 +24,7 @@ const Container = styled.View`
 
 const Text = styled.Text`
     font-size: 16px;
-    font-weight: bold;
+    font-family: ${props => props.theme.fontQBold};
     text-align: center;
     opacity: 0.2;
 `;
@@ -32,7 +32,8 @@ const Text = styled.Text`
 export const Image = styled.Image`
    width: 180px;
    height: 180px;
-   opacity: 0.1;
+   opacity: 0.2;
+   margin: 15px 0;
 `;
 
 

@@ -9,6 +9,7 @@ import api_profile from '../../../services/api_profile'
 import avatar from '../../../assets/images/avatar.jpg'
 import Loading from '../../../components/Loading'
 import HierarchyModal from '../../../components/Modals/HierarchyModal'
+import NoProfile from '../../../components/NoProfile'
 import { changeLvColor } from '../../../helpers/data'
 
 import {
@@ -99,60 +100,66 @@ const Profile = ({ route }) => {
 
 						</LvBox>
 
-						{profile?.rankings?.map(rank =>
-							<AttributeBox key={rank.id}>
-								<Attribute style={styles.attribute} colors={colors}>
-									<AttributeText>{profile?.hunches?.length}</AttributeText>
-									<AttributeLabel>total de palpite{profile?.hunches?.length > 1 && 's'}</AttributeLabel>
-								</Attribute>
+						{profile?.totalJackpots !== 0 ?
+							<>
+								{profile?.rankings?.map(rank =>
+									<AttributeBox key={rank.id}>
+										<Attribute style={styles.attribute} colors={colors}>
+											<AttributeText>{profile?.hunches?.length}</AttributeText>
+											<AttributeLabel>total de palpite{profile?.hunches?.length > 1 && 's'}</AttributeLabel>
+										</Attribute>
 
-								<Attribute style={styles.attribute} colors={colors}>
-									<AttributeText>{rank?.totalAccuracy}</AttributeText>
-									<AttributeLabel>{
-										rank?.totalAccuracy > 1
-											? 'palpites exatos'
-											: 'palpite exato'
-									}
-									</AttributeLabel>
-								</Attribute>
+										<Attribute style={styles.attribute} colors={colors}>
+											<AttributeText>{rank?.totalAccuracy}</AttributeText>
+											<AttributeLabel>{
+												rank?.totalAccuracy > 1
+													? 'palpites exatos'
+													: 'palpite exato'
+											}
+											</AttributeLabel>
+										</Attribute>
 
-								<Attribute style={styles.attribute} colors={colors}>
-									<AttributeText>{rank?.totalHits}</AttributeText>
-									<AttributeLabel>{
-										rank?.totalHits > 1
-											? 'vitórias/empates'
-											: 'vitória/empate'
-									}
-									</AttributeLabel>
-								</Attribute>
+										<Attribute style={styles.attribute} colors={colors}>
+											<AttributeText>{rank?.totalHits}</AttributeText>
+											<AttributeLabel>{
+												rank?.totalHits > 1
+													? 'vitórias/empates'
+													: 'vitória/empate'
+											}
+											</AttributeLabel>
+										</Attribute>
 
-								<Attribute style={styles.attribute} colors={colors}>
-									<AttributeText>{rank?.totalPoints}</AttributeText>
-									<AttributeLabel>total de ponto{rank?.totalPoints > 1 && 's'}</AttributeLabel>
-								</Attribute>
+										<Attribute style={styles.attribute} colors={colors}>
+											<AttributeText>{rank?.totalPoints}</AttributeText>
+											<AttributeLabel>total de ponto{rank?.totalPoints > 1 && 's'}</AttributeLabel>
+										</Attribute>
 
-								<Attribute style={styles.attribute} colors={colors}>
-									<AttributeText>
-										{profile?.percent}
-										<AttributeText style={{ fontSize: 12 }}>
-											%
-										</AttributeText>
-									</AttributeText>
-									<AttributeLabel>precisão de acertos</AttributeLabel>
-								</Attribute>
+										<Attribute style={styles.attribute} colors={colors}>
+											<AttributeText>
+												{profile?.percent}
+												<AttributeText style={{ fontSize: 12 }}>
+													%
+												</AttributeText>
+											</AttributeText>
+											<AttributeLabel>precisão de acertos</AttributeLabel>
+										</Attribute>
 
-								<Attribute style={styles.attribute} colors={colors}>
-									<AttributeText>{profile?.totalJackpots}</AttributeText>
-									<AttributeLabel>total de bol{
-										profile?.totalJackpots > 1
-											? 'ões'
-											: 'ão'
-									}
-									</AttributeLabel>
-								</Attribute>
+										<Attribute style={styles.attribute} colors={colors}>
+											<AttributeText>{profile?.totalJackpots}</AttributeText>
+											<AttributeLabel>total de bol{
+												profile?.totalJackpots > 1
+													? 'ões'
+													: 'ão'
+											}
+											</AttributeLabel>
+										</Attribute>
 
-							</AttributeBox>
-						)}
+									</AttributeBox>
+								)}
+							</>
+							:
+							<NoProfile />
+						}
 					</InfoBox>
 				</Box>
 				<Modal

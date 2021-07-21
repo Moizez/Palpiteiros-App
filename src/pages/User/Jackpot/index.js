@@ -21,7 +21,11 @@ const Jackpot = () => {
 	const renderTabBar = props => (
 		<TabBar {...props}
 			renderLabel={({ route, color }) => (
-				<Text style={{ color, fontSize: 15 }}>
+				<Text style={{
+					color,
+					fontSize: 14,
+					fontFamily: 'Quantico-Italic'
+				}}>
 					{route.title}
 				</Text>
 			)}

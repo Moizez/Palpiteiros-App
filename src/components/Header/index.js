@@ -45,7 +45,7 @@ const Header = (props) => {
 
 const Container = styled.View`
     width: 100%;
-    min-height: 80px;
+    min-height: 88px;
     flex-direction: row;
     background-color: #022c6f;
     padding: 20px;

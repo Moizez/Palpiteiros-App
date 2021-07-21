@@ -53,7 +53,7 @@ const Regulation = () => {
                 )}
                 showsVerticalScrollIndicator={false}
                 ListEmptyComponent={
-                    <EmptyList message='Nenhum bolão disponível!' />
+                    <EmptyList message='No momento não há nenhum bolão disponível!' />
                 }
             />
             <Modal

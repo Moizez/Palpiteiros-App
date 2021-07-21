@@ -12,7 +12,7 @@ import {
     HunchText, ScoreText, Status, Label, Divider, Flag, Text
 } from './styles'
 
-const FinishedGamesList = ({ data, idJackpot, isRefresh }) => {
+const FinishedGamesList = ({ data, idJackpot }) => {
 
     const [hunch, setHunch] = useState([])
 
@@ -23,7 +23,7 @@ const FinishedGamesList = ({ data, idJackpot, isRefresh }) => {
 
     useEffect(() => {
         getHunch()
-    }, [isRefresh])
+    }, [])
 
     const dateFormat = (date) => {
         const res = parseISO(date)

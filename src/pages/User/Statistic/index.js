@@ -35,7 +35,7 @@ const Statistic = () => {
 					renderItem={({ item }) => <ChampionshipsList data={item} />}
 					showsVerticalScrollIndicator={false}
 					ListEmptyComponent={
-						<EmptyList message='Nenhum bolão disponível!' />
+						<EmptyList message='No momento não há nenhum campeonato disponível!' />
 					}
 				/>
 				{loading && <Loading lottie={require('../../../assets/lotties/soccer-field.json')}/>}

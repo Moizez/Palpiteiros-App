@@ -53,7 +53,7 @@ const Games = ({ route }) => {
                     }
                     ListEmptyComponent={
                         <EmptyList
-                            message='Nenhum bolão disponível!'
+                            message='No momento não há nenhum bolão disponível!'
                             tip='Dica: Primeiro é necessário participar de um bolão.'
                         />
                     }

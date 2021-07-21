@@ -1,5 +1,6 @@
 import React from 'react'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 //Main pages
@@ -23,8 +24,8 @@ const icons = {
         name: 'trophy'
     },
     Statistic: {
-        lib: MaterialCommunityIcons,
-        name: 'chart-line'
+        lib: FontAwesome,
+        name: 'soccer-ball-o'
     },
     Setting: {
         lib: MaterialCommunityIcons,
@@ -76,7 +77,7 @@ const User = () => {
                 name='Statistic'
                 component={Statistic}
                 options={{
-                    title: 'Estatística'
+                    title: 'Campeonatos'
                 }} />
 
             <AppTab.Screen

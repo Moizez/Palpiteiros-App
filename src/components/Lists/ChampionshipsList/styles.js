@@ -15,11 +15,6 @@ export const Card = styled(LinearGradient)`
     margin: 10px 2px;
 `;
 
-export const ImageBox = styled.View`
-    align-items: center;
-    justify-content: center;
-`;
-
 export const Image = styled.Image`
     width: 80px;
     height: 80px;
@@ -37,7 +32,6 @@ export const Label = styled.Text`
     font-size: 15px;
 `;
 
-export const Modal = styled.Modal``;
 
 export const VerticalDivider = styled.View`
     height: 100%;
@@ -46,11 +40,3 @@ export const VerticalDivider = styled.View`
     opacity: 0.5;
     margin: 0 10px;
 `;
-
-export const UserBox = styled.View`
-    flex-direction: row;
-    align-items: flex-end;
-`;
-
-
-

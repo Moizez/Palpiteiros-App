@@ -53,7 +53,7 @@ const Setting = () => {
 
                 <TouchableOpacity onPress={() => navigation.navigate('Regulation')} style={styles.item}>
                     <Icon name='clipboard-alert-outline' color={'#292b2c'} size={35} />
-                    <Text style={styles.text}>Regulamento</Text>
+                    <Text style={styles.text}>Regulamentos</Text>
                 </TouchableOpacity>
 
                 <View style={{ width: '100%', height: 0.5, backgroundColor: '#adb5bd' }}></View>
