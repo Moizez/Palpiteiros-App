@@ -37,7 +37,7 @@ const UserRanking = ({ data, loading }) => {
 											{data?.entryLevel?.level?.valuelevel}
 											<Lv color={color} style={{ fontSize: 20 }}>lv</Lv></Lv>
 										<Label>
-											{data?.entryLevel?.level?.valueCurrent}/
+											{data?.entryLevel?.level?.xp}/
 											{data?.entryLevel?.level?.valueLimit}
 										</Label>
 									</ProgressCircle>

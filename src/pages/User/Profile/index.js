@@ -90,7 +90,7 @@ const Profile = ({ route }) => {
 											{profile?.entryLevel?.level?.valuelevel}
 											<Lv color={color} style={{ fontSize: 20 }}>lv</Lv></Lv>
 										<Label>
-											{profile?.entryLevel?.level?.valueCurrent}/
+											{profile?.entryLevel?.level?.xp}/
 											{profile?.entryLevel?.level?.valueLimit}
 										</Label>
 									</ProgressCircle>

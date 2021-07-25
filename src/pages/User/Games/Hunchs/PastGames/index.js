@@ -13,7 +13,7 @@ const PastGames = ({ idChampionship, idJackpot }) => {
 	const [confrontations, setConfrontations] = useState([])
 
 	const loadConfrontationsClosed = async () => {
-		const response = await api.getConfrontationsClosedByChampionships(idChampionship, 10)
+		const response = await api.getConfrontationsClosedByChampionships(idChampionship, 51)
 		setConfrontations(response.data)
 		setLoading(false)
 	}
