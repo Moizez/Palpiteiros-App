@@ -53,7 +53,7 @@ Desde já, ficarei muito feliz se você puder me fornecer algum feedback sobre o
 	  - Rei Pelé dos palpites.
 
 ## Instalação
-Nota: Se você deseja testar o Palpiteiros, ele já se encontra publicado no Google Play, para nstalá-lo no seu smartphone basta clicar [aqui](https://play.google.com/store/apps/details?id=com.palpiteiros).
+Nota: Se você deseja testar o Palpiteiros, ele já se encontra publicado no Google Play, para instalá-lo no seu smartphone basta clicar [aqui](https://play.google.com/store/apps/details?id=com.palpiteiros).
 
 ### Pré-requisitos
 Para executar este projeto você precisará ter um ambiente básico para executar um aplicativo React-Native, que pode ser encontrado [aqui](https://facebook.github.io/react-native/docs/getting-started).
