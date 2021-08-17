@@ -56,11 +56,11 @@ Desde já, ficarei muito feliz se você puder me fornecer algum feedback sobre o
 Nota: Se você deseja testar o Palpiteiros, ele já se encontra publicado no Google Play, para nstalá-lo no seu smartphone basta clicar [aqui](https://play.google.com/store/apps/details?id=com.palpiteiros).
 
 ### Pré-requisitos
-Para executar este projeto você precisará ter um ambiente básico para executar um aplicativo React-Native, que pode ser encontrado [aqui] (https://facebook.github.io/react-native/docs/getting-started).
+Para executar este projeto você precisará ter um ambiente básico para executar um aplicativo React-Native, que pode ser encontrado [aqui](https://facebook.github.io/react-native/docs/getting-started).
 
 **Clonando o repositório**
 ```
-$ git clone https://github.com/steniowagner/mindCast
+$ git clone https://github.com/moizez/Palpiteiros-App
 
 $ cd Palpiteiros-App
 ```
