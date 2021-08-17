@@ -11,16 +11,52 @@ Desde já, ficarei muito feliz se você puder me fornecer algum feedback sobre o
 
 ## Funcionalidades
 - Após criar seu cadastro você será automaticamente logado no app;
-- Já dentro da aplicação, você poderá selecionar um bolão disponível para participar na aba de bolões oficiais. Em breve também será possível o usuário criar seus próprios bolões;
--  Após ingressar em um bolão, você será redirecionado para a tela dos bolões que você participa e poderá realizar os palpites;
--  Na aba de campeonatos, você poderá acompanhar o desempenho dos times nos respectivos campeonatos;
--  Ao clicar sobre um bolão que você já participa, será exibido a tela do ranking dos usuários e ao clicar em um deles, será mostrado as estatísticas do mesmo, assim como seus últimos palpites;
--  Na tela de jogos
+- Bolões
+	- Participe de bolões oficiais criados pelo própio app;
+	- Crie seus própios bolões (em desenvolvimento...);
+	- Convide seu amigos para participar dos seus bolões (em desenvolvimento...).
+
+- Campeonatos
+	- Acompanhe a classificação e estatisticas dos campeonatos.
+	
+- Palpites
+	- Realize palpites dos jogos do seu campeonato favorito;
+	- Acompanhe os palpites dos seus amigos;
+	- Pontue em cada rodada e alcance a primeira posição no ranking dos bolões que você participa.
+
+- Ranking
+  - Concorra com seus amigos para ver quem alcança maior level;
+	- Aumente seu level a cada acerto conforme os critérios abaixo:
+	  - Placar exato = PE;
+	  - Vitória ou empate = VE;
+	  - Acerto de gols = AG;
+	  - Diferença de gols = DG;
+	  - Palpites realizados = PR;
+	  - Participação em bolões = PB;
+	  - Campeão do bolão = CB;
+	  - Vice-campeão do bolão = VC;
+	  - Terceiro lugar = TL.
+
+- Conquistas
+	- A medida que você for subindo de level, desbloqueara novas conquistas;
+	- Acompanhe os palpites dos seus amigos;
+	- Pontue em cada rodada e alcance a primeira posição no ranking dos bolões que você participa.
+	- Lista de conquitas desponíveis até o momento:
+	  - Palpiteiro de várzea;
+	  - Palpiteiro raiz;
+	  - Mestre palpiteiro;
+	  - Palpiteiro animal;
+	  - Um fenômeno!;
+	  - O baixinho ta na área;
+	  - A canhotinha do Messi;
+	  - La mano de dios;
+	  - Rei Pelé dos palpites.
 
 ## Instalação
 Nota: Se você deseja testar o Palpiteiros, ele já se encontra publicado no Google Play, para instala-lo no seu smartphone basta clicar [aqui](https://play.google.com/store/apps/details?id=com.palpiteiros).
 
 ### Pré-requisitos
+Para executar este projeto você precisará ter um ambiente básico para executar um aplicativo React-Native, que pode ser encontrado [aqui] (https://facebook.github.io/react-native/docs/getting-started).
 
 **Clonando o repositório**
 ```
