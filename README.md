@@ -1,4 +1,4 @@
-# Palpiteiros
+# Palpiteiros | App
 
 ![Palpiteiros-Preview](https://github.com/moizez/Palpiteiros-App/blob/main/preview.jpg?raw=true)
 
@@ -66,7 +66,7 @@ $ cd Palpiteiros-App
 ```
 **Instalando dependências**
 ```
-$ yarn
+$ yarn install
 ```
 _ou_
 
