@@ -1,11 +1,11 @@
-# Palpiteiros
+# Palpiteiros | App
 
 ![Palpiteiros-Preview](https://github.com/moizez/Palpiteiros-App/blob/main/preview.jpg?raw=true)
 
-Caso queira conferir todas as telas e em tamanho maior, estão [aqui](https://drive.google.com/drive/folders/1715_nkAI5nedEcOTgZXadY7wjD5tV-Js?usp=sharing). 
+Caso queira conferir todas as telas e em tamanho maior, é só clicar [aqui](https://drive.google.com/drive/folders/1715_nkAI5nedEcOTgZXadY7wjD5tV-Js?usp=sharing). 
 
 ## Sobre o Palpiteiros
-Este projeto foi desenvolvido com o intuito de criar um sistema web e mobile para a realização de bolões e palpites de futebol, para que a galera que ama este esporte possa testar seus conhecimentos e claro, sua sorte.
+Este projeto foi desenvolvido com o intuito de criar um sistema [web](https://github.com/Moizez/Palpiteiros-Web) e mobile para a realização de bolões e palpites de futebol, para que a galera que ama este esporte possa testar seus conhecimentos e claro, sua sorte.
 
 Desde já, ficarei muito feliz se você puder me fornecer algum feedback sobre o projeto, código, estrutura ou qualquer coisa que você possa relatar e que possa me tornar um desenvolvedor melhor!
 
@@ -53,20 +53,20 @@ Desde já, ficarei muito feliz se você puder me fornecer algum feedback sobre o
 	  - Rei Pelé dos palpites.
 
 ## Instalação
-Nota: Se você deseja testar o Palpiteiros, ele já se encontra publicado no Google Play, para nstalá-lo no seu smartphone basta clicar [aqui](https://play.google.com/store/apps/details?id=com.palpiteiros).
+Nota: Se você deseja testar o Palpiteiros, ele já se encontra publicado no Google Play, para instalá-lo no seu smartphone basta clicar [aqui](https://play.google.com/store/apps/details?id=com.palpiteiros).
 
 ### Pré-requisitos
-Para executar este projeto você precisará ter um ambiente básico para executar um aplicativo React-Native, que pode ser encontrado [aqui] (https://facebook.github.io/react-native/docs/getting-started).
+Para executar este projeto você precisará ter um ambiente básico para executar um aplicativo React-Native, que pode ser encontrado [aqui](https://facebook.github.io/react-native/docs/getting-started).
 
 **Clonando o repositório**
 ```
-$ git clone https://github.com/steniowagner/mindCast
+$ git clone https://github.com/moizez/Palpiteiros-App
 
 $ cd Palpiteiros-App
 ```
 **Instalando dependências**
 ```
-$ yarn
+$ yarn install
 ```
 _ou_
 
